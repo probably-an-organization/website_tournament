@@ -1,0 +1,3 @@
+src/components/\_development/Tournament/utils/teamGeneratorUtils.worker.js
+src/components/CSTeamGenerator/utils/teamGeneratorUtils.worker.js
+src/env.js

@@ -1,0 +1,10 @@
+local storage
+-> save last generated stuff in local storage, fetch on mount
+
+create link for other so they can see the changes as well (but not modify)??
+
+custom maps (store in local storage)
+
+breadcrumbs (to go back to start immediately, or alternatively a home button)
+
+removing player from teams -> player not removed from players

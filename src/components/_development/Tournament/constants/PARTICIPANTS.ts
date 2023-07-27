@@ -1,0 +1,1 @@
+export const PARTICIPANTS_LIMIT = 1000;
