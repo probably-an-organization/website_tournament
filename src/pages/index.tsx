@@ -40,14 +40,14 @@ export async function getStaticProps({ locale = "de" }) {
       ...(await serverSideTranslations(
         locale,
         ["common", "table"],
-        nextI18nextConfig
+        nextI18nextConfig,
       )),
     },
   };
 }
 
 export default function TournamentLoginPage(
-  _props: InferGetStaticPropsType<typeof getStaticProps>
+  _props: InferGetStaticPropsType<typeof getStaticProps>,
 ) {
   const [mode, setMode] = useState<AuthenticationMode>("login");
 
@@ -88,9 +88,9 @@ export default function TournamentLoginPage(
       redirectToDashboard();
     }
   }, [tournament.signedIn]);
-  
+
   const redirectToDashboard = async () => {
-    await router.push("/tournament/dashboard");
+    await router.push("/dashboard");
   };
 
   const onSubmit = async (credentials: { email: string; password: string }) => {

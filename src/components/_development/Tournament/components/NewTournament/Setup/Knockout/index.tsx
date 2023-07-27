@@ -81,7 +81,7 @@ export default function KnockoutTournament() {
         description: "OLAF",
         type: NotificationType.Success,
       });
-      await router.push("/tournament/dashboard");
+      await router.push("/dashboard");
     } catch (err) {
       notification({
         title: "Error",

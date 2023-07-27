@@ -29,7 +29,7 @@ const MyApp: AppType = ({ Component, pageProps }: AppProps<PageProps>) => {
   return (
     <GlobalContextProvider>
       <Component {...pageProps} />
-      <Sidebar />
+      {/* <Sidebar /> */}
     </GlobalContextProvider>
   );
 };

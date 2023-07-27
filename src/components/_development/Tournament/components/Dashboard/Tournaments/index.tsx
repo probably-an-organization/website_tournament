@@ -21,12 +21,12 @@ export default function TournamentDashboardTournaments() {
 
   const gridFilterTournaments = useMemo(
     () => tournament.tournaments.filter((t) => gridFilter[t.type]?.active),
-    [gridFilter, tournament.tournaments]
+    [gridFilter, tournament.tournaments],
   );
 
   const handleGridFilter = async (
     key: string,
-    value: { active: boolean; label: string }
+    value: { active: boolean; label: string },
   ) => {
     setGridFilter((prev) => {
       const newGridFilter = {
@@ -39,7 +39,7 @@ export default function TournamentDashboardTournaments() {
 
       const active = Object.entries(newGridFilter).reduce(
         (acc, [_, value]) => acc + (value.active ? 1 : 0),
-        0
+        0,
       );
 
       return active < 1 ? DEFAULT_GRID_FILTER : newGridFilter;
@@ -75,7 +75,7 @@ export default function TournamentDashboardTournaments() {
                 onClick={() => handleGridFilter(key, value)}
                 className={styled(
                   "w-20 rounded p-2 transition-colors",
-                  value.active ? "bg-orange-500" : "bg-neutral-700"
+                  value.active ? "bg-orange-500" : "bg-neutral-700",
                 )}
               >
                 {value.label}
@@ -93,7 +93,7 @@ export default function TournamentDashboardTournaments() {
               >
                 <DashboardTournamentButton
                   className="flex flex-col items-center justify-center gap-1 border border-neutral-100 font-semibold text-neutral-100 hover:bg-neutral-900"
-                  href="/tournament/new"
+                  href="/new"
                 >
                   <TbTournament />
                   New tournament
@@ -108,7 +108,7 @@ export default function TournamentDashboardTournaments() {
                 >
                   <DashboardTournamentButton
                     className="relative flex flex-col items-center bg-neutral-900 hover:bg-neutral-800"
-                    href={`/tournament/knockout/${t._id}`}
+                    href={`/knockout/${t._id}`}
                   >
                     <span className="font-semibold">{t.name}</span>
                     <span
@@ -116,7 +116,7 @@ export default function TournamentDashboardTournaments() {
                         "flex flex-1 items-center break-all py-2 text-xs",
                         t.description
                           ? "text-neutral-400"
-                          : "italic text-neutral-600"
+                          : "italic text-neutral-600",
                       )}
                     >
                       {t.description || "No description"}

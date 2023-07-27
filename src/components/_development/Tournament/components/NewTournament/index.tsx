@@ -42,9 +42,7 @@ function NewTournamentComponent() {
         withCredentials: true,
       });
     };
-    checkUserAlreadyLoggedIn().catch(
-      async () => await router.push("/tournament/login"),
-    );
+    checkUserAlreadyLoggedIn().catch(async () => await router.push("/login"));
   }, []);
 
   const BREADCRUMBS: BreadcrumbItem[] = [
@@ -121,7 +119,7 @@ function NewTournamentComponent() {
         description: "OLAF",
         type: NotificationType.Success,
       });
-      await router.push("/tournament/dashboard");
+      await router.push("/dashboard");
     } catch (err) {
       notification({
         title: "Error",
@@ -150,7 +148,7 @@ function NewTournamentComponent() {
         <Button
           onClick={() =>
             slide <= 0
-              ? void (async () => await router.push("/tournament/dashboard"))()
+              ? void (async () => await router.push("/dashboard"))()
               : setSlide((prev) => Math.max(0, prev - 1))
           }
         >
