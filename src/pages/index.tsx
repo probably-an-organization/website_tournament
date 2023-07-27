@@ -51,10 +51,9 @@ export default function TournamentLoginPage(
 ) {
   const [mode, setMode] = useState<AuthenticationMode>("login");
 
-  const { setTournament, tournament } = useGlobal();
+  const { loading, redirect, setTournament, tournament } = useGlobal();
   const notification = useNotification();
 
-  const router = useRouter();
   const {
     formState,
     getValues,
@@ -72,7 +71,7 @@ export default function TournamentLoginPage(
     },
   });
 
-  const { post, loading } = useAxios();
+  const { post } = useAxios();
 
   useEffect(() => {
     const checkPassword = async () => {
@@ -85,13 +84,9 @@ export default function TournamentLoginPage(
 
   useEffect(() => {
     if (tournament.signedIn) {
-      redirectToDashboard();
+      redirect("/dashboard", true);
     }
   }, [tournament.signedIn]);
-
-  const redirectToDashboard = async () => {
-    await router.push("/dashboard");
-  };
 
   const onSubmit = async (credentials: { email: string; password: string }) => {
     try {
@@ -133,96 +128,102 @@ export default function TournamentLoginPage(
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="h-full w-full">
-        <div className="flex h-full w-full items-center justify-center">
-          <Card className="w-full max-w-sm p-3">
-            <form
-              className="flex flex-col gap-3"
-              onSubmit={(...args) => void handleSubmit(onSubmit)(...args)}
-            >
-              <FloatingInput
-                error={!!formState.errors.email}
-                label="Email"
-                onReset={() => resetField("email")}
-                value={watch("email")}
-                {...register("email", {
-                  required: true,
-                  pattern: {
-                    value:
-                      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                    message: "Please enter a valid email",
-                  },
-                })}
-              />
-              <FloatingInput
-                error={!!formState.errors.password}
-                label="Password"
-                onReset={() => resetField("password")}
-                type="password"
-                value={watch("password")}
-                {...register("password", {
-                  required: true,
-                  // TODO tooltip @ register (pw min length 8, small char, big char, number, special char)
-                  validate: (v) =>
-                    mode === "login"
-                      ? v.length > 0
-                      : v.length >= 8 &&
-                        !!v.match(/\W/) &&
-                        !!v.match(/[A-Z]/) &&
-                        !!v.match(/[a-z]/) &&
-                        !!v.match(/\d/),
-                })}
-              />
-              {mode === "register" && (
-                <FloatingInput
-                  error={!!formState.errors.passwordVerification}
-                  label="Verify password"
-                  onReset={() => resetField("passwordVerification")}
-                  type="password"
-                  value={watch("passwordVerification")}
-                  {...register("passwordVerification", {
-                    required: true,
-                    validate: (v) =>
-                      v && v.length > 0 && v === getValues("password"),
-                  })}
-                />
-              )}
-              {mode === "login" && (
-                <div className="flex gap-2">
-                  <Checkbox
-                    label="Remember me"
-                    checked={watch("rememberMe")}
-                    {...register("rememberMe", { required: false })}
+        {tournament.signedIn === false && (
+          <>
+            <div className="flex h-full w-full items-center justify-center">
+              <Card className="w-full max-w-sm p-3">
+                <form
+                  className="flex flex-col gap-3"
+                  onSubmit={(...args) => void handleSubmit(onSubmit)(...args)}
+                >
+                  <FloatingInput
+                    error={!!formState.errors.email}
+                    label="Email"
+                    onReset={() => resetField("email")}
+                    value={watch("email")}
+                    {...register("email", {
+                      required: true,
+                      pattern: {
+                        value:
+                          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                        message: "Please enter a valid email",
+                      },
+                    })}
                   />
-                  <label className="text-xs">Remember me</label>
+                  <FloatingInput
+                    error={!!formState.errors.password}
+                    label="Password"
+                    onReset={() => resetField("password")}
+                    type="password"
+                    value={watch("password")}
+                    {...register("password", {
+                      required: true,
+                      // TODO tooltip @ register (pw min length 8, small char, big char, number, special char)
+                      validate: (v) =>
+                        mode === "login"
+                          ? v.length > 0
+                          : v.length >= 8 &&
+                            !!v.match(/\W/) &&
+                            !!v.match(/[A-Z]/) &&
+                            !!v.match(/[a-z]/) &&
+                            !!v.match(/\d/),
+                    })}
+                  />
+                  {mode === "register" && (
+                    <FloatingInput
+                      error={!!formState.errors.passwordVerification}
+                      label="Verify password"
+                      onReset={() => resetField("passwordVerification")}
+                      type="password"
+                      value={watch("passwordVerification")}
+                      {...register("passwordVerification", {
+                        required: true,
+                        validate: (v) =>
+                          v && v.length > 0 && v === getValues("password"),
+                      })}
+                    />
+                  )}
+                  {mode === "login" && (
+                    <div className="flex gap-2">
+                      <Checkbox
+                        label="Remember me"
+                        checked={watch("rememberMe")}
+                        {...register("rememberMe", { required: false })}
+                      />
+                      <label className="text-xs">Remember me</label>
+                    </div>
+                  )}
+                  <Button type="submit">
+                    {mode === "login" ? "Login" : "Register"}
+                  </Button>
+                </form>
+                <div className="mt-3 text-sm">
+                  <span>
+                    {`${
+                      mode === "login"
+                        ? "Not registered yet?"
+                        : "Already registered?"
+                    } `}
+                  </span>
+                  <span
+                    className="cursor-pointer underline"
+                    onClick={() =>
+                      setMode((prev) =>
+                        prev === "login" ? "register" : "login",
+                      )
+                    }
+                  >
+                    {mode === "login" ? "Register" : "Login"}
+                  </span>
                 </div>
-              )}
-              <Button type="submit">
-                {mode === "login" ? "Login" : "Register"}
-              </Button>
-            </form>
-            <div className="mt-3 text-sm">
-              <span>
-                {`${
-                  mode === "login"
-                    ? "Not registered yet?"
-                    : "Already registered?"
-                } `}
-              </span>
-              <span
-                className="cursor-pointer underline"
-                onClick={() =>
-                  setMode((prev) => (prev === "login" ? "register" : "login"))
-                }
-              >
-                {mode === "login" ? "Register" : "Login"}
-              </span>
+              </Card>
             </div>
-          </Card>
-        </div>
-        {loading && (
-          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-            <Spinner />
-          </div>
+            {loading && (
+              <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                <Spinner />
+              </div>
+            )}
+          </>
         )}
       </main>
     </>

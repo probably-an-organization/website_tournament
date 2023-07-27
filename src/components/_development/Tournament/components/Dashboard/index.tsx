@@ -25,18 +25,13 @@ export default function Dashboard() {
 }
 
 function DashboardComponent() {
-  const { setTournament, tournament } = useGlobal();
+  const { redirect, setTournament, tournament } = useGlobal();
   const { tab } = useDashboardContext();
   const { get, loading } = useAxios();
 
-  const router = useRouter();
-  const redirectToLogin = async () => {
-    await router.push("/tournament");
-  };
-
   useEffect(() => {
     if (!tournament.signedIn) {
-      redirectToLogin();
+      redirect("/");
       return;
     }
 
