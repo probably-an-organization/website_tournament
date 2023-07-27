@@ -21,6 +21,7 @@ import Navigation from "~/components/_development/Tournament/components/Navigati
 import NavigationPage from "~/components/_development/Tournament/components/Navigation/Page";
 import { styled } from "~/utils/stringUtils";
 import KnockoutSettings from "./Settings";
+import { handleAxiosError } from "~/utils/axiosUtils";
 
 export default function TournamentKnockout() {
   return (
@@ -35,17 +36,18 @@ function TournamentKnockoutComponent() {
   const [navigationExpanded, setNavigationExpanded] = useState<boolean>(false);
   const [navigationPin, setNavigationPin] = useState<boolean>(false);
 
-  const router = useRouter();
-
   const { fetchKnockout, knockoutEditPermission, knockoutTournament } =
     useKnockoutTournamentContext();
 
-  const { tournament } = useGlobal();
+  const router = useRouter();
+  const { redirect, tournament } = useGlobal();
 
   useEffect(() => {
     if (router.query.id) {
-      fetchKnockout(Number(router.query.id)).catch(
-        async (err) => await router.push("/tournament"),
+      fetchKnockout(Number(router.query.id)).catch((err) =>
+        handleAxiosError(err, {
+          default: () => redirect("/tournament", { withLoading: true }),
+        }),
       );
     }
   }, [router.query.id]);
@@ -171,12 +173,9 @@ function TournamentKnockoutComponent() {
                     <button
                       className="flex items-center gap-1 rounded bg-neutral-500 py-1 pl-1 pr-2 transition-colorsTransform hover:scale-102.5 hover:bg-neutral-400"
                       onClick={() =>
-                        void (async () =>
-                          await router.push(
-                            tournament.signedIn
-                              ? "/tournament/dashboard"
-                              : "/tournament",
-                          ))()
+                        redirect(tournament.signedIn ? "/dashboard" : "/", {
+                          withLoading: true,
+                        })
                       }
                     >
                       {tournament.signedIn ? (

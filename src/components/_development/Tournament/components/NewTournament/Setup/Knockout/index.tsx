@@ -18,6 +18,7 @@ import {
   useNotification,
 } from "~/hooks/Context/useNotification";
 import type { AxiosError } from "axios";
+import { handleAxiosError } from "~/utils/axiosUtils";
 
 export const BRANCH_WIDTH = "w-52";
 
@@ -28,7 +29,7 @@ export default function KnockoutTournament() {
   const { newTournament } = useTournamentContext();
 
   const router = useRouter();
-  const { post, loading } = useAxios();
+  const { post } = useAxios();
   const notification = useNotification();
 
   useEffect(() => {
@@ -83,10 +84,13 @@ export default function KnockoutTournament() {
       });
       await router.push("/dashboard");
     } catch (err) {
-      notification({
-        title: "Error",
-        description: (err as AxiosError).message,
-        type: NotificationType.Error,
+      handleAxiosError(err, {
+        default: () =>
+          notification({
+            title: "Error",
+            description: (err as AxiosError).message,
+            type: NotificationType.Error,
+          }),
       });
     }
   };

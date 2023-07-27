@@ -1,4 +1,4 @@
-import { useRouter } from "next/router";
+import { useGlobal } from "~/hooks/Context/useGlobal";
 import { styled } from "~/utils/stringUtils";
 
 type DashboardTournamentButtonProps = {
@@ -12,15 +12,15 @@ export default function DashboardTournamentButton({
   className,
   href,
 }: DashboardTournamentButtonProps) {
-  const router = useRouter();
+  const { redirect } = useGlobal();
 
   return (
     <button
       className={styled(
         "h-40 w-40 rounded p-2 transition-colorsTransform hover:scale-102.5",
-        className
+        className,
       )}
-      onClick={() => void (async () => await router.push(href))()}
+      onClick={() => redirect(href, { withLoading: true })}
     >
       {children}
     </button>

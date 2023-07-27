@@ -4,8 +4,13 @@ import { ThemeContextProvider } from "./useTheme";
 import useAxios from "../useAxios";
 import { type Tournament } from "~/components/_development/Tournament/@types";
 import { useRouter } from "next/router";
-import axios from "axios";
 import { handleAxiosError } from "~/utils/axiosUtils";
+import Spinner from "~/components/Spinner";
+import { AnimatePresence, motion } from "framer-motion";
+
+type RedirectOptions = {
+  withLoading?: boolean;
+};
 
 type TournamentUser = {
   email: string;
@@ -23,7 +28,7 @@ type TournamentContext = {
 /* CONTEXT */
 type GlobalContextProps = {
   loading: boolean;
-  redirect(path: string, withLoading?: boolean): void;
+  redirect(path: string, options?: RedirectOptions): void;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   setTournament: React.Dispatch<React.SetStateAction<TournamentContext>>;
   tournament: TournamentContext;
@@ -81,12 +86,12 @@ export default function GlobalContextProvider({
     );
   }, []);
 
-  const redirect = async (path: string, withLoading?: boolean) => {
-    if (withLoading) {
+  const redirect = async (path: string, options: RedirectOptions) => {
+    if (options.withLoading) {
       setLoading(true);
     }
     await router.push(path);
-    if (withLoading) {
+    if (options.withLoading) {
       setLoading(false);
     }
   };
@@ -95,9 +100,38 @@ export default function GlobalContextProvider({
     <GlobalContext.Provider
       value={{ loading, redirect, setLoading, setTournament, tournament }}
     >
-      <ThemeContextProvider>
-        <NotificationContextProvider>{children}</NotificationContextProvider>
-      </ThemeContextProvider>
+      <GlobalContextComponent>
+        <ThemeContextProvider>
+          <NotificationContextProvider>{children}</NotificationContextProvider>
+        </ThemeContextProvider>
+      </GlobalContextComponent>
     </GlobalContext.Provider>
+  );
+}
+
+type GlobalContextComponent = {
+  children: React.ReactNode;
+};
+
+function GlobalContextComponent({ children }: GlobalContextComponent) {
+  const { loading } = useGlobal();
+
+  return (
+    <>
+      {children}
+
+      <AnimatePresence>
+        {loading && (
+          <motion.div
+            animate={{ opacity: 1 }}
+            className="fixed inset-0 z-50 flex h-full w-full items-center justify-center bg-black bg-opacity-50 text-white"
+            exit={{ opacity: 0 }}
+            initial={{ opacity: 0 }}
+          >
+            <Spinner />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }

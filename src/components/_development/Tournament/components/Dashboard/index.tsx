@@ -28,11 +28,11 @@ export default function Dashboard() {
 function DashboardComponent() {
   const { redirect, setTournament, tournament } = useGlobal();
   const { tab } = useDashboardContext();
-  const { get, loading } = useAxios();
+  const { get } = useAxios();
 
   useEffect(() => {
     if (!tournament.signedIn) {
-      redirect("/");
+      redirect("/", { withLoading: true });
       return;
     }
 
@@ -45,6 +45,7 @@ function DashboardComponent() {
         tournaments: data as Tournament[],
       }));
     };
+
     fetchTournaments().catch((err) =>
       handleAxiosError(err, {
         401: () => setTournament((prev) => ({ ...prev, signedIn: false })),
@@ -61,12 +62,6 @@ function DashboardComponent() {
 
           {tab === 0 && <TournamentDashboardTournaments />}
           {tab === 1 && <TournamentDashboardSettings className="p-3" />}
-
-          {loading && (
-            <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-              <Spinner />
-            </div>
-          )}
         </>
       )}
     </>

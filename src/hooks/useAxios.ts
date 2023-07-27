@@ -16,7 +16,7 @@ const DEFAULT_CONFIG = {
 export default function useAxios() {
   const [queryCounter, setQueryCounter] = useState<number>(0);
 
-  const { loading, setLoading } = useGlobal();
+  const { setLoading } = useGlobal();
 
   useEffect(() => {
     setLoading(queryCounter > 0);
@@ -66,5 +66,5 @@ export default function useAxios() {
     );
   };
 
-  return { get, loading, post, put };
+  return { get, post, put };
 }

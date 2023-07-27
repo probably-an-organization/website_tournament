@@ -54,7 +54,7 @@ export type TournamentContextProps = {
 };
 
 const TournamentContext = createContext<TournamentContextProps>(
-  {} as TournamentContextProps
+  {} as TournamentContextProps,
 );
 
 /* HOOK */
@@ -109,7 +109,7 @@ export const TournamentContextProvider = ({
 
   const removeNotification = (id?: string) => {
     setNotifications((previousNotifications) =>
-      previousNotifications.filter((notification) => notification.id !== id)
+      previousNotifications.filter((notification) => notification.id !== id),
     );
   };
 
@@ -124,19 +124,6 @@ export const TournamentContextProvider = ({
       }}
     >
       {children}
-
-      <AnimatePresence>
-        {loading && (
-          <motion.div
-            animate={{ opacity: 1 }}
-            className="fixed inset-0 z-50 flex h-full w-full items-center justify-center bg-black bg-opacity-50 text-white"
-            exit={{ opacity: 0 }}
-            initial={{ opacity: 0 }}
-          >
-            <Spinner />
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       <AnimatePresence>
         {notifications?.length > 0 && (
@@ -157,7 +144,7 @@ export const TournamentContextProvider = ({
                       }}
                       className={styled(
                         "h-28 rounded text-white",
-                        getNotificationColor(n.type)
+                        getNotificationColor(n.type),
                       )}
                       exit={{ opacity: 0 }}
                       initial={{ opacity: 0 }}
@@ -171,7 +158,7 @@ export const TournamentContextProvider = ({
                       </div>
                       <div className="p-2">{n.description}</div>
                     </motion.div>
-                  )
+                  ),
               )}
             </AnimatePresence>
           </motion.div>
