@@ -20,6 +20,7 @@ import Input from "~/components/Input";
 import NationalityBadge from "../../../NationalityBadge";
 import { FiAward } from "react-icons/fi";
 import axios from "axios";
+import { handleAxiosError } from "~/utils/axiosUtils";
 
 export enum TreeStyles {
   Top = "TreeStyles.Top",
@@ -88,7 +89,7 @@ export default function KnockoutSVGTree({
         {
           ...editKnockoutMatch,
         },
-        { withCredentials: true }
+        { withCredentials: true },
       );
 
       setKnockoutTournament((prev) => {
@@ -96,12 +97,12 @@ export default function KnockoutSVGTree({
         newKnockoutTournament.sortedMatches!.forEach((stage, sIndex) =>
           stage.forEach((match, mIndex) => {
             const newMatch = (result.data as KnockoutMatch[]).find(
-              (newMatch) => newMatch._id === match._id
+              (newMatch) => newMatch._id === match._id,
             );
             if (newMatch) {
               newKnockoutTournament.sortedMatches![sIndex]![mIndex] = newMatch;
             }
-          })
+          }),
         );
         return newKnockoutTournament as KnockoutTournament;
       });
@@ -112,19 +113,20 @@ export default function KnockoutSVGTree({
         type: NotificationType.Success,
       });
     } catch (err) {
-      if (axios.isAxiosError(err) && err.response?.status === 409) {
-        notification({
-          title: "Error",
-          description: "Match not up-to-date, please refresh page",
-          type: NotificationType.Error,
-        });
-      } else {
-        notification({
-          title: "Error",
-          description: "Match could not be changed",
-          type: NotificationType.Error,
-        });
-      }
+      handleAxiosError(err, {
+        409: () =>
+          notification({
+            title: "Error",
+            description: "Match not up-to-date, please refresh page",
+            type: NotificationType.Error,
+          }),
+        default: () =>
+          notification({
+            title: "Error",
+            description: "Match could not be changed",
+            type: NotificationType.Error,
+          }),
+      });
     }
   };
 
@@ -138,7 +140,7 @@ export default function KnockoutSVGTree({
         `/knockout-tournament/${knockoutTournament!._id}/broadcast/${
           editKnockoutMatch.stage_number
         }/${editKnockoutMatch.match_number}`,
-        { withCredentials: true }
+        { withCredentials: true },
       );
       notification({
         title: "Success",
@@ -205,7 +207,7 @@ export default function KnockoutSVGTree({
                     className="rounded bg-neutral-900 px-3 py-1 shadow transition-colors hover:bg-neutral-800"
                     onClick={() =>
                       alert(
-                        "TODO start rendering from here (cut everything off from the left)"
+                        "TODO start rendering from here (cut everything off from the left)",
                       )
                     }
                   >
@@ -248,7 +250,7 @@ export default function KnockoutSVGTree({
                             ? "[not:disabled]:hover:bg-neutral-400 bg-neutral-500 disabled:bg-neutral-700"
                             : winner === playerIndex
                             ? "bg-orange-500"
-                            : "[not:disabled]:hover:bg-neutral-700 bg-neutral-800"
+                            : "[not:disabled]:hover:bg-neutral-700 bg-neutral-800",
                         )}
                         disabled={!participant}
                         key={`player-selector-${playerIndex}`}
@@ -259,7 +261,7 @@ export default function KnockoutSVGTree({
                                 ...prev,
                                 winner:
                                   winner === playerIndex ? 0 : playerIndex,
-                              } as KnockoutMatch)
+                              }) as KnockoutMatch,
                           )
                         }
                       >
@@ -294,7 +296,7 @@ export default function KnockoutSVGTree({
                       ({
                         ...prev,
                         information: e.target.value,
-                      } as KnockoutMatch)
+                      }) as KnockoutMatch,
                   )
                 }
                 value={editKnockoutMatch.information || ""}

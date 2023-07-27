@@ -15,6 +15,7 @@ import {
   useDashboardContext,
 } from "../../hooks/useDashboardContext";
 import TournamentDashboardTournaments from "./Tournaments";
+import { handleAxiosError } from "~/utils/axiosUtils";
 
 export default function Dashboard() {
   return (
@@ -44,21 +45,12 @@ function DashboardComponent() {
         tournaments: data as Tournament[],
       }));
     };
-    fetchTournaments().catch((err) => {
-      if (axios.isAxiosError(err)) {
-        switch (err.response?.status) {
-          case 401:
-            setTournament((prev) => ({ ...prev, signedIn: false }));
-            break;
-          case 429:
-            alert("TOO MANY REQUESTS TODO");
-            break;
-          default:
-            console.error(err);
-            break;
-        }
-      }
-    });
+    fetchTournaments().catch((err) =>
+      handleAxiosError(err, {
+        401: () => setTournament((prev) => ({ ...prev, signedIn: false })),
+        429: () => alert("TOO MANY REQUESTS TODO"),
+      }),
+    );
   }, [tournament.signedIn]);
 
   return (
