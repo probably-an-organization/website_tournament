@@ -19,7 +19,7 @@ export default function DashboardMenu() {
       });
       if (status === 200) {
         setTournament((prev) => ({ ...prev, signedIn: false }));
-        redirect("/tournament", { withLoading: true });
+        redirect("/", { withLoading: true });
       }
     }
   };
