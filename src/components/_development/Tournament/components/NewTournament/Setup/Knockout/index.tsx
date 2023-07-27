@@ -1,24 +1,22 @@
 import { useEffect, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 
 import type {
   NewKnockoutMatch,
   NewParticipant,
 } from "~/components/_development/Tournament/@types";
 import { useTournamentContext } from "~/components/_development/Tournament/hooks/useTournamentContext";
-import { shuffle } from "~/utils/arrayUtils";
 import { styled } from "~/utils/stringUtils";
 import KnockoutTournamentMatch from "./Match";
 import Card from "~/components/Card";
 import { FiCheck } from "react-icons/fi";
 import useAxios from "~/hooks/useAxios";
-import { useRouter } from "next/router";
 import {
   NotificationType,
   useNotification,
 } from "~/hooks/Context/useNotification";
 import type { AxiosError } from "axios";
 import { handleAxiosError } from "~/utils/axiosUtils";
+import { useGlobal } from "~/hooks/Context/useGlobal";
 
 export const BRANCH_WIDTH = "w-52";
 
@@ -28,9 +26,9 @@ export default function KnockoutTournament() {
   ]);
   const { newTournament } = useTournamentContext();
 
-  const router = useRouter();
   const { post } = useAxios();
   const notification = useNotification();
+  const { redirect } = useGlobal();
 
   useEffect(() => {
     const participants = newTournament.participants.list.slice(
@@ -82,7 +80,7 @@ export default function KnockoutTournament() {
         description: "OLAF",
         type: NotificationType.Success,
       });
-      await router.push("/dashboard");
+      redirect("/dashboard", { withLoading: true });
     } catch (err) {
       handleAxiosError(err, {
         default: () =>

@@ -16,9 +16,9 @@ import NewTournamentType from "./Type";
 import NewTournamentSetup from "./Setup";
 import useAxios from "~/hooks/useAxios";
 import { useNotification } from "~/hooks/Context/useNotification";
-import { useRouter } from "next/router";
 import { AxiosError } from "axios";
 import { TournamentTypes } from "../../constants/TYPES";
+import { useGlobal } from "~/hooks/Context/useGlobal";
 
 export default function NewTournament() {
   return (
@@ -31,9 +31,9 @@ export default function NewTournament() {
 function NewTournamentComponent() {
   const [slide, setSlide] = useState<number>(0);
 
+  const { redirect } = useGlobal();
   const { newTournament } = useTournamentContext();
   const notification = useNotification();
-  const router = useRouter();
   const { get, post } = useAxios();
 
   useLayoutEffect(() => {
@@ -42,7 +42,9 @@ function NewTournamentComponent() {
         withCredentials: true,
       });
     };
-    checkUserAlreadyLoggedIn().catch(async () => await router.push("/login"));
+    checkUserAlreadyLoggedIn().catch(() =>
+      redirect("/", { withLoading: true }),
+    );
   }, []);
 
   const BREADCRUMBS: BreadcrumbItem[] = [
@@ -119,7 +121,7 @@ function NewTournamentComponent() {
         description: "OLAF",
         type: NotificationType.Success,
       });
-      await router.push("/dashboard");
+      redirect("/dashboard", { withLoading: true });
     } catch (err) {
       notification({
         title: "Error",
@@ -148,7 +150,7 @@ function NewTournamentComponent() {
         <Button
           onClick={() =>
             slide <= 0
-              ? void (async () => await router.push("/dashboard"))()
+              ? redirect("/dashboard", { withLoading: true })
               : setSlide((prev) => Math.max(0, prev - 1))
           }
         >

@@ -7,15 +7,10 @@ import { useGlobal } from "~/hooks/Context/useGlobal";
 import { useDashboardContext } from "../../../hooks/useDashboardContext";
 
 export default function DashboardMenu() {
-  const { setTournament, tournament } = useGlobal();
+  const { redirect, setTournament, tournament } = useGlobal();
 
   const { tab, setTab } = useDashboardContext();
   const { get } = useAxios();
-  const router = useRouter();
-
-  const redirectToLogin = async () => {
-    await router.push("/tournament");
-  };
 
   const handleLogout = async () => {
     if (window.confirm("Are you sure you want to logout?")) {
@@ -24,7 +19,7 @@ export default function DashboardMenu() {
       });
       if (status === 200) {
         setTournament((prev) => ({ ...prev, signedIn: false }));
-        redirectToLogin();
+        redirect("/tournament", { withLoading: true });
       }
     }
   };
