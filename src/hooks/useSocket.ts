@@ -19,11 +19,11 @@ export default function useSocket(
   nsp: string,
   options: SocketOptions = {
     autoConnect: true,
-  }
-): [Socket, boolean, boolean] {
+  },
+): [Socket, boolean] {
   const [error, setError] = useState<boolean>(false);
   const socket = useRef<Socket>(
-    io(process.env.NEXT_PUBLIC_BACKEND_WS + nsp, { autoConnect: false }) // custom autoConnect (useEffect)
+    io(process.env.NEXT_PUBLIC_BACKEND_WS + nsp, { autoConnect: false }), // custom autoConnect (useEffect)
   );
 
   const handleConnect = () => {

@@ -90,7 +90,7 @@ export const KnockoutTournamentContextProvider = ({
     if (knockoutId === undefined) {
       throw Error("No knockout id found");
     }
-    const result = await get(`/knockout-tournament/${id}`, {
+    const result = await get(`/knockout-tournament/${knockoutId}`, {
       withCredentials: true,
     });
     const { editPermission, tournament } = result.data as {
