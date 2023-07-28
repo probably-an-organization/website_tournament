@@ -1,4 +1,4 @@
-import { useGlobalContext } from "~src/hooks/Context/useGlobalContext";
+import { useGlobalContext } from "~src/hooks/context/useGlobalContext";
 import { styled } from "~src/utils/stringUtils";
 
 type DashboardTournamentButtonProps = {

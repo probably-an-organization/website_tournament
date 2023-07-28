@@ -1,6 +1,3 @@
-import type { InferGetStaticPropsType } from "next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import nextI18nextConfig from "next-i18next.config";
 import type { ColumnDef } from "@tanstack/react-table";
 
 import Table from "~src/components/Table";
@@ -88,11 +85,13 @@ const renderExpandComponent = (row: TableColumn) => {
   );
 };
 
-type TournamentTableProps = {
+type TournamentsTableViewProps = {
   className?: string;
 };
 
-export default function TournamentTable({ className }: TournamentTableProps) {
+export default function TournamentsTableView({
+  className,
+}: TournamentsTableViewProps) {
   return (
     <Table
       checkbox

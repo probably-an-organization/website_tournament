@@ -16,7 +16,7 @@ export default function DashboardMenuButton({
   return (
     <button
       className={styled(
-        "flex items-center gap-1 rounded px-3 py-2 text-neutral-100 transition-colors disabled:bg-neutral-950 [&:not(:disabled)]:hover:bg-neutral-700",
+        "flex items-center gap-1 rounded px-3 py-2 text-neutral-100 transition-colors disabled:bg-neutral-900 [&:not(:disabled)]:hover:bg-neutral-700",
         className,
       )}
       disabled={disabled}

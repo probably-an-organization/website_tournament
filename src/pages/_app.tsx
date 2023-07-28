@@ -4,7 +4,7 @@ import nextI18nextConfig from "next-i18next.config";
 import axios from "axios";
 
 // import Sidebar from "~src/components/Sidebar";
-import GlobalContextProvider from "~src/hooks/Context/useGlobalContext";
+import GlobalContextProvider from "~src/hooks/context/useGlobalContext";
 
 import "~src/styles/globals.css";
 

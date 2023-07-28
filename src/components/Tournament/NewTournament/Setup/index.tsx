@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 
-import { useTournamentContext } from "~src/hooks/Context/useTournamentContext";
+import { useTournamentContext } from "~src/hooks/context/useTournamentContext";
 import { TournamentTypes } from "~src/constants/tournament/TYPES";
 import Card from "~src/components/Card";
 

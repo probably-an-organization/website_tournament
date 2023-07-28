@@ -3,12 +3,12 @@ import { FiCamera, FiX } from "react-icons/fi";
 import { motion } from "framer-motion";
 
 import Card from "~src/components/Card";
-import { useTournamentContext } from "~src/hooks/Context/useTournamentContext";
+import { useTournamentContext } from "~src/hooks/context/useTournamentContext";
 import FloatingInput from "~src/components/FloatingInput";
 import {
   NotificationType,
   useNotificationContext,
-} from "~src/hooks/Context/useNotificationContext";
+} from "~src/hooks/context/useNotificationContext";
 import { styled } from "~src/utils/stringUtils";
 
 const MAX_CHARACTERS = 256;

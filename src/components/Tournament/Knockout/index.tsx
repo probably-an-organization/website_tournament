@@ -13,10 +13,10 @@ import Card from "~src/components/Card";
 import {
   KnockoutTournamentContextProvider,
   useKnockoutTournamentContext,
-} from "~src/hooks/Context/useKnockoutTournamentContext";
+} from "~src/hooks/context/useKnockoutTournamentContext";
 
 import KnockoutDetails from "~src/components/Tournament/Knockout/Details";
-import { useGlobalContext } from "~src/hooks/Context/useGlobalContext";
+import { useGlobalContext } from "~src/hooks/context/useGlobalContext";
 import Navigation from "~src/components/Tournament/Navigation";
 import NavigationPage from "~src/components/Tournament/Navigation/Page";
 import { styled } from "~src/utils/stringUtils";

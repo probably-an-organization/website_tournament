@@ -3,8 +3,8 @@ import { FiLogOut, FiUser } from "react-icons/fi";
 import DashboardMenuButton from "./MenuButton";
 import { DASHBOARD_NAVIGATION } from "~src/constants/tournament/DASHBOARD";
 import useAxios from "~src/hooks/useAxios";
-import { useGlobalContext } from "~src/hooks/Context/useGlobalContext";
-import { useDashboardContext } from "~src/hooks/Context/useDashboardContext";
+import { useGlobalContext } from "~src/hooks/context/useGlobalContext";
+import { useDashboardContext } from "~src/hooks/context/useDashboardContext";
 
 export default function DashboardMenu() {
   const { redirect, setTournament, tournament } = useGlobalContext();
@@ -26,7 +26,7 @@ export default function DashboardMenu() {
 
   return (
     <div className="z-10 min-w-fit bg-neutral-800 shadow">
-      <div className="flex h-full flex-col justify-between gap-2 p-2 pl-20">
+      <div className="flex h-full flex-col justify-between gap-2 p-2">
         <div className="flex items-center gap-2 text-lg font-medium">
           <FiUser />
           {tournament.user?.username}

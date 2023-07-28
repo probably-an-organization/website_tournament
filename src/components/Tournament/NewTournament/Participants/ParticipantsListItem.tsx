@@ -2,7 +2,7 @@ import { FiTrash2 } from "react-icons/fi";
 
 import NationalityBadgeSelector from "../../NationalityBadgeSelector";
 import Input from "~src/components/Input";
-import { useTournamentContext } from "~src/hooks/Context/useTournamentContext";
+import { useTournamentContext } from "~src/hooks/context/useTournamentContext";
 import type { Participant } from "~src/types/tournament";
 
 export type CreateDancerListItemProps = {

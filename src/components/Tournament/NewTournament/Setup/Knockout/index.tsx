@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import type { NewKnockoutMatch, NewParticipant } from "~src/types/tournament";
-import { useTournamentContext } from "~src/hooks/Context/useTournamentContext";
+import { useTournamentContext } from "~src/hooks/context/useTournamentContext";
 import { styled } from "~src/utils/stringUtils";
 import KnockoutTournamentMatch from "./Match";
 import Card from "~src/components/Card";
@@ -10,10 +10,10 @@ import useAxios from "~src/hooks/useAxios";
 import {
   NotificationType,
   useNotification,
-} from "~src/hooks/Context/useNotificationContext";
+} from "~src/hooks/context/useNotificationContext";
 import type { AxiosError } from "axios";
 import { handleAxiosError } from "~src/utils/axiosUtils";
-import { useGlobalContext } from "~src/hooks/Context/useGlobalContext";
+import { useGlobalContext } from "~src/hooks/context/useGlobalContext";
 
 export const BRANCH_WIDTH = "w-52";
 

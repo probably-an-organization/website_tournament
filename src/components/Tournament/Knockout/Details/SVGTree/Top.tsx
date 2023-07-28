@@ -6,7 +6,7 @@ import {
   PLAYER_MARGIN,
   PLAYER_GAP,
 } from ".";
-import { useKnockoutTournamentContext } from "~src/hooks/Context/useKnockoutTournamentContext";
+import { useKnockoutTournamentContext } from "~src/hooks/context/useKnockoutTournamentContext";
 import KnockoutSVGTreeMatchWithInfo from "./MatchWithInfo";
 
 type KnockoutSVGTreeTopProps = {

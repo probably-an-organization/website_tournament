@@ -7,7 +7,7 @@ import {
   NotificationType,
   TournamentContextProvider,
   useTournamentContext,
-} from "~src/hooks/Context/useTournamentContext";
+} from "~src/hooks/context/useTournamentContext";
 import Breadcrumb, { type BreadcrumbItem } from "../Breadcrumb";
 import NewTournamentParticipant from "./Participants";
 import { Hover, HoverContent, HoverTrigger } from "~src/components/Hover";
@@ -16,9 +16,9 @@ import Button from "~src/components/Button";
 import NewTournamentType from "./Type";
 import NewTournamentSetup from "./Setup";
 import useAxios from "~src/hooks/useAxios";
-import { useNotificationContext } from "~src/hooks/Context/useNotificationContext";
+import { useNotificationContext } from "~src/hooks/context/useNotificationContext";
 import { TournamentTypes } from "~src/constants/tournament/TYPES";
-import { useGlobalContext } from "~src/hooks/Context/useGlobalContext";
+import { useGlobalContext } from "~src/hooks/context/useGlobalContext";
 
 export default function NewTournament() {
   return (

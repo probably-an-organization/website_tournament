@@ -1,6 +1,6 @@
 import axios, { type AxiosRequestConfig } from "axios";
 import { useEffect, useState } from "react";
-import { useGlobalContext } from "./Context/useGlobalContext";
+import { useGlobalContext } from "./context/useGlobalContext";
 
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_BACKEND_HTTP;
 

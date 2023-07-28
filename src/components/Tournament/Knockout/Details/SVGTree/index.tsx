@@ -4,7 +4,7 @@ import {
 } from "react-icons/ai";
 import { FiAward } from "react-icons/fi";
 
-import { useKnockoutTournamentContext } from "~src/hooks/Context/useKnockoutTournamentContext";
+import { useKnockoutTournamentContext } from "~src/hooks/context/useKnockoutTournamentContext";
 import KnockoutSVGTreeCentered from "./Centered";
 import KnockoutSVGTreeTop from "./Top";
 import useFullscreen from "~src/hooks/useFullScreen";
@@ -17,7 +17,7 @@ import useAxios from "~src/hooks/useAxios";
 import {
   NotificationType,
   useNotificationContext,
-} from "~src/hooks/Context/useNotificationContext";
+} from "~src/hooks/context/useNotificationContext";
 import Input from "~src/components/Input";
 import NationalityBadge from "../../../NationalityBadge";
 import { handleAxiosError } from "~src/utils/axiosUtils";

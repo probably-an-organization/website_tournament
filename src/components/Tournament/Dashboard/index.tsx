@@ -3,14 +3,14 @@
 import { useEffect } from "react";
 
 import TournamentDashboardSettings from "~src/components/Tournament/Dashboard/Settings";
-import { useGlobalContext } from "~src/hooks/Context/useGlobalContext";
+import { useGlobalContext } from "~src/hooks/context/useGlobalContext";
 import useAxios from "~src/hooks/useAxios";
 import { Tournament } from "~src/types/tournament";
 import DashboardMenu from "./Menu";
 import {
   DashboardContextProvider,
   useDashboardContext,
-} from "~src/hooks/Context/useDashboardContext";
+} from "~src/hooks/context/useDashboardContext";
 import TournamentDashboardTournaments from "./Tournaments";
 import { handleAxiosError } from "~src/utils/axiosUtils";
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { useTournamentContext } from "~src/hooks/Context/useTournamentContext";
+import { useTournamentContext } from "~src/hooks/context/useTournamentContext";
 import InputSlider from "~src/components/InputSlider";
 
 const PARTICIPANT_COUNT_STEPS = [8, 16, 32, 64];

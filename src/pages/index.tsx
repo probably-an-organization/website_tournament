@@ -12,11 +12,11 @@ import Button from "~src/components/Button";
 import Card from "~src/components/Card";
 import Checkbox from "~src/components/Checkbox";
 import FloatingInput from "~src/components/FloatingInput";
-import { useGlobalContext } from "~src/hooks/Context/useGlobalContext";
+import { useGlobalContext } from "~src/hooks/context/useGlobalContext";
 import {
   NotificationType,
   useNotificationContext,
-} from "~src/hooks/Context/useNotificationContext";
+} from "~src/hooks/context/useNotificationContext";
 import useAxios from "~src/hooks/useAxios";
 
 type AuthenticationMode = "login" | "register";
