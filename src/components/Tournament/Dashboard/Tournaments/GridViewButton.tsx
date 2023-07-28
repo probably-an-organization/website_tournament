@@ -7,7 +7,7 @@ type DashboardTournamentButtonProps = {
   href: string;
 };
 
-export default function DashboardTournamentButton({
+export default function TournamentsGridViewButton({
   children,
   className,
   href,

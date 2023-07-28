@@ -64,7 +64,7 @@ function TournamentKnockoutComponent() {
                 setExpanded={setNavigationExpanded}
                 setPin={setNavigationPin}
               >
-                <ul className="-mx-2 mt-16 flex flex-col gap-2 overflow-hidden">
+                <ul className="-mx-2 flex flex-col gap-2 overflow-hidden">
                   <li className="float-left flex">
                     <button
                       className="flex-1 px-2"
@@ -167,8 +167,8 @@ function TournamentKnockoutComponent() {
                 </ul>
               </Navigation>
 
-              <div className="mx-auto flex w-fit flex-col p-3">
-                <div className="relative flex h-20 w-full items-center justify-end">
+              <div className="mx-auto flex w-fit min-w-full flex-col gap-3 p-3">
+                <div className="relative flex w-full items-center justify-end">
                   <div className="sticky right-3">
                     <button
                       className="flex items-center gap-1 rounded bg-neutral-500 py-1 pl-1 pr-2 transition-colorsTransform hover:scale-102.5 hover:bg-neutral-400"
@@ -193,7 +193,7 @@ function TournamentKnockoutComponent() {
                   </div>
                 </div>
 
-                <Card className="w-fit p-3">
+                <Card className="w-fit min-w-full p-3">
                   {navigation === 0 && <KnockoutDetails />}
                   {navigation === 1 && <KnockoutSettings />}
                   {navigation === 2 && <div>Todo</div>}

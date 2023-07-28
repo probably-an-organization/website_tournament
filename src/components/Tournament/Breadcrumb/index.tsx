@@ -8,7 +8,6 @@ export type BreadcrumbItem = {
   icon: React.ReactElement;
   label: string;
   onClick(value?: number | string): Promise<void> | void;
-  value: number | string;
 };
 
 type BreadcrumbProps = {
@@ -26,26 +25,28 @@ export default function Breadcrumb({
 
   return (
     <div className={className}>
-      <div className="flex items-center gap-3">
+      <div className="flex items-center justify-center gap-3">
         {items.map((b, i) => (
-          <div className="flex items-center gap-3" key={`breadcrumb-${i}`}>
+          <div className="flex items-center gap-2" key={`breadcrumb-${i}`}>
             <button
               className={styled(
-                "flex items-center gap-2 rounded-2xl px-4 py-2 transition-colorsOpacity disabled:cursor-not-allowed",
-                active === b.value ? "bg-orange-500" : "",
-                hoverValue === b.value
-                  ? active === b.value
+                "flex items-center gap-2 rounded-2xl transition-colorsOpacity disabled:cursor-not-allowed",
+                active >= i ? "bg-orange-500" : "",
+                hoverValue === i
+                  ? active >= i
                     ? ""
                     : "bg-orange-500 bg-opacity-50"
                   : "",
               )}
               disabled={b.disabled}
-              onClick={() => b.onClick(b.value)}
-              onMouseLeave={() => setHoverValue(null)}
-              onMouseOver={() => setHoverValue(b.value)}
+              onClick={() => b.onClick(i)}
+              onMouseOut={() => setHoverValue(null)}
+              onMouseOver={() => setHoverValue(i)}
             >
-              {b.icon}
-              <span>{b.label}</span>
+              <div className="flex items-center gap-2 rounded px-4 py-2">
+                {b.icon}
+                <span className="hidden md:block">{b.label}</span>
+              </div>
             </button>
             {i < items.length - 1 && <FiChevronRight />}
           </div>

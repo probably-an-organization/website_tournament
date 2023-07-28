@@ -29,20 +29,16 @@ export default function NewTournamentTournamentType() {
           {TournamentTypes.map((tm, i) => (
             <button
               className={styled(
-                "h-40 rounded",
-                tm.active
-                  ? newTournament.type === tm.value
-                    ? "bg-orange-500"
-                    : "bg-neutral-500"
-                  : "pointer-events-none bg-neutral-300 text-neutral-400 dark:bg-neutral-800 dark:text-neutral-700",
+                "aspect-square rounded disabled:border disabled:border-neutral-800 disabled:bg-inherit disabled:italic disabled:text-neutral-700",
+                newTournament.type === tm.value
+                  ? "pointer-events-none bg-orange-500 shadow"
+                  : "bg-neutral-500",
               )}
+              disabled={!tm.active}
               key={`tournament-mode-${i}`}
-              onClick={() => {
-                if (!tm.active) {
-                  return;
-                }
-                setNewTournament((prev) => ({ ...prev, mode: tm.value }));
-              }}
+              onClick={() =>
+                setNewTournament((prev) => ({ ...prev, mode: tm.value }))
+              }
             >
               {tm.label}
             </button>

@@ -1,6 +1,12 @@
 import { useLayoutEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
-import { FiActivity, FiAlertCircle, FiSettings, FiUsers } from "react-icons/fi";
+import {
+  FiActivity,
+  FiAlertCircle,
+  FiEdit2,
+  FiSettings,
+  FiUsers,
+} from "react-icons/fi";
 import { AxiosError } from "axios";
 
 import {
@@ -51,17 +57,15 @@ function NewTournamentComponent() {
     // TODO better disabled logic (wip)
     {
       disabled: slide !== 0 && slide < 1,
-      icon: <FiSettings />,
+      icon: <FiEdit2 />,
       label: "General",
       onClick: () => setSlide(0),
-      value: 0,
     },
     {
       disabled: slide !== 1 && slide < 2,
       icon: <FiActivity />,
       label: "Tournament",
       onClick: () => setSlide(1),
-      value: 1,
     },
     {
       disabled: slide !== 2 && slide < 3,
@@ -70,14 +74,12 @@ function NewTournamentComponent() {
         (TournamentTypes.find((t) => t.value === newTournament.type)?.label ??
           "Tournament") + " settings",
       onClick: () => setSlide(2),
-      value: 2,
     },
     {
       disabled: slide !== 3 && slide < 4,
       icon: <FiUsers />,
       label: "Participants",
       onClick: () => setSlide(3),
-      value: 3,
     },
   ];
 
@@ -133,9 +135,7 @@ function NewTournamentComponent() {
 
   return (
     <div className="relative flex h-full w-full flex-col gap-3 overflow-auto p-3">
-      <div className="ml-16">
-        <Breadcrumb items={BREADCRUMBS} active={slide} /* TODO items={[]} */ />
-      </div>
+      <Breadcrumb items={BREADCRUMBS} active={slide} />
 
       <div className="sticky left-0 flex flex-1 items-center">
         <AnimatePresence initial mode="wait">

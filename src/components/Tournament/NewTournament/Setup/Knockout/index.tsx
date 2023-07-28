@@ -9,7 +9,7 @@ import { FiCheck } from "react-icons/fi";
 import useAxios from "~src/hooks/useAxios";
 import {
   NotificationType,
-  useNotification,
+  useNotificationContext,
 } from "~src/hooks/context/useNotificationContext";
 import type { AxiosError } from "axios";
 import { handleAxiosError } from "~src/utils/axiosUtils";

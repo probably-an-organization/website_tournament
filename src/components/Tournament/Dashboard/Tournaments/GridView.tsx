@@ -5,15 +5,14 @@ import parseISO from "date-fns/parseISO";
 import { TbTournament } from "react-icons/tb";
 import { FiInfo, FiUsers } from "react-icons/fi";
 
-import Card from "~src/components/Card";
 import {
   DEFAULT_GRID_FILTER,
   useDashboardContext,
 } from "~src/hooks/context/useDashboardContext";
 import { useGlobalContext } from "~src/hooks/context/useGlobalContext";
 import { styled } from "~src/utils/stringUtils";
-import DashboardTournamentButton from "./TournamentButton";
 import { Hover, HoverContent, HoverTrigger } from "~src/components/Hover";
+import TournamentsGridViewButton from "./GridViewButton";
 
 type TournamentsGridViewProps = {
   className?: string;
@@ -62,7 +61,7 @@ export default function TournamentsGridView({
               "w-20 rounded p-2 transition-colors",
               value.active
                 ? "bg-orange-500 hover:bg-orange-400"
-                : "bg-neutral-700 hover:bg-neutral-600",
+                : "bg-neutral-900 hover:bg-neutral-800",
             )}
           >
             {value.label}
@@ -78,13 +77,13 @@ export default function TournamentsGridView({
             exit={{ opacity: 0 }}
             layout
           >
-            <DashboardTournamentButton
+            <TournamentsGridViewButton
               className="flex flex-col items-center justify-center gap-1 border border-neutral-100 font-semibold text-neutral-100 hover:bg-neutral-900"
               href="/new"
             >
               <TbTournament />
               New tournament
-            </DashboardTournamentButton>
+            </TournamentsGridViewButton>
           </motion.li>
           {gridFilterTournaments.map((t, i) => (
             <motion.li
@@ -93,7 +92,7 @@ export default function TournamentsGridView({
               exit={{ opacity: 0 }}
               key={`tournament-${i}`}
             >
-              <DashboardTournamentButton
+              <TournamentsGridViewButton
                 className="relative flex flex-col items-center bg-neutral-900 hover:bg-neutral-800"
                 href={`/knockout/${t._id}`}
               >
@@ -136,7 +135,7 @@ export default function TournamentsGridView({
                     </HoverContent>
                   </Hover>
                 </div>
-              </DashboardTournamentButton>
+              </TournamentsGridViewButton>
             </motion.li>
           ))}
         </AnimatePresence>
