@@ -1,4 +1,4 @@
-import { styled } from "~/utils/stringUtils";
+import { styled } from "~src/utils/stringUtils";
 
 const SELECT_COLORS = {
   background: {
@@ -49,7 +49,7 @@ export default function Select({
         SELECT_COLORS.shadow.default,
         SELECT_COLORS.shadow.dark,
         SELECT_COLORS.text.default,
-        SELECT_COLORS.text.dark
+        SELECT_COLORS.text.dark,
       )}
     >
       {children}

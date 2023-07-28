@@ -1,5 +1,5 @@
 import { FiX } from "react-icons/fi";
-import { styled } from "~/utils/stringUtils";
+import { styled } from "~src/utils/stringUtils";
 
 export type ModalHeaderProps = {
   children: React.ReactNode;
@@ -18,7 +18,7 @@ export default function ModalHeader({
     <div
       className={styled(
         "flex items-center justify-between rounded-t border-b border-neutral-300 p-5 dark:border-neutral-600",
-        className
+        className,
       )}
     >
       <h3 className="font-semibold text-neutral-800 dark:text-neutral-50">

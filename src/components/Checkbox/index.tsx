@@ -1,6 +1,6 @@
 import { type Ref, forwardRef, useEffect, useRef } from "react";
 import type { HTMLProps } from "react";
-import { useCombinedRefs } from "~/hooks/useCombinedRefs";
+import { useCombinedRefs } from "~src/hooks/useCombinedRefs";
 
 const Checkbox = forwardRef(function Checkbox(
   {
@@ -8,7 +8,7 @@ const Checkbox = forwardRef(function Checkbox(
     className = "",
     ...props
   }: { indeterminate?: boolean } & HTMLProps<HTMLInputElement>,
-  ref: Ref<HTMLInputElement>
+  ref: Ref<HTMLInputElement>,
 ) {
   const defaultRef = useRef(null);
   const combinedRef = useCombinedRefs(ref, defaultRef);

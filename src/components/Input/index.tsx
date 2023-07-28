@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import { styled } from "~/utils/stringUtils";
+import { styled } from "~src/utils/stringUtils";
 
 type InputProps = {
   className?: string;
@@ -12,7 +12,7 @@ const Input = forwardRef(function Input(
     error,
     ...props
   }: InputProps & React.InputHTMLAttributes<HTMLInputElement>,
-  ref?: React.Ref<HTMLInputElement>
+  ref?: React.Ref<HTMLInputElement>,
 ) {
   return (
     <input
@@ -23,7 +23,7 @@ const Input = forwardRef(function Input(
         "dark:shadow-neutral-900",
         "dark:text-gray-50",
         "focus-visible:border-neutral-500 focus-visible:shadow-blue-200 focus-visible:outline-0 dark:focus-visible:border-neutral-200",
-        className
+        className,
       )}
       ref={ref}
       {...props}

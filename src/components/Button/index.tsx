@@ -1,4 +1,4 @@
-import { styled } from "~/utils/stringUtils";
+import { styled } from "~src/utils/stringUtils";
 
 export type ButtonProps = {
   onClick?(e?: React.MouseEvent<HTMLButtonElement>): void;
@@ -27,7 +27,7 @@ export default function Button({
         "[&:not(:disabled)]:active:bg-neutral-400",
         "[&:not(:disabled)]:active:dark:bg-neutral-900",
         "disabled:cursor-not-allowed disabled:bg-neutral-200 disabled:text-neutral-700 disabled:opacity-50",
-        className
+        className,
       )}
       onClick={onClick}
       type={type}

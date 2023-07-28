@@ -3,8 +3,8 @@
 import { useRouter } from "next/router";
 import { motion } from "framer-motion";
 
-import type { SidebarLink } from "~/constants/SIDEBAR";
-import { styled } from "~/utils/stringUtils";
+import type { SidebarLink } from "~src/constants/SIDEBAR";
+import { styled } from "~src/utils/stringUtils";
 import Link from "next/link";
 
 const MENU_ITEM_ANIMATION_VARIANTS = {
@@ -35,7 +35,7 @@ export default function MenuItem({ link }: MenuItemProps) {
     <motion.li
       className={styled(
         "group mb-5 cursor-pointer list-none",
-        router.asPath === link.href ? "pointer-events-none" : ""
+        router.asPath === link.href ? "pointer-events-none" : "",
       )}
       variants={MENU_ITEM_ANIMATION_VARIANTS}
       whileHover={{ x: 5 /* scale: 1.025 */ }}
@@ -56,7 +56,7 @@ export default function MenuItem({ link }: MenuItemProps) {
                     : "",
                   link.icon?.stroke
                     ? "[&>svg]:stroke-neutral-900 dark:[&>svg]:stroke-neutral-50"
-                    : ""
+                    : "",
                 )
               : styled(
                   "border-neutral-600 group-hover:border-neutral-900",
@@ -64,16 +64,16 @@ export default function MenuItem({ link }: MenuItemProps) {
                   link.icon?.fill
                     ? styled(
                         "[&>svg]:fill-neutral-600 [&>svg]:group-hover:fill-neutral-900",
-                        "dark:[&>svg]:fill-neutral-400 dark:[&>svg]:group-hover:fill-neutral-50"
+                        "dark:[&>svg]:fill-neutral-400 dark:[&>svg]:group-hover:fill-neutral-50",
                       )
                     : "",
                   link.icon?.stroke
                     ? styled(
                         "[&>svg]:stroke-neutral-600 [&>svg]:group-hover:stroke-neutral-900",
-                        "dark:[&>svg]:stroke-neutral-400 dark:[&>svg]:group-hover:stroke-neutral-50"
+                        "dark:[&>svg]:stroke-neutral-400 dark:[&>svg]:group-hover:stroke-neutral-50",
                       )
-                    : ""
-                )
+                    : "",
+                ),
           )}
         >
           {link.icon?.component}
@@ -83,7 +83,7 @@ export default function MenuItem({ link }: MenuItemProps) {
             "w-48 flex-1",
             router.asPath === link.href
               ? "text-neutral-900 dark:text-neutral-50"
-              : "text-neutral-600 group-hover:text-neutral-900 dark:text-neutral-400 dark:group-hover:text-neutral-50"
+              : "text-neutral-600 group-hover:text-neutral-900 dark:text-neutral-400 dark:group-hover:text-neutral-50",
           )}
         >
           {link.label}

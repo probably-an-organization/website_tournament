@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { styled } from "~/utils/stringUtils";
+import { styled } from "~src/utils/stringUtils";
 
 type HoverButtonProps = {
   animate?: string;
@@ -24,7 +24,7 @@ export default function HoverButton({
       className={styled(
         disabled ? "pointer-events-none" : "pointer-events-auto",
         onClick ? "cursor-pointer" : "cursor-default",
-        className
+        className,
       )}
       onClick={onClick}
       whileHover={{ scale: scale }}

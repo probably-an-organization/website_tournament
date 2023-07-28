@@ -1,6 +1,6 @@
 import * as React from "react";
 import { motion } from "framer-motion";
-import { styled } from "~/utils/stringUtils";
+import { styled } from "~src/utils/stringUtils";
 
 const Path = (props: any) => (
   <motion.path
@@ -21,7 +21,7 @@ export default function MenuIcon() {
     <div
       className={styled(
         "flex h-12 w-12 cursor-pointer items-center justify-center rounded-full shadow",
-        MENU_ICON_BACKGROUND
+        MENU_ICON_BACKGROUND,
       )}
     >
       <svg width="20" height="20" viewBox="0 0 20 20">

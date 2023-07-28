@@ -1,5 +1,5 @@
 import type { Column } from "@tanstack/react-table";
-import DebouncedInput from "~/components/DebouncedInput";
+import DebouncedInput from "~src/components/DebouncedInput";
 
 // TODO DebouncedInput -> Input -> default styling like border, here we remove border so
 // we end up with <input class="(...) border border-0" /> which is not nice.
@@ -25,7 +25,7 @@ export default function NumberFilter({
         value={columnFilterValue?.[0] ?? ""}
         onChange={(value) =>
           column.setFilterValue(
-            (old: [number, number]) => [value, old?.[1]] as [number, number]
+            (old: [number, number]) => [value, old?.[1]] as [number, number],
           )
         }
         placeholder={`Min ${
@@ -42,7 +42,7 @@ export default function NumberFilter({
         value={columnFilterValue?.[1] ?? ""}
         onChange={(value) =>
           column.setFilterValue(
-            (old: [number, number]) => [old?.[0], value] as [number, number]
+            (old: [number, number]) => [old?.[0], value] as [number, number],
           )
         }
         placeholder={`Max ${

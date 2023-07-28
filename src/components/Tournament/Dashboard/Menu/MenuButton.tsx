@@ -1,0 +1,28 @@
+import { styled } from "~src/utils/stringUtils";
+
+type DashboardMenuButtonProps = {
+  children: React.ReactNode;
+  className?: string;
+  disabled?: boolean;
+  onClick(): Promise<void> | void;
+};
+
+export default function DashboardMenuButton({
+  children,
+  className,
+  disabled,
+  onClick,
+}: DashboardMenuButtonProps) {
+  return (
+    <button
+      className={styled(
+        "flex items-center gap-1 rounded px-3 py-2 text-neutral-100 transition-colors disabled:bg-neutral-950 [&:not(:disabled)]:hover:bg-neutral-700",
+        className,
+      )}
+      disabled={disabled}
+      onClick={onClick}
+    >
+      {children}
+    </button>
+  );
+}

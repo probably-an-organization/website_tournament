@@ -1,17 +1,16 @@
 import { AppProps, type AppType } from "next/app";
-
 import { appWithTranslation } from "next-i18next";
 import nextI18nextConfig from "next-i18next.config";
 import axios from "axios";
 
-import Sidebar from "~/components/Sidebar";
-import GlobalContextProvider from "~/hooks/Context/useGlobal";
+// import Sidebar from "~src/components/Sidebar";
+import GlobalContextProvider from "~src/hooks/Context/useGlobalContext";
 
-import "~/styles/globals.css";
+import "~src/styles/globals.css";
 
 type PageProps = {};
 
-const MyApp: AppType = ({ Component, pageProps }: AppProps<PageProps>) => {
+const App: AppType = ({ Component, pageProps }: AppProps<PageProps>) => {
   axios.interceptors.response.use(
     (response) => response,
     (error) => {
@@ -34,4 +33,4 @@ const MyApp: AppType = ({ Component, pageProps }: AppProps<PageProps>) => {
   );
 };
 
-export default appWithTranslation(MyApp, nextI18nextConfig);
+export default appWithTranslation(App, nextI18nextConfig);

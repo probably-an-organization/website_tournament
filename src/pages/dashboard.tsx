@@ -1,5 +1,6 @@
 import Head from "next/head";
-import Dashboard from "~/components/_development/Tournament/components/Dashboard";
+
+import Dashboard from "~src/components/Tournament/Dashboard";
 
 export default function TournamentDashboardPage() {
   return (

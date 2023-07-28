@@ -1,4 +1,4 @@
-import { styled } from "~/utils/stringUtils";
+import { styled } from "~src/utils/stringUtils";
 
 export type CardHeaderProps = {
   children: React.ReactNode;
@@ -16,7 +16,7 @@ export default function CardHeader({
       className={styled(
         "flex items-center justify-between rounded-t border-b p-4",
         variant,
-        className
+        className,
       )}
     >
       {children}

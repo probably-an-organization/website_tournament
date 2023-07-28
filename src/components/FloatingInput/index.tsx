@@ -1,7 +1,7 @@
 import React, { forwardRef, useMemo } from "react";
 import { FiX, FiEdit3 } from "react-icons/fi";
 
-import { styled } from "~/utils/stringUtils";
+import { styled } from "~src/utils/stringUtils";
 
 export type FloatingInputLabelProps = {
   top: boolean;
@@ -13,7 +13,7 @@ function FloatingInputLabel({ top, children }: FloatingInputLabelProps) {
     <label
       className={styled(
         top ? "text-xs font-semibold" : "text-sm",
-        "pointer-events-none absolute left-2 top-2 flex items-center transition-all duration-200 ease-in-out peer-focus:text-xs peer-focus:font-semibold"
+        "pointer-events-none absolute left-2 top-2 flex items-center transition-all duration-200 ease-in-out peer-focus:text-xs peer-focus:font-semibold",
       )}
     >
       {children}
@@ -59,11 +59,11 @@ const FloatingInput = forwardRef(function FloatingInput(
     React.InputHTMLAttributes<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
     >,
-  ref?: React.Ref<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+  ref?: React.Ref<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
 ) {
   const labelTop = useMemo(
     () => labelAlwaysTop ?? !!value,
-    [labelAlwaysTop, value]
+    [labelAlwaysTop, value],
   );
 
   const resetInput = () => {
@@ -75,7 +75,7 @@ const FloatingInput = forwardRef(function FloatingInput(
 
   const inputClass = styled(
     "peer w-full border-t-transparent bg-transparent p-2 text-sm outline-none duration-200 ease-in-out focus:border-t-[1.25rem]",
-    labelTop ? "border-t-[1.25rem] text-opacity-100" : "text-opacity-0"
+    labelTop ? "border-t-[1.25rem] text-opacity-100" : "text-opacity-0",
   );
 
   return (
@@ -83,13 +83,13 @@ const FloatingInput = forwardRef(function FloatingInput(
       className={styled(
         "min-h-10 relative flex h-full rounded border bg-neutral-50 text-gray-800 dark:bg-neutral-700 dark:text-gray-50",
         error ? "border-red-500" : "border-neutral-400 dark:border-neutral-500",
-        className
+        className,
       )}
     >
       <div
         className={styled(
           "relative flex w-full",
-          labelTop ? "text-opacity-100" : "text-opacity-0"
+          labelTop ? "text-opacity-100" : "text-opacity-0",
         )}
       >
         {type === "textarea" && (
@@ -124,7 +124,7 @@ const FloatingInput = forwardRef(function FloatingInput(
         )}
         {!type ||
           (["email", "phone", "number", "password", "text"].some(
-            (t) => t === type
+            (t) => t === type,
           ) && (
             <>
               <input
@@ -147,7 +147,7 @@ const FloatingInput = forwardRef(function FloatingInput(
             "pointer-events-none absolute bottom-0 right-2 top-0 flex transition-opacity",
             value
               ? "opacity-0"
-              : "opacity-25 peer-hover:opacity-75 peer-focus:opacity-75"
+              : "opacity-25 peer-hover:opacity-75 peer-focus:opacity-75",
           )}
         >
           <FiEdit3 className="self-center justify-self-center" />
@@ -156,7 +156,7 @@ const FloatingInput = forwardRef(function FloatingInput(
           <div
             className={styled(
               "absolute bottom-0 right-2 top-2",
-              value ? "pointer-events-auto" : "pointer-events-none"
+              value ? "pointer-events-auto" : "pointer-events-none",
             )}
           >
             <div
@@ -164,7 +164,7 @@ const FloatingInput = forwardRef(function FloatingInput(
                 "cursor-pointer transition-colorsOpacity hover:text-red-500",
                 value
                   ? "opacity-25 hover:opacity-100"
-                  : "pointer-events-none opacity-0"
+                  : "pointer-events-none opacity-0",
               )}
               onClick={resetInput}
             >

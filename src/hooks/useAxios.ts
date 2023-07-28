@@ -1,6 +1,6 @@
 import axios, { type AxiosRequestConfig } from "axios";
 import { useEffect, useState } from "react";
-import { useGlobal } from "./Context/useGlobal";
+import { useGlobalContext } from "./Context/useGlobalContext";
 
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_BACKEND_HTTP;
 
@@ -16,7 +16,7 @@ const DEFAULT_CONFIG = {
 export default function useAxios() {
   const [queryCounter, setQueryCounter] = useState<number>(0);
 
-  const { setLoading } = useGlobal();
+  const { setLoading } = useGlobalContext();
 
   useEffect(() => {
     setLoading(queryCounter > 0);

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { styled } from "~/utils/stringUtils";
+import { styled } from "~src/utils/stringUtils";
 
 export type ContainerProps = {
   children: React.ReactNode;

@@ -1,4 +1,4 @@
-import { styled } from "~/utils/stringUtils";
+import { styled } from "~src/utils/stringUtils";
 
 const SWITCH_STYLES = {
   position: "after:absolute after:left-[2px] after:top-[2px]",
@@ -40,7 +40,7 @@ export default function Switch({ label, onChange, value }: SwitchProps) {
             SWITCH_STYLES.background.default,
             SWITCH_STYLES.background.dark,
             SWITCH_STYLES.ring.default,
-            SWITCH_STYLES.ring.dark
+            SWITCH_STYLES.ring.dark,
           )}
         />
         {label && (

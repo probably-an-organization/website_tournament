@@ -2,7 +2,7 @@ import * as React from "react";
 import { motion } from "framer-motion";
 import MenuItem from "./MenuItem";
 
-import { SIDEBAR_LINKS } from "~/constants/SIDEBAR";
+import { SIDEBAR_LINKS } from "~src/constants/SIDEBAR";
 
 const MENU_ANIMATION_VARIANTS = {
   open: {

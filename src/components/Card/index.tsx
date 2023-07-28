@@ -1,4 +1,4 @@
-import { styled } from "~/utils/stringUtils";
+import { styled } from "~src/utils/stringUtils";
 
 export type CardProps = {
   children: React.ReactNode;

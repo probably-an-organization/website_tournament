@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import useWindowSize from "~/hooks/useDimensions";
+import useWindowSize from "~src/hooks/useDimensions";
 import { FiMoon, FiSun } from "react-icons/fi";
 
 import MenuIcon from "./MenuIcon";
 import Menu from "./Menu";
 import HoverButton from "../HoverButton";
-import { useTheme } from "~/hooks/Context/useTheme";
+import { useTheme } from "~src/hooks/Context/useThemeContext";
 
 const SIDEBAR_ANIMATION_VARIANTS = {
   open: (height = 1000) => ({
@@ -31,7 +31,7 @@ const SIDEBAR_ANIMATION_VARIANTS = {
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   // eslint-disable-next-line @typescript-eslint/unbound-method
-  const { theme, toggleTheme } = useTheme();
+  const { theme, toggleTheme } = useThemeContext();
   const windowSize = useWindowSize();
 
   return (

@@ -18,8 +18,9 @@
     "noUncheckedIndexedAccess": true,
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./src/*"]
+      "~src/*": ["./src/*"]
     },
+    "typeRoots": ["./src/types"],
     "types": ["react"]
   },
   "include": ["**/*.ts", "**/*.tsx"],

@@ -4,21 +4,20 @@ import axios from "axios";
 import nextI18nextConfig from "next-i18next.config";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from "next/head";
-import { useRouter } from "next/router";
 import type { InferGetStaticPropsType } from "next/types";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import Button from "~/components/Button";
-import Card from "~/components/Card";
-import Checkbox from "~/components/Checkbox";
-import FloatingInput from "~/components/FloatingInput";
-import Spinner from "~/components/Spinner";
-import { useGlobal } from "~/hooks/Context/useGlobal";
+
+import Button from "~src/components/Button";
+import Card from "~src/components/Card";
+import Checkbox from "~src/components/Checkbox";
+import FloatingInput from "~src/components/FloatingInput";
+import { useGlobalContext } from "~src/hooks/Context/useGlobalContext";
 import {
   NotificationType,
-  useNotification,
-} from "~/hooks/Context/useNotification";
-import useAxios from "~/hooks/useAxios";
+  useNotificationContext,
+} from "~src/hooks/Context/useNotificationContext";
+import useAxios from "~src/hooks/useAxios";
 
 type AuthenticationMode = "login" | "register";
 
@@ -51,8 +50,8 @@ export default function TournamentLoginPage(
 ) {
   const [mode, setMode] = useState<AuthenticationMode>("login");
 
-  const { loading, redirect, setTournament, tournament } = useGlobal();
-  const notification = useNotification();
+  const { loading, redirect, setTournament, tournament } = useGlobalContext();
+  const notification = useNotificationContext();
 
   const {
     formState,

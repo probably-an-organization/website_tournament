@@ -1,7 +1,7 @@
 // TODO (sortedUniqueValues as shown in StringFilter only goes by string (duh))
 
 import type { Column } from "@tanstack/react-table";
-import DebouncedInput from "~/components/DebouncedInput";
+import DebouncedInput from "~src/components/DebouncedInput";
 
 // TODO add floating label, which hides input first https://play.tailwindcss.com/0bqZmoeIzx
 

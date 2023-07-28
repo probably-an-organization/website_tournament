@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
-import { styled } from "~/utils/stringUtils";
+import { styled } from "~src/utils/stringUtils";
 
 type ModalProps = {
   backdrop?: "static" | "default";
@@ -37,7 +37,7 @@ export default function Modal({
               exit={{ opacity: 0 }}
               className={styled(
                 "fixed inset-0 z-30 flex items-center justify-center overflow-y-auto outline-none transition-opacity focus:outline-none",
-                className
+                className,
               )}
             >
               <div
@@ -56,7 +56,7 @@ export default function Modal({
             </motion.div>
           )}
         </AnimatePresence>,
-        document.body
+        document.body,
       )
     : null;
 }

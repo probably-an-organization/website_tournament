@@ -1,5 +1,5 @@
 import Head from "next/head";
-import TournamentKnockout from "~/components/_development/Tournament/components/Knockout";
+import TournamentKnockout from "~src/components/Tournament/Knockout";
 
 export default function TournamentKnockoutPage() {
   return (

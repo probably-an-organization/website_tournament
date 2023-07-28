@@ -1,4 +1,4 @@
-import { styled } from "~/utils/stringUtils";
+import { styled } from "~src/utils/stringUtils";
 
 // TODO: https://medium.com/the-school-of-do/framer-cheat-sheets-slider-range-sliders-5b30b8f41a12
 
@@ -8,7 +8,7 @@ const valueTotalRatio = (value: number, min: number, max: number): string =>
 const getLinearGradientCSS = (
   ratio: string,
   leftColor: string,
-  rightColor: string
+  rightColor: string,
 ) =>
   [
     "-webkit-gradient(",
@@ -49,13 +49,13 @@ export default function InputSlider({
           "z-10 my-2 h-4 w-full cursor-pointer appearance-none rounded bg-orange-300",
           // "[&::-webkit-slider-runnable-track]",
           "[&::-webkit-slider-thumb]:h-8 [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded [&::-webkit-slider-thumb]:bg-orange-500",
-          input?.className
+          input?.className,
         )}
         style={{
           backgroundImage: getLinearGradientCSS(
             valueTotalRatio(value, 0, steps.length - 1),
             "transparent",
-            "#e8e8e8"
+            "#e8e8e8",
           ),
         }}
         step={1}

@@ -11,7 +11,7 @@ import {
   useInteractions,
 } from "@floating-ui/react";
 
-import { styled } from "~/utils/stringUtils";
+import { styled } from "~src/utils/stringUtils";
 
 type HoverContextType = {
   floatingStyles: CSSProperties;
