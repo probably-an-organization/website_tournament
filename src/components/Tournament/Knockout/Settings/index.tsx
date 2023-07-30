@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Button from "~src/components/Button";
 import Modal from "~src/components/Modal";
 import Switch from "~src/components/Switch";
+import { useKnockoutTournamentContext } from "~src/hooks/context/tournament/useKnockoutTournamentContext";
 import useAxios from "~src/hooks/useAxios";
 
 export default function TournamentKnockoutSettings() {
@@ -10,6 +11,7 @@ export default function TournamentKnockoutSettings() {
 
   const [modal, setModal] = useState<boolean>(false);
 
+  const { knockoutTournament } = useKnockoutTournamentContext();
   const [premiumSelection, setPremiumSelection] = useState<number>(-1);
   const [premiumModels, setPremiumModels] = useState<any>();
   const { get } = useAxios();
@@ -39,7 +41,16 @@ export default function TournamentKnockoutSettings() {
         <div>Logo</div>
         <div>Background image</div>
 
-        <Button onClick={() => setModal(true)}>ASDF</Button>
+        <div className="flex items-center">
+          {knockoutTournament?.model_id
+            ? "MODEL SELECTED (TODO)"
+            : "No premium model selected"}
+          <Button onClick={() => setModal(true)}>
+            {knockoutTournament?.model_id
+              ? "Change model"
+              : "Select premium model"}
+          </Button>
+        </div>
       </div>
       <Modal show={modal}>
         <div className="flex p-3 gap-3">

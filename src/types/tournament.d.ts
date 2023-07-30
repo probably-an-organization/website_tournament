@@ -50,6 +50,7 @@ export type KnockoutMatch = {
 export type KnockoutTournament = {
   _id: number;
   created: string;
+  model_id: string;
   name: string;
   participants: Participant[];
   public: boolean;
