@@ -5,7 +5,7 @@ import type {
   KnockoutMatch,
   KnockoutTournament,
   Participant,
-} from "../../types/tournament";
+} from "../../../types/tournament";
 import useAxios from "~src/hooks/useAxios";
 
 /* CONTEXT */

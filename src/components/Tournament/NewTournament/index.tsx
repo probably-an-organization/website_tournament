@@ -13,7 +13,7 @@ import {
   NotificationType,
   TournamentContextProvider,
   useTournamentContext,
-} from "~src/hooks/context/useTournamentContext";
+} from "~src/hooks/context/tournament/useTournamentContext";
 import Breadcrumb, { type BreadcrumbItem } from "../Breadcrumb";
 import NewTournamentParticipant from "./Participants";
 import { Hover, HoverContent, HoverTrigger } from "~src/components/Hover";

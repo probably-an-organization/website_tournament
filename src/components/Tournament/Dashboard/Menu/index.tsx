@@ -4,7 +4,7 @@ import DashboardMenuButton from "./MenuButton";
 import { DASHBOARD_NAVIGATION } from "~src/constants/tournament/DASHBOARD";
 import useAxios from "~src/hooks/useAxios";
 import { useGlobalContext } from "~src/hooks/context/useGlobalContext";
-import { useDashboardContext } from "~src/hooks/context/useDashboardContext";
+import { useDashboardContext } from "~src/hooks/context/tournament/useDashboardContext";
 
 export default function DashboardMenu() {
   const { redirect, setTournament, tournament } = useGlobalContext();

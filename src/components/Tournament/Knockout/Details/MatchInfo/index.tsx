@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-import { useKnockoutTournamentContext } from "~src/hooks/context/useKnockoutTournamentContext";
+import { useKnockoutTournamentContext } from "~src/hooks/context/tournament/useKnockoutTournamentContext";
 import { getStageLabel } from "~src/utils/tournamentUtils";
 import { styled } from "~src/utils/stringUtils";
 import useFullscreen from "~src/hooks/useFullScreen";

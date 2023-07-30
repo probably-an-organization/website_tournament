@@ -4,7 +4,7 @@ import {
 } from "react-icons/ai";
 import { FiAward } from "react-icons/fi";
 
-import { useKnockoutTournamentContext } from "~src/hooks/context/useKnockoutTournamentContext";
+import { useKnockoutTournamentContext } from "~src/hooks/context/tournament/useKnockoutTournamentContext";
 import KnockoutSVGTreeCentered from "./Centered";
 import KnockoutSVGTreeTop from "./Top";
 import useFullscreen from "~src/hooks/useFullScreen";

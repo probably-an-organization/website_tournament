@@ -6,7 +6,7 @@ import {
   CONNECTION_GAP_FACTOR,
 } from ".";
 import KnockoutSVGTreeMatchWithInfo from "./MatchWithInfo";
-import { useKnockoutTournamentContext } from "~src/hooks/context/useKnockoutTournamentContext";
+import { useKnockoutTournamentContext } from "~src/hooks/context/tournament/useKnockoutTournamentContext";
 
 type KnockoutSVGTreeCenteredProps = {
   className?: string;

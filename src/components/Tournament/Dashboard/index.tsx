@@ -10,7 +10,7 @@ import DashboardMenu from "./Menu";
 import {
   DashboardContextProvider,
   useDashboardContext,
-} from "~src/hooks/context/useDashboardContext";
+} from "~src/hooks/context/tournament/useDashboardContext";
 import TournamentDashboardTournaments from "./Tournaments";
 import { handleAxiosError } from "~src/utils/axiosUtils";
 

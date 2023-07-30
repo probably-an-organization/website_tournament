@@ -3,7 +3,7 @@ import { FiCamera, FiX } from "react-icons/fi";
 import { motion } from "framer-motion";
 
 import Card from "~src/components/Card";
-import { useTournamentContext } from "~src/hooks/context/useTournamentContext";
+import { useTournamentContext } from "~src/hooks/context/tournament/useTournamentContext";
 import FloatingInput from "~src/components/FloatingInput";
 import {
   NotificationType,

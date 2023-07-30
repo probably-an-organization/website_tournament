@@ -19,7 +19,7 @@ import {
   TILE_WIDTH,
 } from ".";
 import { styled } from "~src/utils/stringUtils";
-import { useKnockoutTournamentContext } from "~src/hooks/context/useKnockoutTournamentContext";
+import { useKnockoutTournamentContext } from "~src/hooks/context/tournament/useKnockoutTournamentContext";
 import type { KnockoutMatch, Participant } from "~src/types/tournament";
 import useFullscreen from "~src/hooks/useFullScreen";
 

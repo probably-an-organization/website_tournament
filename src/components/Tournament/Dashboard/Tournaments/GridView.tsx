@@ -8,7 +8,7 @@ import { FiInfo, FiUsers } from "react-icons/fi";
 import {
   DEFAULT_GRID_FILTER,
   useDashboardContext,
-} from "~src/hooks/context/useDashboardContext";
+} from "~src/hooks/context/tournament/useDashboardContext";
 import { useGlobalContext } from "~src/hooks/context/useGlobalContext";
 import { styled } from "~src/utils/stringUtils";
 import { Hover, HoverContent, HoverTrigger } from "~src/components/Hover";

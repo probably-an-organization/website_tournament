@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import type { NewKnockoutMatch, NewParticipant } from "~src/types/tournament";
-import { useTournamentContext } from "~src/hooks/context/useTournamentContext";
+import { useTournamentContext } from "~src/hooks/context/tournament/useTournamentContext";
 import { styled } from "~src/utils/stringUtils";
 import KnockoutTournamentMatch from "./Match";
 import Card from "~src/components/Card";

@@ -14,7 +14,7 @@ import {
   PopoverTrigger,
 } from "~src/components/Popover";
 import { styled } from "~src/utils/stringUtils";
-import { useKnockoutTournamentContext } from "~src/hooks/context/useKnockoutTournamentContext";
+import { useKnockoutTournamentContext } from "~src/hooks/context/tournament/useKnockoutTournamentContext";
 import KnockoutSVGTree, { TREE_STYLES, TreeStyles } from "./SVGTree";
 import useSocket from "~src/hooks/useSocket";
 import {

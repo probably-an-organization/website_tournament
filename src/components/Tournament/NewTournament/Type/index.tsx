@@ -3,7 +3,7 @@ import { useEffect } from "react";
 
 import Card from "~src/components/Card";
 import { TournamentTypes } from "~src/constants/tournament/TYPES";
-import { useTournamentContext } from "~src/hooks/context/useTournamentContext";
+import { useTournamentContext } from "~src/hooks/context/tournament/useTournamentContext";
 import { styled } from "~src/utils/stringUtils";
 
 export default function NewTournamentTournamentType() {

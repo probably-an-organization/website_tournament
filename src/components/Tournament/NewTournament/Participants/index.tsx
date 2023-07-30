@@ -11,7 +11,7 @@ import { FiPlus } from "react-icons/fi";
 
 import Card from "~src/components/Card";
 import ParticipantsListItem from "./ParticipantsListItem";
-import { useTournamentContext } from "~src/hooks/context/useTournamentContext";
+import { useTournamentContext } from "~src/hooks/context/tournament/useTournamentContext";
 
 const GUTTER_SIZE = 10;
 const ITEM_SIZE = 35;
