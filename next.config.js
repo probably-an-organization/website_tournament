@@ -2,13 +2,14 @@
  * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation.
  * This is especially useful for Docker builds.
  */
-!process.env.SKIP_ENV_VALIDATION && require("./src/env.js");
+import env from "./src/env.js";
+!process.env.SKIP_ENV_VALIDATION && env;
 
-// const { i18n } = require("./next-i18next.config.js");
+// import { i18 } from "./next-i18next.config.js";
 
 // You can remove the following 2 lines when integrating our example.
-const { loadCustomBuildParams } = require("./next-utils.config.js");
-const { esmExternals = false, tsconfigPath } = loadCustomBuildParams();
+import { nextUtilsConfig } from "./next-utils.config.js";
+const { esmExternals = false, tsconfigPath } = nextUtilsConfig();
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -27,4 +28,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+export default nextConfig

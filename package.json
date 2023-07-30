@@ -9,6 +9,7 @@
     "start": "next start",
     "serve": "npx serve out"
   },
+  "type": "module",
   "dependencies": {
     "@dnd-kit/accessibility": "^3.0.1",
     "@dnd-kit/core": "^6.0.8",

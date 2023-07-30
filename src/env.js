@@ -1,4 +1,4 @@
-const z = require("zod");
+import z from "zod"
 
 /**
  * Specify your server-side environment variables schema here. This way you can ensure the app isn't
@@ -71,4 +71,4 @@ if (!!process.env.SKIP_ENV_VALIDATION == false) {
   });
 }
 
-module.exports = { env };
+export default env;

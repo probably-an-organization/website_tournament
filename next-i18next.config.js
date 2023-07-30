@@ -1,9 +1,9 @@
-const path = require("path");
+import path from "path";
 
 /**
  * @type {import('next-i18next').UserConfig}
  */
-module.exports = {
+export default {
   // https://www.i18next.com/overview/configuration-options#logging
   debug: process.env.NODE_ENV === "development",
   i18n: {

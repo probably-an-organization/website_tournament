@@ -1,6 +1,6 @@
-const pc = require("picocolors");
+import picocolors from "picocolors";
 
-const nextUtilsConfig = () => {
+export const nextUtilsConfig = () => {
   const trueEnv = ["true", "1", "yes"];
   const esmExternals = trueEnv.includes(
     process.env?.NEXTJS_ESM_EXTERNALS ?? "false"
@@ -11,7 +11,7 @@ const nextUtilsConfig = () => {
 
   // eslint-disable-next-line no-console
   console.warn(
-    `${pc.green("warn  -")} experimental.esmExternals is ${
+    `${picocolors.green("warn  -")} experimental.esmExternals is ${
       esmExternals ? "enabled" : "disabled"
     }`
   );
@@ -19,8 +19,4 @@ const nextUtilsConfig = () => {
     esmExternals,
     tsconfigPath,
   };
-};
-
-module.exports = {
-  loadCustomBuildParams: nextUtilsConfig,
 };

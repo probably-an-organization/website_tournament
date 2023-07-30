@@ -3,7 +3,7 @@
  */
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const path = require("path");
+import path from "path";
 
 /** @type {import("eslint").Linter.Config} */
 const config = {
@@ -37,4 +37,4 @@ const config = {
   },
 };
 
-module.exports = config;
+export default config
