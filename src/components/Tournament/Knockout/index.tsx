@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { cloneElement, useState } from "react";
 import {
   FiChevronLeft,
   FiClipboard,
@@ -15,6 +15,24 @@ import Navigation from "~src/components/Tournament/Navigation";
 import NavigationPage from "~src/components/Tournament/Navigation/Page";
 import { styled } from "~src/utils/stringUtils";
 import KnockoutSettings from "./Settings";
+
+const NAVIGATION_ITEMS: {
+  icon: React.ReactElement;
+  label: string;
+}[] = [
+  {
+    icon: <FiClipboard />,
+    label: "Overview",
+  },
+  {
+    icon: <FiSettings />,
+    label: "Settings",
+  },
+  {
+    icon: <FiMonitor />,
+    label: "Broadcast",
+  },
+];
 
 export default function TournamentKnockout() {
   const [navigation, setNavigation] = useState<number>(0);
@@ -32,90 +50,36 @@ export default function TournamentKnockout() {
         setPin={setNavigationPin}
       >
         <ul className="-mx-2 flex flex-col gap-2 overflow-hidden">
-          <li className="float-left flex">
-            <button className="flex-1 px-2" onClick={() => setNavigation(0)}>
-              <div
-                className={styled(
-                  "group flex items-center gap-2 rounded transition-colors",
-                  navigation === 0 ? "bg-neutral-50" : "hover:bg-neutral-600",
-                )}
-              >
-                <FiClipboard
+          {NAVIGATION_ITEMS.map((n, i) => (
+            <li className="float-left flex" key={`navigation-item-${i}`}>
+              <button className="flex-1 px-2" onClick={() => setNavigation(i)}>
+                <div
                   className={styled(
-                    "w-8 pl-1",
-                    navigation === 0
-                      ? "stroke-neutral-800"
-                      : "stroke-neutral-50",
-                  )}
-                  size={36}
-                />
-                <span
-                  className={styled(
-                    "text-sm",
-                    navigation === 0 ? "text-neutral-800" : "",
+                    "group flex items-center gap-2 rounded transition-colors",
+                    navigation === i ? "bg-neutral-50" : "hover:bg-neutral-600",
                   )}
                 >
-                  Overview
-                </span>
-              </div>
-            </button>
-          </li>
-          <li className="float-left flex">
-            <button className="flex-1 px-2" onClick={() => setNavigation(1)}>
-              <div
-                className={styled(
-                  "group flex items-center gap-2 rounded transition-colors",
-                  navigation === 1 ? "bg-neutral-50" : "hover:bg-neutral-600",
-                )}
-              >
-                <FiSettings
-                  className={styled(
-                    "w-8 pl-1",
-                    navigation === 1
-                      ? "stroke-neutral-800"
-                      : "stroke-neutral-50",
-                  )}
-                  size={36}
-                />
-                <span
-                  className={styled(
-                    "text-sm",
-                    navigation === 1 ? "text-neutral-800" : "",
-                  )}
-                >
-                  Settings
-                </span>
-              </div>
-            </button>
-          </li>
-          <li className="float-left flex">
-            <button className="flex-1 px-2" onClick={() => setNavigation(2)}>
-              <div
-                className={styled(
-                  "group flex items-center gap-2 rounded transition-colors",
-                  navigation === 2 ? "bg-neutral-50" : "hover:bg-neutral-600",
-                )}
-              >
-                <FiMonitor
-                  className={styled(
-                    "w-8 pl-1",
-                    navigation === 2
-                      ? "stroke-neutral-800"
-                      : "stroke-neutral-50",
-                  )}
-                  size={36}
-                />
-                <span
-                  className={styled(
-                    "text-sm",
-                    navigation === 2 ? "text-neutral-800" : "",
-                  )}
-                >
-                  Broadcast
-                </span>
-              </div>
-            </button>
-          </li>
+                  {cloneElement(n.icon, {
+                    className: styled(
+                      "w-8 pl-1",
+                      navigation === i
+                        ? "stroke-neutral-800"
+                        : "stroke-neutral-50",
+                    ),
+                    size: 36,
+                  })}
+                  <span
+                    className={styled(
+                      "text-sm",
+                      navigation === i ? "text-neutral-800" : "",
+                    )}
+                  >
+                    {n.label}
+                  </span>
+                </div>
+              </button>
+            </li>
+          ))}
         </ul>
       </Navigation>
 
@@ -130,17 +94,9 @@ export default function TournamentKnockout() {
                 })
               }
             >
-              {tournament.signedIn ? (
-                <>
-                  <FiChevronLeft />
-                  <span>Dashboard</span>
-                </>
-              ) : (
-                <>
-                  <FiChevronLeft />
-                  <span>Sign In</span>
-                </>
-              )}
+              {tournament.signedIn
+                ? [<FiChevronLeft />, <span>Dashboard</span>]
+                : [<FiChevronLeft />, <span>Sign In</span>]}
             </button>
           </div>
         </div>
