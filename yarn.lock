@@ -143,6 +143,11 @@
   resolved "https://registry.yarnpkg.com/@floating-ui/utils/-/utils-0.1.1.tgz#1a5b1959a528e374e8037c4396c3e825d6cf4a83"
   integrity sha512-m0G6wlnhm/AX0H12IOWtK8gASEMffnX08RtKkCgTdHb9JpHKGloI7icFfLg9ZmQeavcvR0PKmzxClyuFPSjKWw==
 
+"@futshi/js_toolbox@^1.0.1":
+  version "1.0.1"
+  resolved "https://npm.pkg.github.com/download/@futshi/js_toolbox/1.0.1/63778bbe623afa46b4173399ecca0a4f28192d5c#63778bbe623afa46b4173399ecca0a4f28192d5c"
+  integrity sha512-glUT3s4RnrXIGQylVX7RlhwzOcHHJ7GaEENtHOy3E0o9DGXSJczWZuMX7axCbSllx6+3xLX9enwLIGUZ0XmjBQ==
+
 "@humanwhocodes/config-array@^0.11.10":
   version "0.11.10"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/config-array/-/config-array-0.11.10.tgz#5a3ffe32cc9306365fb3fd572596cd602d5e12d2"
