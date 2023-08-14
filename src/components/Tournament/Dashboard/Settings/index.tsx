@@ -1,6 +1,7 @@
-import { useLayoutEffect, useState } from "react";
+import { useState } from "react";
 import { FiCheck, FiX } from "react-icons/fi";
-import Button from "~src/components/Button";
+
+import { Button } from "@futshi/js_toolbox";
 import FloatingInput from "~src/components/FloatingInput";
 import { useGlobalContext } from "~src/hooks/context/useGlobalContext";
 import { styled } from "~src/utils/stringUtils";

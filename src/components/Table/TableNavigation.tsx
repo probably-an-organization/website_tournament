@@ -7,7 +7,7 @@ import {
   FiSkipForward,
 } from "react-icons/fi";
 
-import Button from "../Button";
+import { Button } from "@futshi/js_toolbox";
 import Select from "../Select";
 import Input from "../Input";
 

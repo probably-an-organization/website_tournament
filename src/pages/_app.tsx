@@ -3,7 +3,6 @@ import { appWithTranslation } from "next-i18next";
 import nextI18nextConfig from "next-i18next.config";
 import axios from "axios";
 
-// import Sidebar from "~src/components/Sidebar";
 import GlobalContextProvider from "~src/hooks/context/useGlobalContext";
 
 import "~src/styles/globals.css";
@@ -25,10 +24,11 @@ const App: AppType = ({ Component, pageProps }: AppProps<PageProps>) => {
     },
   );
 
+  const NextComponent = Component as any;
+
   return (
     <GlobalContextProvider>
-      <Component {...pageProps} />
-      {/* <Sidebar /> */}
+      <NextComponent {...pageProps} />
     </GlobalContextProvider>
   );
 };

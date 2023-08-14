@@ -9,14 +9,14 @@ import {
 } from "@floating-ui/react";
 import { FiAward, FiInfo } from "react-icons/fi";
 
-import Button from "~src/components/Button";
+import { Button } from "@futshi/js_toolbox";
 import Input from "~src/components/Input";
 import Modal from "~src/components/Modal";
 import { BRANCH_WIDTH } from ".";
 import { styled } from "~src/utils/stringUtils";
 import { AnimatePresence, motion } from "framer-motion";
 import type { NewKnockoutMatch } from "~src/types/tournament";
-import NationalityBadge from "../../../../NationalityBadge";
+import NationalityBadge from "../../../NationalityBadge";
 
 type KnockoutTournamentMatchProps = {
   match: NewKnockoutMatch;
@@ -83,7 +83,7 @@ export default function KnockoutTournamentMatch({
                   <span>{p?.team || "-"}</span>
                 </div>
                 <div className="h-6 w-8">
-                  <NationalityBadge country={p?.country} />
+                  <NationalityBadge country={p?.country_id} />
                 </div>
               </div>
             </div>
@@ -142,7 +142,7 @@ export default function KnockoutTournamentMatch({
                       <span className="text-xs">{p?.team}</span>
                     </div>
                     <div className="h-8 w-10">
-                      <NationalityBadge country={p?.country} />
+                      <NationalityBadge country={p?.country_id} />
                     </div>
                   </div>
                 </button>

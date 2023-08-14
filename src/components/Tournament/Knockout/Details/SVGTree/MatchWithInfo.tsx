@@ -21,7 +21,7 @@ import {
 import { styled } from "~src/utils/stringUtils";
 import { useKnockoutTournamentContext } from "~src/hooks/context/tournament/useKnockoutTournamentContext";
 import type { KnockoutMatch, Participant } from "~src/types/tournament";
-import useFullscreen from "~src/hooks/useFullScreen";
+import useFullscreen from "~src/hooks/useFullscreen";
 
 const MATCH_RECT_CLASS = {
   default: "dark:fill-neutral-700",

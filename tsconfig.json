@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "es2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "checkJs": true,
     "skipLibCheck": true,
@@ -18,11 +22,24 @@
     "noUncheckedIndexedAccess": true,
     "baseUrl": ".",
     "paths": {
-      "~src/*": ["./src/*"]
+      "~src/*": [
+        "./src/*"
+      ]
     },
-    "typeRoots": ["./src/types"],
-    "types": ["react"]
+    "typeRoots": [
+      "src/types",
+      "node_modules/@types",
+    ],
+    "types": [
+      "react"
+    ]
   },
-  "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "include": [
+    "**/*.ts",
+    "**/*.d.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

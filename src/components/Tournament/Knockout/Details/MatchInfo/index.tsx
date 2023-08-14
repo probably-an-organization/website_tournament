@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useKnockoutTournamentContext } from "~src/hooks/context/tournament/useKnockoutTournamentContext";
 import { getStageLabel } from "~src/utils/tournamentUtils";
 import { styled } from "~src/utils/stringUtils";
-import useFullscreen from "~src/hooks/useFullScreen";
+import useFullscreen from "~src/hooks/useFullscreen";
 import { Participant } from "~src/types/tournament";
 import NationalityBadge from "../../../NationalityBadge";
 

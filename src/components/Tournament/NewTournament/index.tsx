@@ -18,7 +18,7 @@ import Breadcrumb, { type BreadcrumbItem } from "../Breadcrumb";
 import NewTournamentParticipant from "./Participants";
 import { Hover, HoverContent, HoverTrigger } from "~src/components/Hover";
 import NewTournamentGeneral from "./General";
-import Button from "~src/components/Button";
+import { Button } from "@futshi/js_toolbox";
 import NewTournamentType from "./Type";
 import NewTournamentSetup from "./Setup";
 import useAxios from "~src/hooks/useAxios";

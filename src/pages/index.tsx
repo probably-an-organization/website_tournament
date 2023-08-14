@@ -8,9 +8,7 @@ import type { InferGetStaticPropsType } from "next/types";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
-import Button from "~src/components/Button";
-import Card from "~src/components/Card";
-import Checkbox from "~src/components/Checkbox";
+import { Button, Card, Checkbox } from "@futshi/js_toolbox";
 import FloatingInput from "~src/components/FloatingInput";
 import { useGlobalContext } from "~src/hooks/context/useGlobalContext";
 import {

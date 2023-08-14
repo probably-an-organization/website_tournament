@@ -7,7 +7,7 @@ import useAxios from "../useAxios";
 import { type Tournament } from "~src/types/tournament";
 import { useRouter } from "next/router";
 import { handleAxiosError } from "~src/utils/axiosUtils";
-import Spinner from "~src/components/Spinner";
+import { Spinner } from "@futshi/js_toolbox";
 
 type RedirectOptions = {
   withLoading?: boolean;

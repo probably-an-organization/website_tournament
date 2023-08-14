@@ -9,14 +9,13 @@ import type {
 
 import { useTranslation } from "next-i18next";
 
-import Checkbox from "../Checkbox";
-import Button from "../Button";
+import { Button, Checkbox } from "@futshi/js_toolbox";
 
 export type TableHeaderProps<T> = {
   checkbox: boolean;
   flexRender: (
     header: ColumnDefTemplate<HeaderContext<any, unknown>> | undefined,
-    headerContext: HeaderContext<any, unknown>
+    headerContext: HeaderContext<any, unknown>,
   ) => React.ReactNode;
   reactTable: Table<any>;
   rowCanExpand?(row: T): boolean;
@@ -78,7 +77,7 @@ export default function TableHeader<T>({
                       >
                         {flexRender(
                           header.column.columnDef.header,
-                          header.getContext()
+                          header.getContext(),
                         )}
                         {{
                           asc: <FiArrowUpCircle />,

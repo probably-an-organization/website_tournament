@@ -7,12 +7,12 @@ import { FiAward } from "react-icons/fi";
 import { useKnockoutTournamentContext } from "~src/hooks/context/tournament/useKnockoutTournamentContext";
 import KnockoutSVGTreeCentered from "./Centered";
 import KnockoutSVGTreeTop from "./Top";
-import useFullscreen from "~src/hooks/useFullScreen";
+import useFullscreen from "~src/hooks/useFullscreen";
 import { styled } from "~src/utils/stringUtils";
 import { KnockoutMatch, KnockoutTournament } from "~src/types/tournament";
 import Modal from "~src/components/Modal";
 import { getStageLabel } from "~src/utils/tournamentUtils";
-import Button from "~src/components/Button";
+import { Button } from "@futshi/js_toolbox";
 import useAxios from "~src/hooks/useAxios";
 import {
   NotificationType,

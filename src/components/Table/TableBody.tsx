@@ -14,7 +14,7 @@ import type {
 import { AnimatePresence, motion } from "framer-motion";
 import { FiChevronDown } from "react-icons/fi";
 
-import Checkbox from "../Checkbox";
+import { Checkbox } from "@futshi/js_toolbox"
 
 export type TableBodyProps<T> = {
   checkbox: boolean;
