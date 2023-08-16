@@ -1,13 +1,11 @@
 import { FiGrid, FiList } from "react-icons/fi";
 
 import { useDashboardContext } from "~src/hooks/context/tournament/useDashboardContext";
-import { useGlobalContext } from "~src/hooks/context/useGlobalContext";
 import TournamentsTableView from "./TableView";
 import TournamentsGridView from "./GridView";
 
 export default function TournamentDashboardTournaments() {
   const { setView, view } = useDashboardContext();
-  const { tournament } = useGlobalContext();
 
   return (
     <div className="relative flex-1">

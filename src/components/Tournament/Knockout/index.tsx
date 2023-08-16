@@ -8,7 +8,7 @@ import {
   FiSettings,
 } from "react-icons/fi";
 
-import Card from "~src/components/Card";
+import { Card } from "@futshi/js_toolbox";
 import KnockoutDetails from "~src/components/Tournament/Knockout/Details";
 import { useGlobalContext } from "~src/hooks/context/useGlobalContext";
 import Navigation from "~src/components/Tournament/Navigation";

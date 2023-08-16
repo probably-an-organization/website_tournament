@@ -2,7 +2,7 @@
 
 import type { Table } from "@tanstack/react-table";
 
-import Checkbox from "../Checkbox";
+import { Checkbox } from "@futshi/js_toolbox";
 
 export type TableFooterProps = {
   checkbox: boolean;
