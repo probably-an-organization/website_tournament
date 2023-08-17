@@ -1,11 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { twMerge } from "tailwind-merge";
 
 import { useKnockoutTournamentContext } from "~src/hooks/context/tournament/useKnockoutTournamentContext";
 import { getStageLabel } from "~src/utils/tournamentUtils";
-import { twMerge } from "tailwind-merge"import useFullscreen from "~src/hooks/useFullscreen";
+import useFullscreen from "~src/hooks/useFullscreen";
 import { Participant } from "~src/types/tournament";
+
 import NationalityBadge from "../../../NationalityBadge";
 
 export default function KnockoutMatchInfo() {

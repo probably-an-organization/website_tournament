@@ -10,24 +10,26 @@ import type {
   SortingState,
   Table,
 } from "@tanstack/react-table";
+import { useRouter } from "next/router";
 
 import { AnimatePresence, motion } from "framer-motion";
 import { FiChevronDown } from "react-icons/fi";
 
-import { Checkbox } from "@futshi/js_toolbox"
+import { Checkbox } from "@futshi/js_toolbox";
+import { twMerge } from "tailwind-merge";
 
 export type TableBodyProps<T> = {
   checkbox: boolean;
   columnFilters: ColumnFiltersState;
   flexRender: (
     header: ColumnDefTemplate<CellContext<any, unknown>> | undefined,
-    headerContext: CellContext<any, unknown>
+    headerContext: CellContext<any, unknown>,
   ) => React.ReactNode;
   globalFilter: string;
   pagination: PaginationState;
   reactTable: Table<any>;
   rowCanSelect(row: T): boolean;
-  rowExpandComponent?: (row: T) => React.ReactNode;
+  rowExpandComponent?(row: T): React.ReactNode;
   sorting: SortingState;
 };
 
@@ -45,6 +47,8 @@ export default function TableBody<T>({
   const [rowCount, setRowCount] = useState<number>(0);
   const [rows, setRows] = useState<Row<T>[]>([]);
 
+  const router = useRouter();
+
   useEffect(() => {
     setRowCount(pagination.pageSize);
   }, [pagination.pageSize]);
@@ -60,20 +64,30 @@ export default function TableBody<T>({
         return (
           <Fragment key={index}>
             <tr
-              className={`h-14 rounded dark:text-neutral-100 dark:shadow-neutral-900${
-                rowData ? " shadow" : ""
-              }`}
+              className={twMerge(
+                "h-14 rounded dark:text-neutral-100 dark:shadow-neutral-900 bg-neutral-100 dark:bg-neutral-600",
+                rowData ? "shadow" : "",
+                rowData?.getCanExpand()
+                  ? "cursor-pointer hover:bg-neutral-50 dark:hover:bg-neutral-500 transition-colors"
+                  : "",
+              )}
+              onClick={() =>
+                rowData?.getCanExpand() ? rowData.toggleExpanded() : {}
+              }
             >
               {rowData && (
                 <>
                   {rowCanSelect(rowData.original) && (
-                    <td className="bg-neutral-100 first:rounded-l last:rounded-r dark:bg-neutral-600">
+                    <td className="first:rounded-l last:rounded-r">
                       <div className="align-center flex justify-center">
                         <Checkbox
                           checked={rowData.getIsSelected()}
                           disabled={!rowData.getCanSelect()}
                           indeterminate={rowData.getIsSomeSelected()}
-                          onChange={rowData.getToggleSelectedHandler()}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                          }}
+                          onChange={() => rowData.toggleSelected()}
                         />
                       </div>
                     </td>
@@ -81,27 +95,23 @@ export default function TableBody<T>({
                   {rowData.getVisibleCells().map((cell) => (
                     <td
                       key={cell.id}
-                      className="bg-neutral-100 px-2 first:rounded-l last:rounded-r dark:bg-neutral-600"
+                      className="px-2 first:rounded-l last:rounded-r"
                     >
                       {flexRender(
                         cell.column.columnDef.cell,
-                        cell.getContext()
+                        cell.getContext(),
                       )}
                     </td>
                   ))}
-                  <td className="bg-neutral-100 px-4 first:rounded-l last:rounded-r dark:bg-neutral-600">
+                  <td className="px-4 first:rounded-l last:rounded-r">
                     {rowData.getCanExpand() && (
                       <div className="flex items-center justify-end">
-                        <button
-                          onClick={rowData.getToggleExpandedHandler()}
-                          className="flex items-center justify-center"
-                        >
-                          <FiChevronDown
-                            className={`transition-transform duration-200${
-                              rowData.getIsExpanded() ? " rotate-180" : ""
-                            }`}
-                          />
-                        </button>
+                        <FiChevronDown
+                          className={twMerge(
+                            "transition-transform duration-200",
+                            rowData.getIsExpanded() ? " rotate-180" : "",
+                          )}
+                        />
                       </div>
                     )}
                   </td>

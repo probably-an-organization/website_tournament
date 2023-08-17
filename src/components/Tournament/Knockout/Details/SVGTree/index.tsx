@@ -3,12 +3,13 @@ import {
   AiOutlineVerticalAlignTop,
 } from "react-icons/ai";
 import { FiAward } from "react-icons/fi";
+import { twMerge } from "tailwind-merge";
 
 import { useKnockoutTournamentContext } from "~src/hooks/context/tournament/useKnockoutTournamentContext";
 import KnockoutSVGTreeCentered from "./Centered";
 import KnockoutSVGTreeTop from "./Top";
 import useFullscreen from "~src/hooks/useFullscreen";
-import { twMerge } from "tailwind-merge"import { KnockoutMatch, KnockoutTournament } from "~src/types/tournament";
+import { KnockoutMatch, KnockoutTournament } from "~src/types/tournament";
 import Modal from "~src/components/Modal";
 import { getStageLabel } from "~src/utils/tournamentUtils";
 import { Button } from "@futshi/js_toolbox";

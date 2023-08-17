@@ -74,9 +74,9 @@ export type TableProps<T> = {
   className?: string;
   columns: ColumnDef<T>[];
   data: T[];
-  rowExpandComponent?(row: T): React.ReactNode;
   rowCanExpand?(row: T): boolean;
   rowCanSelect?(row: T): boolean;
+  rowExpandComponent?(row: T): React.ReactNode;
 };
 
 export default function Table<T extends { id?: any }>({
@@ -85,8 +85,8 @@ export default function Table<T extends { id?: any }>({
   columns,
   data,
   rowCanExpand = () => false,
-  rowExpandComponent,
   rowCanSelect = () => checkbox,
+  rowExpandComponent,
 }: TableProps<T>) {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [globalFilter, setGlobalFilter] = useState("");

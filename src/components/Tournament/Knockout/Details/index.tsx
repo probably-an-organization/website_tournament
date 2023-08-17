@@ -7,13 +7,14 @@ import {
   PiWifiSlashBold,
   PiWifiHighBold,
 } from "react-icons/pi";
+import { twMerge } from "tailwind-merge";
 
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "~src/components/Popover";
-import { twMerge } from "tailwind-merge"import { useKnockoutTournamentContext } from "~src/hooks/context/tournament/useKnockoutTournamentContext";
+import { useKnockoutTournamentContext } from "~src/hooks/context/tournament/useKnockoutTournamentContext";
 import KnockoutSVGTree, { TREE_STYLES, TreeStyles } from "./SVGTree";
 import useSocket from "~src/hooks/useSocket";
 import {

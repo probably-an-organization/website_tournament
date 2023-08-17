@@ -7,13 +7,14 @@ import {
   FiMonitor,
   FiSettings,
 } from "react-icons/fi";
+import { twMerge } from "tailwind-merge";
 
 import { Card } from "@futshi/js_toolbox";
 import KnockoutDetails from "~src/components/Tournament/Knockout/Details";
 import { useGlobalContext } from "~src/hooks/context/useGlobalContext";
 import Navigation from "~src/components/Tournament/Navigation";
 import NavigationPage from "~src/components/Tournament/Navigation/Page";
-import { twMerge } from "tailwind-merge"import KnockoutSettings from "./Settings";
+import KnockoutSettings from "./Settings";
 
 const NAVIGATION_ITEMS: {
   icon: React.ReactElement;

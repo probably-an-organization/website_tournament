@@ -1,6 +1,7 @@
 import Image from "next/image";
+import { twMerge } from "tailwind-merge";
 
-import { twMerge } from "tailwind-merge"import type { Country } from "~src/constants/tournament/COUNTRIES";
+import type { Country } from "~src/constants/tournament/COUNTRIES";
 
 export type NationalityBadgeProps = {
   className?: string;

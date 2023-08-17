@@ -9,6 +9,11 @@ import {
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { FiInfo } from "react-icons/fi";
+import { twMerge } from "tailwind-merge";
+
+import { useKnockoutTournamentContext } from "~src/hooks/context/tournament/useKnockoutTournamentContext";
+import type { KnockoutMatch, Participant } from "~src/types/tournament";
+import useFullscreen from "~src/hooks/useFullscreen";
 
 import {
   BORDER_RADIUS,
@@ -18,9 +23,6 @@ import {
   TILE_INFO_SIZE,
   TILE_WIDTH,
 } from ".";
-import { twMerge } from "tailwind-merge"import { useKnockoutTournamentContext } from "~src/hooks/context/tournament/useKnockoutTournamentContext";
-import type { KnockoutMatch, Participant } from "~src/types/tournament";
-import useFullscreen from "~src/hooks/useFullscreen";
 
 const MATCH_RECT_CLASS = {
   default: "dark:fill-neutral-700",

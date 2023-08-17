@@ -1,4 +1,5 @@
 import type { ColumnDef } from "@tanstack/react-table";
+import Link from "next/link";
 import { useMemo } from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -15,39 +16,59 @@ type TableColumn = {
   updated: string;
 };
 
+const getHref = (row: TableColumn) => {
+  let href = "";
+  switch (row.type) {
+    case "knockout":
+      href = "/knockout";
+      break;
+    default:
+      throw Error("???");
+      break;
+  }
+  return (href += `/${row.id}`);
+};
+
 const columns: ColumnDef<TableColumn>[] = [
   {
     accessorFn: (row) => row.name,
     id: "name",
-    cell: (info) => info.getValue(),
+    cell: (cell) => (
+      <Link
+        className="underline dark:hover:text-neutral-800 transition-colors"
+        href={getHref(cell.row.original)}
+      >
+        {cell.getValue() as string}
+      </Link>
+    ),
     header: "Name",
     footer: (props) => props.column.id,
   },
   {
     accessorFn: (row) => row.participants,
     id: "participants",
-    cell: (info) => info.getValue(),
+    cell: (cell) => cell.getValue(),
     header: "Participants",
     footer: (props) => props.column.id,
   },
   {
     accessorFn: (row) => row.type,
     id: "type",
-    cell: (info) => info.getValue(),
+    cell: (cell) => cell.getValue(),
     header: "Type",
     footer: (props) => props.column.id,
   },
   {
     accessorFn: (row) => row.created,
     id: "created",
-    cell: (info) => info.getValue(),
+    cell: (cell) => cell.getValue(),
     header: "Created",
     footer: (props) => props.column.id,
   },
   {
     accessorFn: (row) => row.updated,
     id: "updated",
-    cell: (info) => info.getValue(),
+    cell: (cell) => cell.getValue(),
     header: "Updated",
     footer: (props) => props.column.id,
   },
