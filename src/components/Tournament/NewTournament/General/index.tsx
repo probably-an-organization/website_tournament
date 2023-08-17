@@ -9,8 +9,7 @@ import {
   NotificationType,
   useNotificationContext,
 } from "~src/hooks/context/useNotificationContext";
-import { styled } from "~src/utils/stringUtils";
-
+import { twMerge } from "tailwind-merge";
 const MAX_CHARACTERS = 256;
 
 const MAX_LOGO_FILE_SIZE_BYTES = 3145728; // 3 MB
@@ -81,7 +80,7 @@ export default function NewTournamentGeneral() {
               </div>
             )}
             <button
-              className={styled(
+              className={twMerge(
                 "absolute inset-0 flex flex-col items-center justify-center overflow-hidden rounded border bg-neutral-950 transition-colors hover:bg-neutral-900",
                 logoUrl ? "border-transparent" : "border-b-neutral-50",
               )}

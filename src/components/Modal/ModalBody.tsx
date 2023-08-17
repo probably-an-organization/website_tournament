@@ -1,5 +1,4 @@
-import { styled } from "~src/utils/stringUtils";
-
+import { twMerge } from "tailwind-merge";
 export type ModalBodyProps = {
   children: React.ReactNode;
   className?: string;
@@ -7,7 +6,7 @@ export type ModalBodyProps = {
 
 export default function ModalBody({ children, className }: ModalBodyProps) {
   return (
-    <div className={styled("relative flex-auto overflow-auto p-6", className)}>
+    <div className={twMerge("relative flex-auto overflow-auto p-6", className)}>
       {children}
     </div>
   );

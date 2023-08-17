@@ -1,5 +1,4 @@
-import { styled } from "~src/utils/stringUtils";
-import { Stages } from "./STAGES";
+import { twMerge } from "tailwind-merge"import { Stages } from "./STAGES";
 import { FiLayers, FiPlay, FiUsers } from "react-icons/fi";
 
 type NavigationIconProps = {
@@ -17,21 +16,21 @@ const NAVIGATION_ICON_STROKE = "transition-colors stroke-neutral-300";
 export const NAVIGATION: Navigation[] = [
   {
     icon: ({ className }) => (
-      <FiLayers className={styled(NAVIGATION_ICON_STROKE, className)} />
+      <FiLayers className={twMerge(NAVIGATION_ICON_STROKE, className)} />
     ),
     label: "Setup",
     stage: Stages.Setup,
   },
   {
     icon: ({ className }) => (
-      <FiUsers className={styled(NAVIGATION_ICON_STROKE, className)} />
+      <FiUsers className={twMerge(NAVIGATION_ICON_STROKE, className)} />
     ),
     label: "Participants",
     stage: Stages.Participants,
   },
   {
     icon: ({ className }) => (
-      <FiPlay className={styled(NAVIGATION_ICON_STROKE, className)} />
+      <FiPlay className={twMerge(NAVIGATION_ICON_STROKE, className)} />
     ),
     label: "Start",
     stage: Stages.Tournament,

@@ -1,6 +1,5 @@
 import { forwardRef } from "react";
-import { styled } from "~src/utils/stringUtils";
-
+import { twMerge } from "tailwind-merge";
 type InputProps = {
   className?: string;
   error?: boolean;
@@ -16,7 +15,7 @@ const Input = forwardRef(function Input(
 ) {
   return (
     <input
-      className={styled(
+      className={twMerge(
         "font-lg block h-10 rounded border p-2 font-normal",
         "bg-neutral-100 dark:bg-neutral-700",
         error ? "border-red-500" : "border-neutral-300 dark:border-slate-500",

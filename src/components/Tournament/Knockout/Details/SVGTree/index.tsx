@@ -8,8 +8,7 @@ import { useKnockoutTournamentContext } from "~src/hooks/context/tournament/useK
 import KnockoutSVGTreeCentered from "./Centered";
 import KnockoutSVGTreeTop from "./Top";
 import useFullscreen from "~src/hooks/useFullscreen";
-import { styled } from "~src/utils/stringUtils";
-import { KnockoutMatch, KnockoutTournament } from "~src/types/tournament";
+import { twMerge } from "tailwind-merge"import { KnockoutMatch, KnockoutTournament } from "~src/types/tournament";
 import Modal from "~src/components/Modal";
 import { getStageLabel } from "~src/utils/tournamentUtils";
 import { Button } from "@futshi/js_toolbox";
@@ -244,7 +243,7 @@ export default function KnockoutSVGTree({
                     const playerIndex = i + 1;
                     return (
                       <button
-                        className={styled(
+                        className={twMerge(
                           "flex items-center justify-between rounded p-3 transition-colors",
                           !winner
                             ? "[not:disabled]:hover:bg-neutral-400 bg-neutral-500 disabled:bg-neutral-700"

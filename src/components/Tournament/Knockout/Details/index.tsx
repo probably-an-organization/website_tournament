@@ -13,8 +13,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "~src/components/Popover";
-import { styled } from "~src/utils/stringUtils";
-import { useKnockoutTournamentContext } from "~src/hooks/context/tournament/useKnockoutTournamentContext";
+import { twMerge } from "tailwind-merge"import { useKnockoutTournamentContext } from "~src/hooks/context/tournament/useKnockoutTournamentContext";
 import KnockoutSVGTree, { TREE_STYLES, TreeStyles } from "./SVGTree";
 import useSocket from "~src/hooks/useSocket";
 import {
@@ -171,7 +170,7 @@ export default function KnockoutDetails({ className }: KnockoutSVGTreeProps) {
   };
 
   return (
-    <div className={styled("h-full w-full", className)}>
+    <div className={twMerge("h-full w-full", className)}>
       <div className="relative mb-3 flex items-center justify-between gap-8 border-b pb-3 dark:border-b-neutral-600">
         <div className="flex items-center gap-4">
           <div className="font-bold">{knockoutTournament.name}</div>
@@ -216,7 +215,7 @@ export default function KnockoutDetails({ className }: KnockoutSVGTreeProps) {
                 <div className="flex flex-col overflow-hidden rounded dark:bg-neutral-950">
                   {TREE_STYLES.map((t, i) => (
                     <button
-                      className={styled(
+                      className={twMerge(
                         "flex items-center gap-2 px-3 py-1.5 hover:dark:bg-neutral-700",
                         treeStyle === t.value
                           ? "pointer-events-none dark:bg-neutral-800"
@@ -249,7 +248,7 @@ export default function KnockoutDetails({ className }: KnockoutSVGTreeProps) {
                   (s) => !s.editPermissionsRequired || knockoutEditPermission,
                 ).map((t, i) => (
                   <button
-                    className={styled(
+                    className={twMerge(
                       "flex items-center gap-2 px-3 py-1.5 hover:dark:bg-neutral-700",
                       slide === t.value
                         ? "pointer-events-none dark:bg-neutral-800"

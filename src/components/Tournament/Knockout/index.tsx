@@ -13,8 +13,7 @@ import KnockoutDetails from "~src/components/Tournament/Knockout/Details";
 import { useGlobalContext } from "~src/hooks/context/useGlobalContext";
 import Navigation from "~src/components/Tournament/Navigation";
 import NavigationPage from "~src/components/Tournament/Navigation/Page";
-import { styled } from "~src/utils/stringUtils";
-import KnockoutSettings from "./Settings";
+import { twMerge } from "tailwind-merge"import KnockoutSettings from "./Settings";
 
 const NAVIGATION_ITEMS: {
   icon: React.ReactElement;
@@ -54,13 +53,13 @@ export default function TournamentKnockout() {
             <li className="float-left flex" key={`navigation-item-${i}`}>
               <button className="flex-1 px-2" onClick={() => setNavigation(i)}>
                 <div
-                  className={styled(
+                  className={twMerge(
                     "group flex items-center gap-2 rounded transition-colors",
                     navigation === i ? "bg-neutral-50" : "hover:bg-neutral-600",
                   )}
                 >
                   {cloneElement(n.icon, {
-                    className: styled(
+                    className: twMerge(
                       "w-8 pl-1",
                       navigation === i
                         ? "stroke-neutral-800"
@@ -69,7 +68,7 @@ export default function TournamentKnockout() {
                     size: 36,
                   })}
                   <span
-                    className={styled(
+                    className={twMerge(
                       "text-sm",
                       navigation === i ? "text-neutral-800" : "",
                     )}

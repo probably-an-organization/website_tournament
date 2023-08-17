@@ -1,6 +1,5 @@
 import { useGlobalContext } from "~src/hooks/context/useGlobalContext";
-import { styled } from "~src/utils/stringUtils";
-
+import { twMerge } from "tailwind-merge";
 type DashboardTournamentButtonProps = {
   children: React.ReactNode;
   className?: string;
@@ -16,7 +15,7 @@ export default function TournamentsGridViewButton({
 
   return (
     <button
-      className={styled(
+      className={twMerge(
         "h-40 w-40 rounded p-2 transition-colorsTransform hover:scale-102.5",
         className,
       )}

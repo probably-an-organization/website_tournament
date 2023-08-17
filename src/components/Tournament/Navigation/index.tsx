@@ -1,7 +1,6 @@
 import { FiChevronLeft, FiLock, FiUnlock } from "react-icons/fi";
 
-import { styled } from "~src/utils/stringUtils";
-
+import { twMerge } from "tailwind-merge";
 export type NavigationProps = {
   children: React.ReactNode;
   expanded: boolean;
@@ -28,7 +27,7 @@ function NavigationComponent({
 }: NavigationProps) {
   return (
     <div
-      className={styled(
+      className={twMerge(
         "fixed bottom-0 left-0 top-0 z-20 flex flex-col bg-neutral-100 p-2 shadow transition-width dark:bg-neutral-800 dark:shadow-black",
         expanded ? "w-36" : "w-12",
       )}
@@ -36,7 +35,7 @@ function NavigationComponent({
       <div className="flex-1">{children}</div>
       <div className="flex w-full justify-between">
         <button
-          className={styled(
+          className={twMerge(
             "transition-opacityTransform hover:scale-102.5",
             expanded ? "opacity-100" : "pointer-events-none opacity-0",
           )}
@@ -54,7 +53,7 @@ function NavigationComponent({
           )}
         </button>
         <button
-          className={styled(
+          className={twMerge(
             " transition-opacityTransform hover:scale-102.5",
             expanded ? "" : "rotate-180",
             pin

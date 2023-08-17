@@ -1,6 +1,5 @@
 import React from "react";
-
-import { styled } from "~src/utils/stringUtils";
+import { twMerge } from "tailwind-merge";
 
 export type ContainerProps = {
   children: React.ReactNode;
@@ -9,7 +8,7 @@ export type ContainerProps = {
 
 export default function Container({ children, className }: ContainerProps) {
   return (
-    <div className={styled("container mx-auto h-screen w-screen", className)}>
+    <div className={twMerge("container mx-auto h-screen w-screen", className)}>
       {children}
     </div>
   );

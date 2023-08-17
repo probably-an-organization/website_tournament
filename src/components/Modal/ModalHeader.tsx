@@ -1,6 +1,5 @@
 import { FiX } from "react-icons/fi";
-import { styled } from "~src/utils/stringUtils";
-
+import { twMerge } from "tailwind-merge";
 export type ModalHeaderProps = {
   children: React.ReactNode;
   className?: string;
@@ -16,7 +15,7 @@ export default function ModalHeader({
 }: ModalHeaderProps) {
   return (
     <div
-      className={styled(
+      className={twMerge(
         "flex items-center justify-between rounded-t border-b border-neutral-300 p-5 dark:border-neutral-600",
         className,
       )}

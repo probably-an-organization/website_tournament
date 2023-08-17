@@ -2,7 +2,7 @@ import { CSS } from "@dnd-kit/utilities";
 import { useSortable } from "@dnd-kit/sortable";
 import { FiMoreHorizontal, FiX } from "react-icons/fi";
 
-import { styled } from "~src/utils/stringUtils";
+import { twMerge } from "tailwind-merge";
 
 type SortableItemProps = {
   className?: string;
@@ -38,7 +38,7 @@ export function SortableItem({
     <div
       ref={setNodeRef}
       style={{ ...style }}
-      className={styled(
+      className={twMerge(
         "flex items-center justify-between gap-2 rounded bg-neutral-300 p-2 shadow dark:bg-neutral-600",
         className,
       )}
@@ -64,7 +64,7 @@ export function SortableItem({
 export function OverlayItem({ className, name }: SortableItemProps) {
   return (
     <div
-      className={styled(
+      className={twMerge(
         "flex items-center justify-between gap-2 rounded bg-neutral-300 p-2 shadow dark:bg-neutral-600",
         className,
       )}

@@ -4,8 +4,7 @@ import { useEffect, useState } from "react";
 
 import { useKnockoutTournamentContext } from "~src/hooks/context/tournament/useKnockoutTournamentContext";
 import { getStageLabel } from "~src/utils/tournamentUtils";
-import { styled } from "~src/utils/stringUtils";
-import useFullscreen from "~src/hooks/useFullscreen";
+import { twMerge } from "tailwind-merge"import useFullscreen from "~src/hooks/useFullscreen";
 import { Participant } from "~src/types/tournament";
 import NationalityBadge from "../../../NationalityBadge";
 
@@ -51,7 +50,7 @@ export default function KnockoutMatchInfo() {
             {[matchInfo?.p1, matchInfo?.p2].map((p, i) => (
               <div className="h-full w-1/2" key={`player-${i + 1}`}>
                 <div
-                  className={styled(
+                  className={twMerge(
                     "h-full min-w-48 rounded p-3",
                     knockoutMatch.winner === 0
                       ? "bg-neutral-600"
@@ -66,7 +65,7 @@ export default function KnockoutMatchInfo() {
                     </div>
                     <div className="flex flex-col items-center pt-3">
                       <span
-                        className={styled(
+                        className={twMerge(
                           "text-2xl",
                           p?.name ? "font-medium" : "italic",
                         )}

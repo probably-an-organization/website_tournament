@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
-import { styled } from "~src/utils/stringUtils";
-
+import { twMerge } from "tailwind-merge";
 type HoverButtonProps = {
   animate?: string;
   className?: string;
@@ -21,7 +20,7 @@ export default function HoverButton({
   return (
     <motion.button
       animate={animate}
-      className={styled(
+      className={twMerge(
         disabled ? "pointer-events-none" : "pointer-events-auto",
         onClick ? "cursor-pointer" : "cursor-default",
         className,

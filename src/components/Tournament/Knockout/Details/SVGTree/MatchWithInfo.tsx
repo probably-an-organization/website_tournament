@@ -18,8 +18,7 @@ import {
   TILE_INFO_SIZE,
   TILE_WIDTH,
 } from ".";
-import { styled } from "~src/utils/stringUtils";
-import { useKnockoutTournamentContext } from "~src/hooks/context/tournament/useKnockoutTournamentContext";
+import { twMerge } from "tailwind-merge"import { useKnockoutTournamentContext } from "~src/hooks/context/tournament/useKnockoutTournamentContext";
 import type { KnockoutMatch, Participant } from "~src/types/tournament";
 import useFullscreen from "~src/hooks/useFullscreen";
 
@@ -104,7 +103,7 @@ export default function KnockoutSVGTreeMatchWithInfo({
 
         <g id={`stage-${match.stage_number}-match-${match.match_number}-p1`}>
           <rect
-            className={styled(
+            className={twMerge(
               "peer transition-colors",
               match.participant_1_id
                 ? Number(match.winner) === 0
@@ -127,7 +126,7 @@ export default function KnockoutSVGTreeMatchWithInfo({
           {participants[0] ? (
             <>
               <text
-                className={styled(
+                className={twMerge(
                   "pointer-events-none font-medium",
                   match.participant_1_id
                     ? Number(match.winner) === 0
@@ -151,7 +150,7 @@ export default function KnockoutSVGTreeMatchWithInfo({
                 {participants[0]?.name ?? "TBD"}
               </text>
               <text
-                className={styled(
+                className={twMerge(
                   "pointer-events-none text-xs",
                   match.participant_1_id
                     ? Number(match.winner) === 0
@@ -220,7 +219,7 @@ export default function KnockoutSVGTreeMatchWithInfo({
             </>
           ) : (
             <text
-              className={styled(
+              className={twMerge(
                 "pointer-events-none",
                 match.participant_1_id
                   ? Number(match.winner) === 0
@@ -251,7 +250,7 @@ export default function KnockoutSVGTreeMatchWithInfo({
 
         <g id={`stage-${match.stage_number}-match-${match.match_number}-p2`}>
           <rect
-            className={styled(
+            className={twMerge(
               "peer transition-colors",
               match.participant_2_id
                 ? Number(match.winner) === 0
@@ -281,7 +280,7 @@ export default function KnockoutSVGTreeMatchWithInfo({
           {participants[1] ? (
             <>
               <text
-                className={styled(
+                className={twMerge(
                   "pointer-events-none font-medium",
                   match.participant_2_id
                     ? Number(match.winner) === 0
@@ -312,7 +311,7 @@ export default function KnockoutSVGTreeMatchWithInfo({
                 {participants[1]?.name ?? "TBD"}
               </text>
               <text
-                className={styled(
+                className={twMerge(
                   "pointer-events-none text-xs",
                   match.participant_2_id
                     ? Number(match.winner) === 0
@@ -392,7 +391,7 @@ export default function KnockoutSVGTreeMatchWithInfo({
             </>
           ) : (
             <text
-              className={styled(
+              className={twMerge(
                 "pointer-events-none",
                 match.participant_2_id
                   ? Number(match.winner) === 0

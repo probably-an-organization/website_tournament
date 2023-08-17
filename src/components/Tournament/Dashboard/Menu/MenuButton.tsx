@@ -1,5 +1,4 @@
-import { styled } from "~src/utils/stringUtils";
-
+import { twMerge } from "tailwind-merge";
 type DashboardMenuButtonProps = {
   children: React.ReactNode;
   className?: string;
@@ -15,7 +14,7 @@ export default function DashboardMenuButton({
 }: DashboardMenuButtonProps) {
   return (
     <button
-      className={styled(
+      className={twMerge(
         "flex items-center gap-1 rounded px-3 py-2 text-neutral-100 transition-colors disabled:bg-neutral-900 [&:not(:disabled)]:hover:bg-neutral-700",
         className,
       )}

@@ -4,8 +4,8 @@ import React, { createContext, useContext, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { v4 as uuidv4 } from "uuid";
 import { FiX } from "react-icons/fi";
+import { twMerge } from "tailwind-merge";
 
-import { styled } from "~src/utils/stringUtils";
 import { lerp } from "~src/utils/mathUtils";
 import type { NewTournament } from "~src/types/tournament";
 import { PARTICIPANTS_LIMIT } from "~src/constants/tournament/PARTICIPANTS";
@@ -141,7 +141,7 @@ export const TournamentContextProvider = ({
                         opacity:
                           1 - lerp(0.25, 1, i / NOTIFICATION_LENGTH_OPACITY),
                       }}
-                      className={styled(
+                      className={twMerge(
                         "h-28 rounded text-white",
                         getNotificationColor(n.type),
                       )}

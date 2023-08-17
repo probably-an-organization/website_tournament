@@ -1,5 +1,4 @@
-import { styled } from "~src/utils/stringUtils";
-
+import { twMerge } from "tailwind-merge";
 const SELECT_COLORS = {
   background: {
     default: "",
@@ -39,7 +38,7 @@ export default function Select({
       value={value}
       onChange={onChange}
       disabled={disabled}
-      className={styled(
+      className={twMerge(
         "font-lg block h-10 rounded border p-2 font-normal focus-visible:outline-0",
         className,
         SELECT_COLORS.background.default,

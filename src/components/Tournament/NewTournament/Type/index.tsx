@@ -4,8 +4,7 @@ import { useEffect } from "react";
 import Card from "~src/components/Card";
 import { TournamentTypes } from "~src/constants/tournament/TYPES";
 import { useTournamentContext } from "~src/hooks/context/tournament/useTournamentContext";
-import { styled } from "~src/utils/stringUtils";
-
+import { twMerge } from "tailwind-merge";
 export default function NewTournamentTournamentType() {
   const { newTournament, setNewTournament } = useTournamentContext();
 
@@ -28,7 +27,7 @@ export default function NewTournamentTournamentType() {
         <div className="grid grid-cols-2 gap-3">
           {TournamentTypes.map((tm, i) => (
             <button
-              className={styled(
+              className={twMerge(
                 "aspect-square rounded disabled:border disabled:border-neutral-800 disabled:bg-inherit disabled:italic disabled:text-neutral-700",
                 newTournament.type === tm.value
                   ? "pointer-events-none bg-orange-500 shadow"

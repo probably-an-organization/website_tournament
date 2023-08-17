@@ -1,6 +1,5 @@
 import React from "react";
-import { styled } from "~src/utils/stringUtils";
-
+import { twMerge } from "tailwind-merge";
 export type ModalFooterProps = {
   children: React.ReactNode;
   className?: string;
@@ -9,7 +8,7 @@ export type ModalFooterProps = {
 export default function ModalFooter({ children, className }: ModalFooterProps) {
   return (
     <div
-      className={styled(
+      className={twMerge(
         "flex items-center justify-end rounded-b border-t border-neutral-300 p-3 dark:border-neutral-600",
         className,
       )}

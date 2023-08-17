@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { FiChevronRight } from "react-icons/fi";
 
-import { styled } from "~src/utils/stringUtils";
-
+import { twMerge } from "tailwind-merge";
 export type BreadcrumbItem = {
   disabled?: boolean;
   icon: React.ReactElement;
@@ -29,7 +28,7 @@ export default function Breadcrumb({
         {items.map((b, i) => (
           <div className="flex items-center gap-2" key={`breadcrumb-${i}`}>
             <button
-              className={styled(
+              className={twMerge(
                 "flex items-center gap-2 rounded-2xl transition-colorsOpacity disabled:cursor-not-allowed",
                 active >= i ? "bg-orange-500" : "",
                 hoverValue === i

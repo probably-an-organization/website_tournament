@@ -11,8 +11,7 @@ import {
   useInteractions,
 } from "@floating-ui/react";
 
-import { styled } from "~src/utils/stringUtils";
-
+import { twMerge } from "tailwind-merge";
 type HoverContextType = {
   floatingStyles: CSSProperties;
   getFloatingProps(): any;
@@ -97,7 +96,7 @@ export function HoverContent({ children, className }: HoverContentProps) {
   return (
     <FloatingPortal>
       <div
-        className={styled("z-50", className)}
+        className={twMerge("z-50", className)}
         ref={context.refs.setFloating}
         style={context.floatingStyles}
         {...context.getFloatingProps()}

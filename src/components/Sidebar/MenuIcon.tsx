@@ -1,7 +1,6 @@
 import * as React from "react";
 import { motion } from "framer-motion";
-import { styled } from "~src/utils/stringUtils";
-
+import { twMerge } from "tailwind-merge";
 const Path = (props: any) => (
   <motion.path
     fill="transparent"
@@ -19,7 +18,7 @@ const MENU_ICON_COLOR = "stroke-neutral-600 dark:stroke-neutral-200";
 export default function MenuIcon() {
   return (
     <div
-      className={styled(
+      className={twMerge(
         "flex h-12 w-12 cursor-pointer items-center justify-center rounded-full shadow",
         MENU_ICON_BACKGROUND,
       )}

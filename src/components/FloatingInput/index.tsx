@@ -1,8 +1,7 @@
 import React, { forwardRef, useMemo } from "react";
 import { FiX, FiEdit3 } from "react-icons/fi";
 
-import { styled } from "~src/utils/stringUtils";
-
+import { twMerge } from "tailwind-merge";
 export type FloatingInputLabelProps = {
   top: boolean;
   children: React.ReactNode;
@@ -11,7 +10,7 @@ export type FloatingInputLabelProps = {
 function FloatingInputLabel({ top, children }: FloatingInputLabelProps) {
   return (
     <label
-      className={styled(
+      className={twMerge(
         top ? "text-xs font-semibold" : "text-sm",
         "pointer-events-none absolute left-2 top-2 flex items-center transition-all duration-200 ease-in-out peer-focus:text-xs peer-focus:font-semibold",
       )}
@@ -73,21 +72,21 @@ const FloatingInput = forwardRef(function FloatingInput(
     onReset();
   };
 
-  const inputClass = styled(
+  const inputClass = twMerge(
     "peer w-full border-t-transparent bg-transparent p-2 text-sm outline-none duration-200 ease-in-out focus:border-t-[1.25rem]",
     labelTop ? "border-t-[1.25rem] text-opacity-100" : "text-opacity-0",
   );
 
   return (
     <div
-      className={styled(
+      className={twMerge(
         "min-h-10 relative flex h-full rounded border bg-neutral-50 text-gray-800 dark:bg-neutral-700 dark:text-gray-50",
         error ? "border-red-500" : "border-neutral-400 dark:border-neutral-500",
         className,
       )}
     >
       <div
-        className={styled(
+        className={twMerge(
           "relative flex w-full",
           labelTop ? "text-opacity-100" : "text-opacity-0",
         )}
@@ -143,7 +142,7 @@ const FloatingInput = forwardRef(function FloatingInput(
           ))}
 
         <div
-          className={styled(
+          className={twMerge(
             "pointer-events-none absolute bottom-0 right-2 top-0 flex transition-opacity",
             value
               ? "opacity-0"
@@ -154,13 +153,13 @@ const FloatingInput = forwardRef(function FloatingInput(
         </div>
         {onReset && !disabled && (
           <div
-            className={styled(
+            className={twMerge(
               "absolute bottom-0 right-2 top-2",
               value ? "pointer-events-auto" : "pointer-events-none",
             )}
           >
             <div
-              className={styled(
+              className={twMerge(
                 "cursor-pointer transition-colorsOpacity hover:text-red-500",
                 value
                   ? "opacity-25 hover:opacity-100"

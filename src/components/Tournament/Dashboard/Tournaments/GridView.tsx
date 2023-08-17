@@ -10,7 +10,7 @@ import {
   useDashboardContext,
 } from "~src/hooks/context/tournament/useDashboardContext";
 import { useGlobalContext } from "~src/hooks/context/useGlobalContext";
-import { styled } from "~src/utils/stringUtils";
+import { twMerge } from "tailwind-merge";
 import { Hover, HoverContent, HoverTrigger } from "~src/components/Hover";
 import TournamentsGridViewButton from "./GridViewButton";
 
@@ -51,13 +51,13 @@ export default function TournamentsGridView({
     });
   };
   return (
-    <div className={styled("flex flex-col items-center", className)}>
+    <div className={twMerge("flex flex-col items-center", className)}>
       <div className="my-3 flex flex-wrap gap-3">
         {Object.entries(gridFilter).map(([key, value], i) => (
           <button
             key={`tournament-type-${i}`}
             onClick={() => handleGridFilter(key, value)}
-            className={styled(
+            className={twMerge(
               "w-20 rounded p-2 transition-colors",
               value.active
                 ? "bg-orange-500 hover:bg-orange-400"
@@ -98,7 +98,7 @@ export default function TournamentsGridView({
               >
                 <span className="font-semibold">{t.name}</span>
                 <span
-                  className={styled(
+                  className={twMerge(
                     "flex flex-1 items-center break-all py-2 text-xs",
                     t.description
                       ? "text-neutral-400"

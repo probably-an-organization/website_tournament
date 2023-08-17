@@ -1,5 +1,4 @@
-import { styled } from "~src/utils/stringUtils";
-
+import { twMerge } from "tailwind-merge";
 type TagProps = {
   className?: string;
   children: React.ReactNode;
@@ -7,7 +6,7 @@ type TagProps = {
 
 export default function Tag({ children, className }: TagProps) {
   return (
-    <div className={styled("rounded px-2 py-1 text-xs", className)}>
+    <div className={twMerge("rounded px-2 py-1 text-xs", className)}>
       {children}
     </div>
   );

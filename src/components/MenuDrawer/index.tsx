@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useDragControls, motion } from "framer-motion";
-import { styled } from "~src/utils/stringUtils";
-
+import { twMerge } from "tailwind-merge";
 // TODO similar to dnd kit drawer: https://master--5fc05e08a4a65d0021ae0bf2.chromatic.com/?path=/story/examples-drawer-sheet--bottom-sheet
 
 const OFFSET_THRESHOLD = 50;
@@ -32,7 +31,7 @@ export default function MenuDrawer() {
   return (
     <>
       <div
-        className={styled(
+        className={twMerge(
           "pointer-events-none absolute inset-0 h-full w-full bg-blue-200",
           showMenu ? "opacity-100" : "opacity-0",
         )}
@@ -40,7 +39,7 @@ export default function MenuDrawer() {
         ASDSFGKOASKFOAWDKOAWDKO
       </div>
       <motion.button
-        className={styled("fixed top-0 h-12 w-12 bg-green-500")}
+        className={twMerge("fixed top-0 h-12 w-12 bg-green-500")}
         drag="y"
         dragConstraints={{
           top: 0,

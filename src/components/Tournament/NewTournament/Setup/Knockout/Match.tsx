@@ -13,8 +13,7 @@ import { Button } from "@futshi/js_toolbox";
 import Input from "~src/components/Input";
 import Modal from "~src/components/Modal";
 import { BRANCH_WIDTH } from ".";
-import { styled } from "~src/utils/stringUtils";
-import { AnimatePresence, motion } from "framer-motion";
+import { twMerge } from "tailwind-merge"import { AnimatePresence, motion } from "framer-motion";
 import type { NewKnockoutMatch } from "~src/types/tournament";
 import NationalityBadge from "../../../NationalityBadge";
 
@@ -50,7 +49,7 @@ export default function KnockoutTournamentMatch({
   return (
     <>
       <button
-        className={styled(
+        className={twMerge(
           "group flex items-center gap-2 rounded bg-neutral-200 p-2 transition-colorsOpacity dark:bg-neutral-700",
           BRANCH_WIDTH,
           match.participants.every((p) => !Boolean(p)) ? "opacity-50" : "",
@@ -61,7 +60,7 @@ export default function KnockoutTournamentMatch({
         <div className="flex flex-1 flex-col gap-2">
           {match.participants.map((p, i) => (
             <div
-              className={styled(
+              className={twMerge(
                 "rounded bg-neutral-500 p-2 text-center text-xs transition-colors",
                 p ? "" : "italic text-neutral-800",
                 match.winner === undefined
@@ -118,7 +117,7 @@ export default function KnockoutTournamentMatch({
             <div className="flex flex-col gap-3">
               {editKnockoutBranch?.participants.map((p, i) => (
                 <button
-                  className={styled(
+                  className={twMerge(
                     "flex items-center justify-between rounded p-3 transition-colors",
                     editKnockoutBranch.winner === undefined
                       ? "bg-neutral-500"

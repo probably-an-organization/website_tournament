@@ -1,6 +1,5 @@
 import { ColorRGB, rgbInterpolationToHex } from "~src/utils/colorUtils";
-import { styled } from "~src/utils/stringUtils";
-
+import { twMerge } from "tailwind-merge";
 import type { Skill } from "../../../../../@types/tournament";
 
 const INTERPOLATION_COLORS = [
@@ -22,7 +21,7 @@ export default function SkillLevelBadge({
 
   return (
     <div
-      className={styled(
+      className={twMerge(
         "flex h-10 w-24 items-center justify-center rounded bg-neutral-600",
         className,
       )}

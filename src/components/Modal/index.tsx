@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
-import { styled } from "~src/utils/stringUtils";
-
+import { twMerge } from "tailwind-merge";
 type ModalProps = {
   backdrop?: "static" | "default";
   children: React.ReactNode;
@@ -35,7 +34,7 @@ export default function Modal({
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className={styled(
+              className={twMerge(
                 "fixed inset-0 z-30 flex items-center justify-center overflow-y-auto outline-none transition-opacity focus:outline-none",
                 className,
               )}

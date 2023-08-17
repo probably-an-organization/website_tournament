@@ -1,5 +1,4 @@
-import { styled } from "~src/utils/stringUtils";
-
+import { twMerge } from "tailwind-merge";
 type NavigationPageProps = {
   children: React.ReactNode;
   expanded: boolean;
@@ -13,7 +12,7 @@ export default function NavigationPage({
 }: NavigationPageProps) {
   return (
     <div
-      className={styled(
+      className={twMerge(
         "transition-spacing",
         expanded && pin ? "ml-36" : "ml-12",
       )}

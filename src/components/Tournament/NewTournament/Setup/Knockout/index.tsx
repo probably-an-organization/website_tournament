@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 
 import type { NewKnockoutMatch, NewParticipant } from "~src/types/tournament";
 import { useTournamentContext } from "~src/hooks/context/tournament/useTournamentContext";
-import { styled } from "~src/utils/stringUtils";
-import KnockoutTournamentMatch from "./Match";
+import { twMerge } from "tailwind-merge"import KnockoutTournamentMatch from "./Match";
 import Card from "~src/components/Card";
 import { FiCheck } from "react-icons/fi";
 import useAxios from "~src/hooks/useAxios";
@@ -113,7 +112,7 @@ export default function KnockoutTournament() {
             }
             return (
               <span
-                className={styled(
+                className={twMerge(
                   "mx-3 flex-shrink-0 flex-grow text-center text-xs",
                   BRANCH_WIDTH,
                 )}
@@ -128,7 +127,7 @@ export default function KnockoutTournament() {
         <div className="mt-5 flex flex-row justify-between">
           {lineups.map((l, i) => (
             <div
-              className={styled(
+              className={twMerge(
                 "flex flex-shrink-0 flex-grow flex-col items-center gap-3 px-3",
                 i === 0
                   ? ""

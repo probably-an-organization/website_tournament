@@ -3,10 +3,10 @@
 import { createContext, useContext, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { v4 as uuidv4 } from "uuid";
+import { FiX } from "react-icons/fi";
+import { twMerge } from "tailwind-merge";
 
 import { lerp } from "~src/utils/mathUtils";
-import { styled } from "~src/utils/stringUtils";
-import { FiX } from "react-icons/fi";
 
 const DEFAULT_NOTIFICATION_LIFESPAN = 5000;
 const NOTIFICATION_LENGTH_OPACITY = 5;
@@ -105,7 +105,7 @@ export function NotificationContextProvider({
                         opacity:
                           1 - lerp(0.25, 1, i / NOTIFICATION_LENGTH_OPACITY),
                       }}
-                      className={styled(
+                      className={twMerge(
                         "flex w-40 flex-col gap-1.5 rounded p-1.5 text-xs text-neutral-50",
                         getNotificationColor(n.type),
                       )}

@@ -1,5 +1,4 @@
-import { styled } from "~src/utils/stringUtils";
-
+import { twMerge } from "tailwind-merge";
 // TODO: https://medium.com/the-school-of-do/framer-cheat-sheets-slider-range-sliders-5b30b8f41a12
 
 const valueTotalRatio = (value: number, min: number, max: number): string =>
@@ -45,7 +44,7 @@ export default function InputSlider({
         max={steps.length - 1}
         value={value}
         onInput={onChange}
-        className={styled(
+        className={twMerge(
           "z-10 my-2 h-4 w-full cursor-pointer appearance-none rounded bg-orange-300",
           // "[&::-webkit-slider-runnable-track]",
           "[&::-webkit-slider-thumb]:h-8 [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded [&::-webkit-slider-thumb]:bg-orange-500",

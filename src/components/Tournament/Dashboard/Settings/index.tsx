@@ -4,8 +4,7 @@ import { FiCheck, FiX } from "react-icons/fi";
 import { Button } from "@futshi/js_toolbox";
 import FloatingInput from "~src/components/FloatingInput";
 import { useGlobalContext } from "~src/hooks/context/useGlobalContext";
-import { styled } from "~src/utils/stringUtils";
-
+import { twMerge } from "tailwind-merge";
 type TournamentDashboardSettingsProps = {
   className?: string;
 };
@@ -26,9 +25,9 @@ export default function TournamentDashboardSettings({
   };
 
   return (
-    <div className={styled("mx-auto max-w-3xl", className)}>
+    <div className={twMerge("mx-auto max-w-3xl", className)}>
       <button
-        className={styled(
+        className={twMerge(
           "mb-3 inline-flex items-center gap-1 rounded border p-2",
           editTournamentUser?.verified
             ? "border-green-500 bg-green-400"

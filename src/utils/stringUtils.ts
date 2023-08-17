@@ -8,6 +8,6 @@ export function camelize(str: string, firstLetterLowerCase?: boolean) {
     .replace(/\s+/g, "");
 }
 
-export function styled(...args: (string | undefined)[]) {
+export function twMerge(...args: (string | undefined)[]) {
   return [...args].filter(Boolean).join(" ");
 }
