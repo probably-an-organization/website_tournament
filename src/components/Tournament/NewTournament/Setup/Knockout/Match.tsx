@@ -9,12 +9,14 @@ import {
 } from "@floating-ui/react";
 import { FiAward, FiInfo } from "react-icons/fi";
 
-import { Button } from "@futshi/js_toolbox";
+import { Button, Modal } from "@futshi/js_toolbox";
 import Input from "~src/components/Input";
-import Modal from "~src/components/Modal";
-import { BRANCH_WIDTH } from ".";
-import { twMerge } from "tailwind-merge"import { AnimatePresence, motion } from "framer-motion";
+import { twMerge } from "tailwind-merge";
+import { AnimatePresence, motion } from "framer-motion";
+
 import type { NewKnockoutMatch } from "~src/types/tournament";
+
+import { BRANCH_WIDTH } from ".";
 import NationalityBadge from "../../../NationalityBadge";
 
 type KnockoutTournamentMatchProps = {

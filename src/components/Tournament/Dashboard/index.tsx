@@ -58,7 +58,7 @@ function DashboardComponent() {
           <DashboardMenu />
 
           {tab === 0 && <TournamentDashboardTournaments />}
-          {tab === 1 && <TournamentDashboardSettings className="p-3" />}
+          {tab === 1 && <TournamentDashboardSettings />}
         </>
       )}
     </>

@@ -10,9 +10,8 @@ import KnockoutSVGTreeCentered from "./Centered";
 import KnockoutSVGTreeTop from "./Top";
 import useFullscreen from "~src/hooks/useFullscreen";
 import { KnockoutMatch, KnockoutTournament } from "~src/types/tournament";
-import Modal from "~src/components/Modal";
 import { getStageLabel } from "~src/utils/tournamentUtils";
-import { Button } from "@futshi/js_toolbox";
+import { Button, Modal } from "@futshi/js_toolbox";
 import useAxios from "~src/hooks/useAxios";
 import {
   NotificationType,

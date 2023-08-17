@@ -19,7 +19,7 @@
     "@dnd-kit/utilities": "^3.2.1",
     "@faker-js/faker": "^8.0.2",
     "@floating-ui/react": "^0.25.0",
-    "@futshi/js_toolbox": "^1.0.60",
+    "@futshi/js_toolbox": "^1.0.63",
     "@stripe/stripe-js": "^1.54.2",
     "@tanstack/match-sorter-utils": "^8.8.4",
     "@tanstack/react-table": "^8.9.3",

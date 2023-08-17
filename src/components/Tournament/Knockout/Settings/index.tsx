@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { Button, Switch } from "@futshi/js_toolbox";
-import Modal from "~src/components/Modal";
+import { Button, Modal, Switch } from "@futshi/js_toolbox";
 import { useKnockoutTournamentContext } from "~src/hooks/context/tournament/useKnockoutTournamentContext";
 import useAxios from "~src/hooks/useAxios";
 

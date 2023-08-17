@@ -24,55 +24,9 @@ const getHref = (row: TableColumn) => {
       break;
     default:
       throw Error("???");
-      break;
   }
   return (href += `/${row.id}`);
 };
-
-const columns: ColumnDef<TableColumn>[] = [
-  {
-    accessorFn: (row) => row.name,
-    id: "name",
-    cell: (cell) => (
-      <Link
-        className="underline dark:hover:text-neutral-800 transition-colors"
-        href={getHref(cell.row.original)}
-      >
-        {cell.getValue() as string}
-      </Link>
-    ),
-    header: "Name",
-    footer: (props) => props.column.id,
-  },
-  {
-    accessorFn: (row) => row.participants,
-    id: "participants",
-    cell: (cell) => cell.getValue(),
-    header: "Participants",
-    footer: (props) => props.column.id,
-  },
-  {
-    accessorFn: (row) => row.type,
-    id: "type",
-    cell: (cell) => cell.getValue(),
-    header: "Type",
-    footer: (props) => props.column.id,
-  },
-  {
-    accessorFn: (row) => row.created,
-    id: "created",
-    cell: (cell) => cell.getValue(),
-    header: "Created",
-    footer: (props) => props.column.id,
-  },
-  {
-    accessorFn: (row) => row.updated,
-    id: "updated",
-    cell: (cell) => cell.getValue(),
-    header: "Updated",
-    footer: (props) => props.column.id,
-  },
-];
 
 const renderExpandComponent = (row: TableColumn) => {
   return (
@@ -89,7 +43,55 @@ type TournamentsTableViewProps = {
 export default function TournamentsTableView({
   className,
 }: TournamentsTableViewProps) {
-  const { tournament } = useGlobalContext();
+  const { redirect, tournament } = useGlobalContext();
+
+  const columns: ColumnDef<TableColumn>[] = [
+    {
+      accessorFn: (row) => row.name,
+      id: "name",
+      cell: (cell) => (
+        <span
+          className="underline dark:hover:text-neutral-800 transition-colors cursor-pointer"
+          onClick={(e) => {
+            e.stopPropagation();
+            redirect(getHref(cell.row.original), { withLoading: true });
+          }}
+        >
+          {cell.getValue() as string}
+        </span>
+      ),
+      header: "Name",
+      footer: (props) => props.column.id,
+    },
+    {
+      accessorFn: (row) => row.participants,
+      id: "participants",
+      cell: (cell) => cell.getValue(),
+      header: "Participants",
+      footer: (props) => props.column.id,
+    },
+    {
+      accessorFn: (row) => row.type,
+      id: "type",
+      cell: (cell) => cell.getValue(),
+      header: "Type",
+      footer: (props) => props.column.id,
+    },
+    {
+      accessorFn: (row) => row.created,
+      id: "created",
+      cell: (cell) => cell.getValue(),
+      header: "Created",
+      footer: (props) => props.column.id,
+    },
+    {
+      accessorFn: (row) => row.updated,
+      id: "updated",
+      cell: (cell) => cell.getValue(),
+      header: "Updated",
+      footer: (props) => props.column.id,
+    },
+  ];
 
   const modifiedTournaments: TableColumn[] = useMemo(
     () =>
