@@ -47,8 +47,6 @@ export default function TableBody<T>({
   const [rowCount, setRowCount] = useState<number>(0);
   const [rows, setRows] = useState<Row<T>[]>([]);
 
-  const router = useRouter();
-
   useEffect(() => {
     setRowCount(pagination.pageSize);
   }, [pagination.pageSize]);

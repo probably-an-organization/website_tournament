@@ -69,7 +69,7 @@ function ParticipantsListItem({ index }: CreateDancerListItemProps) {
       />
       <div className="h-full w-14 flex-shrink-0">
         <NationalityBadgeSelector
-          onChange={(e) => handleChange({ country: e })}
+          onChange={(e) => handleChange({ country_id: e })}
           error={data.country_id === undefined}
           value={data.country_id}
         />
