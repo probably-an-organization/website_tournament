@@ -1,10 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Card } from "@futshi/js_toolbox";
 
 import { useTournamentContext } from "~src/hooks/context/tournament/useTournamentContext";
 import { TournamentTypes } from "~src/constants/tournament/TYPES";
-import Card from "~src/components/Card";
 
 export default function NewTournamentTournamentSettings() {
   const { newTournament } = useTournamentContext();

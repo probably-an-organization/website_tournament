@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useEffect } from "react";
 
-import Card from "~src/components/Card";
+import { Card } from "@futshi/js_toolbox";
 import { TournamentTypes } from "~src/constants/tournament/TYPES";
 import { useTournamentContext } from "~src/hooks/context/tournament/useTournamentContext";
 import { twMerge } from "tailwind-merge";

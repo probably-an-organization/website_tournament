@@ -8,8 +8,8 @@ import {
 import { FixedSizeList } from "react-window";
 import AutoSizer from "react-virtualized-auto-sizer";
 import { FiPlus } from "react-icons/fi";
+import { Card } from "@futshi/js_toolbox";
 
-import Card from "~src/components/Card";
 import ParticipantsListItem from "./ParticipantsListItem";
 import { useTournamentContext } from "~src/hooks/context/tournament/useTournamentContext";
 
