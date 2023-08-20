@@ -10,7 +10,6 @@ import type {
   SortingState,
   Table,
 } from "@tanstack/react-table";
-import { useRouter } from "next/router";
 
 import { AnimatePresence, motion } from "framer-motion";
 import { FiChevronDown } from "react-icons/fi";
@@ -20,6 +19,7 @@ import { twMerge } from "tailwind-merge";
 
 export type TableBodyProps<T> = {
   checkbox: boolean;
+  className?: string;
   columnFilters: ColumnFiltersState;
   flexRender: (
     header: ColumnDefTemplate<CellContext<any, unknown>> | undefined,
@@ -35,6 +35,7 @@ export type TableBodyProps<T> = {
 
 export default function TableBody<T>({
   checkbox,
+  className,
   columnFilters,
   flexRender,
   globalFilter,
@@ -56,7 +57,12 @@ export default function TableBody<T>({
   }, [pagination, sorting, globalFilter, columnFilters]);
 
   return (
-    <tbody className="border-b border-b-neutral-300 transition-height dark:border-b-neutral-600">
+    <tbody
+      className={twMerge(
+        "border-b border-b-neutral-300 transition-height dark:border-b-neutral-600",
+        className,
+      )}
+    >
       {Array.from({ length: rowCount }).map((_, index) => {
         const rowData = rows[index];
         return (

@@ -19,22 +19,28 @@ export default function TableFooter({
     (checkbox ? 1 : 0);
 
   return (
-    <tfoot>
+    <tfoot className="dark:bg-neutral-900">
       <tr>
-        <td className="w-[1%] px-4 py-2 first:rounded-l last:rounded-r">
-          <Checkbox
-            checked={reactTable.getIsAllPageRowsSelected()}
-            indeterminate={reactTable.getIsSomePageRowsSelected()}
-            onChange={reactTable.getToggleAllPageRowsSelectedHandler()}
-          />
-        </td>
         {checkbox && (
-          <td
-            className="px-2 py-2 first:rounded-l last:rounded-r"
-            colSpan={colSpan}
-          >
-            Page Rows ({reactTable.getRowModel().rows.length})
-          </td>
+          <>
+            <td className="w-[1%] first:rounded-l last:rounded-r">
+              <div className="flex items-center justify-center">
+                <Checkbox
+                  checked={reactTable.getIsAllPageRowsSelected()}
+                  indeterminate={reactTable.getIsSomePageRowsSelected()}
+                  onChange={reactTable.getToggleAllPageRowsSelectedHandler()}
+                />
+              </div>
+            </td>
+            <td
+              className="py-2 first:rounded-l last:rounded-r"
+              colSpan={colSpan}
+            >
+              <span className="text-sm italic text-neutral-500">
+                {reactTable.getRowModel().rows.length} Page Entries
+              </span>
+            </td>
+          </>
         )}
       </tr>
     </tfoot>

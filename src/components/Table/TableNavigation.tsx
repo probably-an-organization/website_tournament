@@ -17,9 +17,9 @@ export type TableNavigationProps = {
 
 export default function TableNavigation({ reactTable }: TableNavigationProps) {
   return (
-    <div className="pt-5">
-      <div className="grid grid-cols-1 lg:grid-cols-3">
-        <div className="flex items-center justify-center gap-2 pb-3 lg:justify-start lg:pb-0">
+    <div className="pt-3">
+      <div className="grid grid-cols-1 md:grid-cols-2">
+        <div className="flex items-center justify-center gap-2 pb-3 md:justify-start md:pb-0">
           <Button
             onClick={() => reactTable.setPageIndex(0)}
             disabled={!reactTable.getCanPreviousPage()}
@@ -61,11 +61,7 @@ export default function TableNavigation({ reactTable }: TableNavigationProps) {
           </Button>
         </div>
 
-        <div className="flex items-center justify-center pb-3 lg:pb-0">
-          {reactTable.getPrePaginationRowModel().rows.length} Rows
-        </div>
-
-        <div className="flex items-center justify-center lg:justify-end">
+        <div className="flex items-center justify-center md:justify-end">
           <Select
             value={reactTable.getState().pagination.pageSize}
             onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {

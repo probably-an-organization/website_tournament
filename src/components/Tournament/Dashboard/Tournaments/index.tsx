@@ -10,7 +10,7 @@ export default function TournamentDashboardTournaments() {
   return (
     <div className="relative flex-1">
       {/* GRID / TABLE VIEW, TODO SEPARATE COMPONENT */}
-      <div className="absolute right-2 top-2 flex rounded bg-neutral-900 shadow">
+      <div className="absolute z-10 right-2 top-2 flex rounded bg-neutral-900 shadow">
         <button
           className="group"
           disabled={view === "table"}

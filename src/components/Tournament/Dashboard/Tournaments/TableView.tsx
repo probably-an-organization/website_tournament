@@ -1,7 +1,5 @@
 import type { ColumnDef } from "@tanstack/react-table";
-import Link from "next/link";
 import { useMemo } from "react";
-import { twMerge } from "tailwind-merge";
 
 import Table from "~src/components/Table";
 import { useGlobalContext } from "~src/hooks/context/useGlobalContext";
@@ -108,13 +106,14 @@ export default function TournamentsTableView({
   );
 
   return (
-    <Table
-      checkbox
-      columns={columns}
-      className={twMerge("w-full", className)}
-      data={modifiedTournaments}
-      rowCanExpand={(row: TableColumn) => row.description?.length > 0}
-      rowExpandComponent={renderExpandComponent}
-    />
+    <div className={className}>
+      <Table
+        checkbox
+        columns={columns}
+        data={modifiedTournaments}
+        rowCanExpand={(row: TableColumn) => row.description?.length > 0}
+        rowExpandComponent={renderExpandComponent}
+      />
+    </div>
   );
 }

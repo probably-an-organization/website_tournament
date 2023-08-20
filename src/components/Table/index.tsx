@@ -32,6 +32,9 @@ import TableBody from "./TableBody";
 
 import DebouncedInput from "../DebouncedInput";
 import TableNavigation from "./TableNavigation";
+import { twMerge } from "tailwind-merge";
+import { Button } from "@futshi/js_toolbox";
+import { FiFilter } from "react-icons/fi";
 
 declare module "@tanstack/table-core" {
   interface FilterFns {
@@ -142,15 +145,26 @@ export default function Table<T extends { id?: any }>({
   });
 
   return (
-    <div className={className}>
-      <div className="w-full rounded bg-neutral-50 p-3 shadow dark:bg-neutral-800">
+    <div
+      className={twMerge(
+        "w-full before:overflow-hidden after:overflow-hidden rounded bg-neutral-50 p-3 shadow dark:bg-neutral-800",
+        className,
+      )}
+    >
+      <div className="flex gap-3">
         <DebouncedInput
           value={globalFilter ?? ""}
           onChange={(value) => setGlobalFilter(String(value))}
           placeholder="Search all columns..."
           className="mb-3 w-full"
         />
-        <table className="w-full table-auto border-separate border-spacing-y-1">
+        <Button>
+          <FiFilter size={25} />
+          Filter
+        </Button>
+      </div>
+      <div className="w-fit max-w-full overflow-auto">
+        <table className="table-auto border-separate border-spacing-y-1">
           <TableHeader
             reactTable={reactTable}
             checkbox={checkbox}
@@ -160,6 +174,7 @@ export default function Table<T extends { id?: any }>({
           />
           <TableBody
             checkbox={checkbox}
+            className="overflow-x-scroll"
             columnFilters={columnFilters}
             rowExpandComponent={rowExpandComponent}
             flexRender={flexRender}
@@ -171,11 +186,11 @@ export default function Table<T extends { id?: any }>({
           />
           <TableFooter checkbox={checkbox} reactTable={reactTable} />
         </table>
-
-        <TableNavigation reactTable={reactTable} />
-
-        {false && <code>{JSON.stringify(reactTable.getState())}</code>}
       </div>
+
+      <TableNavigation reactTable={reactTable} />
+
+      {false && <code>{JSON.stringify(reactTable.getState())}</code>}
     </div>
   );
 }

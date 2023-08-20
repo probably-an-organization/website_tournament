@@ -1,15 +1,12 @@
 "use client";
 
-import { FiArrowUpCircle, FiArrowDownCircle, FiFilter } from "react-icons/fi";
+import { FiArrowUpCircle, FiArrowDownCircle } from "react-icons/fi";
 import type {
   ColumnDefTemplate,
   HeaderContext,
   Table,
 } from "@tanstack/react-table";
-
-import { useTranslation } from "next-i18next";
-
-import { Button, Checkbox } from "@futshi/js_toolbox";
+import { Checkbox } from "@futshi/js_toolbox";
 
 export type TableHeaderProps<T> = {
   checkbox: boolean;
@@ -29,9 +26,8 @@ export default function TableHeader<T>({
   rowCanExpand,
   rowExpandComponent,
 }: TableHeaderProps<T>) {
-  const { t } = useTranslation("table");
   return (
-    <thead>
+    <thead className="dark:bg-neutral-900 rounded">
       {reactTable.getHeaderGroups().map((headerGroup, headerGroupIndex) => {
         const isDataHeaderGroup: boolean =
           headerGroupIndex >= reactTable.getHeaderGroups().length - 1;
@@ -53,7 +49,7 @@ export default function TableHeader<T>({
                 <th
                   key={header.id}
                   colSpan={header.colSpan}
-                  className="not px-1 first:rounded-l last:rounded-r"
+                  className="px-1 py-2 first:rounded-l last:rounded-r"
                 >
                   {header.isPlaceholder ? null : (
                     <div
@@ -86,22 +82,12 @@ export default function TableHeader<T>({
                           <div className="w-[16px]" />
                         )}
                       </div>
-                      {/* {header.column.getCanFilter() ? (
-                          <Filter column={header.column} table={table} />
-                        ) : null} */}
                     </div>
                   )}
                 </th>
               );
             })}
-            <th className="w-[1%] first:rounded-l last:rounded-r">
-              {isDataHeaderGroup && (
-                <Button onClick={() => alert("???")}>
-                  <FiFilter />
-                  {t("Filter")}
-                </Button>
-              )}
-            </th>
+            {rowCanExpand && <th className="rounded-r" />}
           </tr>
         );
       })}
