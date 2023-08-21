@@ -101,11 +101,9 @@ export default function TournamentKnockout() {
           </div>
         </div>
 
-        <Card className="w-fit min-w-full p-3">
-          {navigation === 0 && <KnockoutDetails />}
-          {navigation === 1 && <KnockoutSettings />}
-          {navigation === 2 && <div>Todo</div>}
-        </Card>
+        {navigation === 0 && <KnockoutDetails />}
+        {navigation === 1 && <KnockoutSettings />}
+        {navigation === 2 && <div>Todo</div>}
       </div>
     </NavigationPage>
   );

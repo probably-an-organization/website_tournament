@@ -23,6 +23,7 @@ import {
 } from "~src/hooks/context/useNotificationContext";
 import { KnockoutMatch, KnockoutTournament } from "~src/types/tournament";
 import KnockoutMatchInfo from "./MatchInfo";
+import { Card } from "@futshi/js_toolbox";
 
 type KnockoutSVGTreeProps = {
   className?: string;
@@ -171,7 +172,7 @@ export default function KnockoutDetails({ className }: KnockoutSVGTreeProps) {
   };
 
   return (
-    <div className={twMerge("h-full w-full", className)}>
+    <Card className={twMerge("h-full min-w-full w-fit p-3", className)}>
       <div className="relative mb-3 flex items-center justify-between gap-8 border-b pb-3 dark:border-b-neutral-600">
         <div className="flex items-center gap-4">
           <div className="font-bold">{knockoutTournament.name}</div>
@@ -272,6 +273,6 @@ export default function KnockoutDetails({ className }: KnockoutSVGTreeProps) {
       {slide === KnockoutSlides.Tree && (
         <KnockoutSVGTree treeStyle={treeStyle} />
       )}
-    </div>
+    </Card>
   );
 }

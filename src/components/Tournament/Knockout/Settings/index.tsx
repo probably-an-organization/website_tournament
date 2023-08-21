@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 
-import { Button, Modal, Switch } from "@futshi/js_toolbox";
+import { Button, Card, Modal, Switch } from "@futshi/js_toolbox";
 import { useKnockoutTournamentContext } from "~src/hooks/context/tournament/useKnockoutTournamentContext";
 import useAxios from "~src/hooks/useAxios";
+import { twMerge } from "tailwind-merge";
+
+const SETTING_CLASSNAME = "border-b dark:border-b-neutral-700 last:border-b-0";
 
 export default function TournamentKnockoutSettings() {
   const [pub, setPub] = useState<boolean>(false);
@@ -28,28 +31,69 @@ export default function TournamentKnockoutSettings() {
   }, []);
 
   return (
-    <>
-      <div>
-        <div className="flex items-center gap-2">
-          <span>Private</span>
-          <Switch value={pub} onChange={() => setPub((prev) => !prev)} />
-          <span>Public</span>
+    <Card className="overflow-hidden p-0 flex flex-col">
+      <button
+        className={twMerge(
+          SETTING_CLASSNAME,
+          "p-3 items-center w-full flex justify-between transition-colors hover:bg-neutral-800",
+        )}
+        onClick={() => setPub((prev) => !prev)}
+      >
+        <div className="flex flex-col items-start">
+          <span>Access</span>
+          <span className="text-sm text-neutral-400">
+            {pub ? "Public" : "Private"}
+          </span>
         </div>
-        <div>Colors</div>
-        <div>Logo</div>
-        <div>Background image</div>
+        <Switch value={pub} onChange={() => setPub((prev) => !prev)} />
+      </button>
 
-        <div className="flex items-center">
-          {knockoutTournament?.model_id
-            ? "MODEL SELECTED (TODO)"
-            : "No premium model selected"}
-          <Button onClick={() => setModal(true)}>
-            {knockoutTournament?.model_id
-              ? "Change model"
-              : "Select premium model"}
-          </Button>
+      <button
+        className={twMerge(
+          SETTING_CLASSNAME,
+          "p-3 items-center w-full flex justify-between transition-colors hover:bg-neutral-800",
+        )}
+        onClick={() => setPub((prev) => !prev)}
+      >
+        <div className="flex flex-col items-start">
+          <span>Primary color</span>
+          <span className="text-sm text-neutral-400">
+            Select tournament branding colors
+          </span>
         </div>
-      </div>
+        <div className="h-8 w-8 rounded border bg-orange-500 pointer-events-none" />
+      </button>
+
+      <button
+        className={twMerge(
+          SETTING_CLASSNAME,
+          "p-3 items-center w-full flex justify-between transition-colors hover:bg-neutral-800",
+        )}
+        onClick={() => setPub((prev) => !prev)}
+      >
+        <div className="flex flex-col items-start">
+          <span>Secondary color</span>
+          <span className="text-sm text-neutral-400">
+            Select tournament branding colors
+          </span>
+        </div>
+        <div className="h-8 w-8 rounded border bg-neutral-100 pointer-events-none" />
+      </button>
+
+      <button
+        className={twMerge(
+          SETTING_CLASSNAME,
+          "p-3 items-center w-full flex justify-between transition-colors hover:bg-neutral-800",
+        )}
+        onClick={() => setModal(true)}
+      >
+        <div className="flex flex-col items-start">
+          <span>Tournament model</span>
+          <span className="text-sm text-neutral-400">Free version</span>
+        </div>
+        <Button className="pointer-events-none">Change model</Button>
+      </button>
+
       <Modal show={modal}>
         <div className="flex p-3 gap-3">
           {premiumModels?.map((pm: any, i: number) => (
@@ -67,6 +111,6 @@ export default function TournamentKnockoutSettings() {
         </div>
         <Button onClick={() => setModal(false)}>Close</Button>
       </Modal>
-    </>
+    </Card>
   );
 }
