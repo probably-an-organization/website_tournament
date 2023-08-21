@@ -45,7 +45,7 @@ export default function TournamentKnockoutSettings() {
             {pub ? "Public" : "Private"}
           </span>
         </div>
-        <Switch value={pub} onChange={() => setPub((prev) => !prev)} />
+        <Switch className="pointer-events-none" value={pub} />
       </button>
 
       <button

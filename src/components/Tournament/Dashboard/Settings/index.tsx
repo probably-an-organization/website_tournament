@@ -3,17 +3,23 @@ import { FiCheck, FiX } from "react-icons/fi";
 
 import {
   Button,
+  Card,
   Modal,
   ModalBody,
   ModalFooter,
   ModalHeader,
+  Switch,
 } from "@futshi/js_toolbox";
+
 import FloatingInput from "~src/components/FloatingInput";
 import { useGlobalContext } from "~src/hooks/context/useGlobalContext";
 import { twMerge } from "tailwind-merge";
+
 type TournamentDashboardSettingsProps = {
   className?: string;
 };
+
+const SETTING_CLASSNAME = "border-b dark:border-b-neutral-700 last:border-b-0";
 
 export default function TournamentDashboardSettings({
   className,
@@ -42,39 +48,70 @@ export default function TournamentDashboardSettings({
   };
 
   return (
-    <div className={twMerge("mx-auto max-w-3xl p-3", className)}>
-      <button
-        className={twMerge(
-          "mb-3 inline-flex items-center gap-1 rounded border p-2",
-          editTournamentUser?.verified
-            ? "border-green-500 bg-green-400"
-            : "border-red-500 bg-red-400",
-        )}
-        onClick={() => alert("TODO verification email")}
-      >
-        {editTournamentUser?.verified ? <FiCheck /> : <FiX />}
-        <span>{editTournamentUser?.verified ? "Verified" : "Unverified"}</span>
-      </button>
-      <form className="flex flex-col gap-3">
-        <FloatingInput
-          label="Username"
-          labelAlwaysTop
-          onChange={(e) => handleInputChange({ username: e.target.value })}
-          value={editTournamentUser?.username}
-        />
-        <FloatingInput
-          label="Email (TODO check pattern)"
-          labelAlwaysTop
-          onChange={(e) => handleInputChange({ email: e.target.value })}
-          value={editTournamentUser?.email}
-        />
-        <Button
-          className="dark:bg-orange-500 [&:not(:disabled)]:active:bg-orange-600 [&:not(:disabled)]:active:dark:bg-orange-600 active:bg-orange-400 bg-orange-500 dark:border-transparent border-transparent"
+    <>
+      <Card className="overflow-hidden p-0 flex flex-col m-3">
+        <button
+          className={twMerge(
+            SETTING_CLASSNAME,
+            "p-3 items-center w-full flex justify-between transition-colors hover:bg-neutral-800",
+          )}
+          onClick={() => alert("TODO")}
+        >
+          <div className="flex flex-col items-start">
+            <span>Username</span>
+            <span className="text-sm text-neutral-400">
+              {editTournamentUser.username}
+            </span>
+          </div>
+          <Button className="pointer-events-none">Change username</Button>
+        </button>
+
+        <button
+          className={twMerge(
+            SETTING_CLASSNAME,
+            "p-3 items-center w-full flex justify-between transition-colors hover:bg-neutral-800",
+          )}
+          onClick={() => alert("TODO")}
+        >
+          <div className="flex flex-col items-start">
+            <span>Email</span>
+            <span className="text-sm text-neutral-400">
+              {editTournamentUser.email}
+            </span>
+          </div>
+          <Button className="pointer-events-none">Change email</Button>
+        </button>
+
+        <button
+          className={twMerge(
+            SETTING_CLASSNAME,
+            "p-3 items-center w-full flex justify-between transition-colors hover:bg-neutral-800",
+          )}
           onClick={() => setShowPasswordModal(true)}
         >
-          Change password
-        </Button>
-      </form>
+          <div className="flex flex-col items-start">
+            <span>Password</span>
+          </div>
+          <Button className="pointer-events-none">Change password</Button>
+        </button>
+
+        <button
+          className={twMerge(
+            SETTING_CLASSNAME,
+            "p-3 items-center w-full flex justify-between transition-colors hover:bg-neutral-800",
+          )}
+          onClick={() => alert("TODO")}
+        >
+          <div className="flex flex-col items-start">
+            <span>Verificiation</span>
+            <span className="text-sm text-neutral-400">
+              Your account is {editTournamentUser.verified ? "" : "not"}{" "}
+              verified
+            </span>
+          </div>
+          <Button className="pointer-events-none">Verify account</Button>
+        </button>
+      </Card>
 
       <Modal show={showPasswordModal}>
         <form
@@ -132,6 +169,6 @@ export default function TournamentDashboardSettings({
           </ModalFooter>
         </form>
       </Modal>
-    </div>
+    </>
   );
 }
