@@ -9,7 +9,6 @@ import {
 } from "react-icons/fi";
 import { twMerge } from "tailwind-merge";
 
-import { Card } from "@futshi/js_toolbox";
 import KnockoutDetails from "~src/components/Tournament/Knockout/Details";
 import { useGlobalContext } from "~src/hooks/context/useGlobalContext";
 import Navigation from "~src/components/Tournament/Navigation";
