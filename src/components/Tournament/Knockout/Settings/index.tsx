@@ -68,14 +68,14 @@ export default function TournamentKnockoutSettings() {
         <div className="flex p-3 gap-3">
           {premiumModels?.map((pm: any, i: number) => (
             <button
-              className="break-all flex-1 transition-colors border border-neutral-800 hover:border-transparent disabled:bg-neutral-500 hover:bg-neutral-500 rounded p-3"
+              className="break-all flex-1 transition-colors border border-neutral-800 hover:border-transparent disabled:bg-orange-500 hover:bg-neutral-500 rounded p-3"
               disabled={premiumSelection === i}
               key={`premium-model-${i}`}
               onClick={() => setPremiumSelection(i)}
             >
-              <div className="text-center font-medium">{pm.name}</div>
+              <div className="text-center font-medium text-lg">{pm.name}</div>
               <div className="text-center text-sm">{pm.description}</div>
-              <div>{Number(pm.price).toFixed(2)}</div>
+              <div>{Number(pm.price).toFixed(2)} €</div>
             </button>
           ))}
         </div>
