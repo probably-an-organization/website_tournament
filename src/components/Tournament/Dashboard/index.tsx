@@ -13,6 +13,8 @@ import {
 } from "~src/hooks/context/tournament/useDashboardContext";
 import TournamentDashboardTournaments from "./Tournaments";
 import { handleAxiosError } from "~src/utils/axiosUtils";
+import TournamentDashboardHome from "./Home";
+import { DASHBOARD_NAVIGATION } from "~src/constants/tournament/DASHBOARD";
 
 export default function Dashboard() {
   return (
@@ -57,8 +59,7 @@ function DashboardComponent() {
         <>
           <DashboardMenu />
 
-          {tab === 0 && <TournamentDashboardTournaments />}
-          {tab === 1 && <TournamentDashboardSettings />}
+          {DASHBOARD_NAVIGATION[tab]!.component}
         </>
       )}
     </>
