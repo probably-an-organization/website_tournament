@@ -119,8 +119,8 @@ function NewTournamentComponent() {
         { withCredentials: true },
       );
       notification({
-        title: "ASDF",
-        description: "OLAF",
+        title: "Success",
+        description: "Tournament successfully created",
         type: NotificationType.Success,
       });
       redirect("/dashboard", { withLoading: true });
