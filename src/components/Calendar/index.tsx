@@ -6,8 +6,8 @@ type CalendarProps = {
 
 export default function Calendar({ className }: CalendarProps) {
   return (
-    <div className="w-full">
-      <div className="md:p-16 md:pb-12 p-5">
+    <div className="w-full h-full flex lg:flex-row flex-col items-center">
+      <div className="md:p-16 md:pb-12 p-3 lg:w-1/2 w-full">
         <div className="px-4 flex items-center justify-between">
           <h1 className="text-2xl font-bold dark:text-neutral-100 text-neutral-800">
             October 2020
@@ -103,37 +103,37 @@ export default function Calendar({ className }: CalendarProps) {
             <tbody>
               <tr>
                 <td className="pt-6">
-                  <div className="px-4 py-4 cursor-pointer flex w-full justify-center" />
+                  <div className="p-4 cursor-pointer flex w-full justify-center" />
                 </td>
                 <td className="pt-6">
-                  <div className="px-4 py-4 cursor-pointer flex w-full justify-center" />
+                  <div className="p-4 cursor-pointer flex w-full justify-center" />
                 </td>
                 <td>
-                  <div className="px-4 py-4 cursor-pointer flex w-full justify-center" />
+                  <div className="p-4 cursor-pointer flex w-full justify-center" />
                 </td>
                 <td className="pt-6">
-                  <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                  <div className="p-4 cursor-pointer flex w-full justify-center">
                     <p className="text-2xl text-neutral-500 dark:text-neutral-100 font-medium">
                       1
                     </p>
                   </div>
                 </td>
                 <td className="pt-6">
-                  <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                  <div className="p-4 cursor-pointer flex w-full justify-center">
                     <p className="text-2xl text-neutral-500 dark:text-neutral-100 font-medium">
                       2
                     </p>
                   </div>
                 </td>
                 <td className="pt-6">
-                  <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                  <div className="p-4 cursor-pointer flex w-full justify-center">
                     <p className="text-2xl text-neutral-500 dark:text-neutral-100">
                       3
                     </p>
                   </div>
                 </td>
                 <td className="pt-6">
-                  <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                  <div className="p-4 cursor-pointer flex w-full justify-center">
                     <p className="text-2xl text-neutral-500 dark:text-neutral-100">
                       4
                     </p>
@@ -142,21 +142,21 @@ export default function Calendar({ className }: CalendarProps) {
               </tr>
               <tr>
                 <td>
-                  <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                  <div className="p-4 cursor-pointer flex w-full justify-center">
                     <p className="text-2xl text-neutral-500 dark:text-neutral-100 font-medium">
                       5
                     </p>
                   </div>
                 </td>
                 <td>
-                  <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                  <div className="p-4 cursor-pointer flex w-full justify-center">
                     <p className="text-2xl text-neutral-500 dark:text-neutral-100 font-medium">
                       6
                     </p>
                   </div>
                 </td>
                 <td>
-                  <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                  <div className="p-4 cursor-pointer flex w-full justify-center">
                     <p className="text-2xl text-neutral-500 dark:text-neutral-100 font-medium">
                       7
                     </p>
@@ -165,28 +165,28 @@ export default function Calendar({ className }: CalendarProps) {
                 <td>
                   <div className="w-full h-full">
                     <div className="flex items-center justify-center w-full rounded-full cursor-pointer">
-                      <p className="text-2xl w-14 h-14 flex items-center justify-center font-medium text-white bg-indigo-700 rounded-full">
+                      <p className="text-2xl w-14 h-14 flex items-center justify-center font-medium text-white bg-orange-500 rounded-full">
                         8
                       </p>
                     </div>
                   </div>
                 </td>
                 <td>
-                  <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                  <div className="p-4 cursor-pointer flex w-full justify-center">
                     <p className="text-2xl text-neutral-500 dark:text-neutral-100 font-medium">
                       9
                     </p>
                   </div>
                 </td>
                 <td>
-                  <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                  <div className="p-4 cursor-pointer flex w-full justify-center">
                     <p className="text-2xl text-neutral-500 dark:text-neutral-100">
                       10
                     </p>
                   </div>
                 </td>
                 <td>
-                  <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                  <div className="p-4 cursor-pointer flex w-full justify-center">
                     <p className="text-2xl text-neutral-500 dark:text-neutral-100">
                       11
                     </p>
@@ -195,49 +195,49 @@ export default function Calendar({ className }: CalendarProps) {
               </tr>
               <tr>
                 <td>
-                  <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                  <div className="p-4 cursor-pointer flex w-full justify-center">
                     <p className="text-2xl text-neutral-500 dark:text-neutral-100 font-medium">
                       12
                     </p>
                   </div>
                 </td>
                 <td>
-                  <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                  <div className="p-4 cursor-pointer flex w-full justify-center">
                     <p className="text-2xl text-neutral-500 dark:text-neutral-100 font-medium">
                       13
                     </p>
                   </div>
                 </td>
                 <td>
-                  <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                  <div className="p-4 cursor-pointer flex w-full justify-center">
                     <p className="text-2xl text-neutral-500 dark:text-neutral-100 font-medium">
                       14
                     </p>
                   </div>
                 </td>
                 <td>
-                  <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                  <div className="p-4 cursor-pointer flex w-full justify-center">
                     <p className="text-2xl text-neutral-500 dark:text-neutral-100 font-medium">
                       15
                     </p>
                   </div>
                 </td>
                 <td>
-                  <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                  <div className="p-4 cursor-pointer flex w-full justify-center">
                     <p className="text-2xl text-neutral-500 dark:text-neutral-100 font-medium">
                       16
                     </p>
                   </div>
                 </td>
                 <td>
-                  <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                  <div className="p-4 cursor-pointer flex w-full justify-center">
                     <p className="text-2xl text-neutral-500 dark:text-neutral-100">
                       17
                     </p>
                   </div>
                 </td>
                 <td>
-                  <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                  <div className="p-4 cursor-pointer flex w-full justify-center">
                     <p className="text-2xl text-neutral-500 dark:text-neutral-100">
                       18
                     </p>
@@ -246,49 +246,49 @@ export default function Calendar({ className }: CalendarProps) {
               </tr>
               <tr>
                 <td>
-                  <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                  <div className="p-4 cursor-pointer flex w-full justify-center">
                     <p className="text-2xl text-neutral-500 dark:text-neutral-100 font-medium">
                       19
                     </p>
                   </div>
                 </td>
                 <td>
-                  <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                  <div className="p-4 cursor-pointer flex w-full justify-center">
                     <p className="text-2xl text-neutral-500 dark:text-neutral-100 font-medium">
                       20
                     </p>
                   </div>
                 </td>
                 <td>
-                  <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                  <div className="p-4 cursor-pointer flex w-full justify-center">
                     <p className="text-2xl text-neutral-500 dark:text-neutral-100 font-medium">
                       21
                     </p>
                   </div>
                 </td>
                 <td>
-                  <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                  <div className="p-4 cursor-pointer flex w-full justify-center">
                     <p className="text-2xl text-neutral-500 dark:text-neutral-100 font-medium">
                       22
                     </p>
                   </div>
                 </td>
                 <td>
-                  <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                  <div className="p-4 cursor-pointer flex w-full justify-center">
                     <p className="text-2xl text-neutral-500 dark:text-neutral-100 font-medium">
                       23
                     </p>
                   </div>
                 </td>
                 <td>
-                  <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                  <div className="p-4 cursor-pointer flex w-full justify-center">
                     <p className="text-2xl text-neutral-500 dark:text-neutral-100">
                       24
                     </p>
                   </div>
                 </td>
                 <td>
-                  <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                  <div className="p-4 cursor-pointer flex w-full justify-center">
                     <p className="text-2xl text-neutral-500 dark:text-neutral-100">
                       25
                     </p>
@@ -297,35 +297,35 @@ export default function Calendar({ className }: CalendarProps) {
               </tr>
               <tr>
                 <td>
-                  <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                  <div className="p-4 cursor-pointer flex w-full justify-center">
                     <p className="text-2xl text-neutral-500 dark:text-neutral-100 font-medium">
                       26
                     </p>
                   </div>
                 </td>
                 <td>
-                  <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                  <div className="p-4 cursor-pointer flex w-full justify-center">
                     <p className="text-2xl text-neutral-500 dark:text-neutral-100 font-medium">
                       27
                     </p>
                   </div>
                 </td>
                 <td>
-                  <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                  <div className="p-4 cursor-pointer flex w-full justify-center">
                     <p className="text-2xl text-neutral-500 dark:text-neutral-100 font-medium">
                       28
                     </p>
                   </div>
                 </td>
                 <td>
-                  <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                  <div className="p-4 cursor-pointer flex w-full justify-center">
                     <p className="text-2xl text-neutral-500 dark:text-neutral-100 font-medium">
                       29
                     </p>
                   </div>
                 </td>
                 <td>
-                  <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                  <div className="p-4 cursor-pointer flex w-full justify-center">
                     <p className="text-2xl text-neutral-500 dark:text-neutral-100 font-medium">
                       30
                     </p>
@@ -336,38 +336,36 @@ export default function Calendar({ className }: CalendarProps) {
           </table>
         </div>
       </div>
-      <div className="md:py-8 py-5 md:px-16 px-5 dark:bg-neutral-800 bg-neutral-50">
-        <div className="px-4">
-          <div className="border-b pb-4 border-neutral-400 border-dashed">
-            <p className="text-xs font-light leading-3 text-neutral-500 dark:text-neutral-300">
-              9:00 AM
-            </p>
-            <p className="text-lg font-medium leading-5 text-neutral-800 dark:text-neutral-100 pt-2">
-              Zoom call with design team
-            </p>
-            <p className="text-sm pt-2 leading-none text-neutral-600 dark:text-neutral-300">
-              Discussion on UX sprint and Wireframe review
-            </p>
-          </div>
-          <div className="border-b pb-4 border-neutral-400 border-dashed pt-5">
-            <p className="text-xs font-light leading-3 text-neutral-500 dark:text-neutral-300">
-              10:00 AM
-            </p>
-            <p className="text-lg font-medium leading-5 text-neutral-800 dark:text-neutral-100 pt-2">
-              Orientation session with new hires
-            </p>
-          </div>
-          <div className="border-b pb-4 border-neutral-400 border-dashed pt-5">
-            <p className="text-xs font-light leading-3 text-neutral-500 dark:text-neutral-300">
-              9:00 AM
-            </p>
-            <p className="text-lg font-medium leading-5 text-neutral-800 dark:text-neutral-100 pt-2">
-              Zoom call with design team
-            </p>
-            <p className="text-sm pt-2 leading-none text-neutral-600 dark:text-neutral-300">
-              Discussion on UX sprint and Wireframe review
-            </p>
-          </div>
+      <div className="md:py-8 md:px-16 p-3 dark:bg-neutral-800 bg-neutral-50 lg:w-1/2 self-stretch">
+        <div className="border-b pb-4 border-neutral-400">
+          <p className="text-xs font-light leading-3 text-neutral-500 dark:text-neutral-300">
+            9:00 AM
+          </p>
+          <p className="text-lg font-medium leading-5 text-neutral-800 dark:text-neutral-100 pt-2">
+            Zoom call with design team
+          </p>
+          <p className="text-sm pt-2 leading-none text-neutral-600 dark:text-neutral-300">
+            Discussion on UX sprint and Wireframe review
+          </p>
+        </div>
+        <div className="border-b pb-4 border-neutral-400 pt-5">
+          <p className="text-xs font-light leading-3 text-neutral-500 dark:text-neutral-300">
+            10:00 AM
+          </p>
+          <p className="text-lg font-medium leading-5 text-neutral-800 dark:text-neutral-100 pt-2">
+            Orientation session with new hires
+          </p>
+        </div>
+        <div className="border-neutral-400 pt-5">
+          <p className="text-xs font-light leading-3 text-neutral-500 dark:text-neutral-300">
+            9:00 AM
+          </p>
+          <p className="text-lg font-medium leading-5 text-neutral-800 dark:text-neutral-100 pt-2">
+            Zoom call with design team
+          </p>
+          <p className="text-sm pt-2 leading-none text-neutral-600 dark:text-neutral-300">
+            Discussion on UX sprint and Wireframe review
+          </p>
         </div>
       </div>
     </div>
