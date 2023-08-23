@@ -3,13 +3,16 @@ import { FiChevronRight } from "react-icons/fi";
 import { Card } from "@futshi/js_toolbox";
 
 import ActionList from "~src/components/ActionList";
+import Calendar from "~src/components/Calendar";
 
 export default function TournamentDashboardHome() {
   return (
     <div className="m-3 flex flex-col gap-3">
       <section>
         <span>Calendar</span>
-        <Card>TODO</Card>
+        <Card className="overflow-hidden">
+          <Calendar />
+        </Card>
       </section>
       <section>
         <span>Latest tournaments</span>

@@ -2,7 +2,6 @@
 
 import { useEffect } from "react";
 
-import TournamentDashboardSettings from "~src/components/Tournament/Dashboard/Settings";
 import { useGlobalContext } from "~src/hooks/context/useGlobalContext";
 import useAxios from "~src/hooks/useAxios";
 import { Tournament } from "~src/types/tournament";
@@ -11,9 +10,7 @@ import {
   DashboardContextProvider,
   useDashboardContext,
 } from "~src/hooks/context/tournament/useDashboardContext";
-import TournamentDashboardTournaments from "./Tournaments";
 import { handleAxiosError } from "~src/utils/axiosUtils";
-import TournamentDashboardHome from "./Home";
 import { DASHBOARD_NAVIGATION } from "~src/constants/tournament/DASHBOARD";
 
 export default function Dashboard() {
@@ -58,7 +55,6 @@ function DashboardComponent() {
       {tournament.signedIn && (
         <>
           <DashboardMenu />
-
           {DASHBOARD_NAVIGATION[tab]!.component}
         </>
       )}
