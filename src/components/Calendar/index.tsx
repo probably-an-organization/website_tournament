@@ -9,7 +9,7 @@ export default function Calendar({ className }: CalendarProps) {
     <div className="w-full h-full flex lg:flex-row flex-col items-center">
       <div className="md:p-16 md:pb-12 p-3 lg:w-1/2 w-full">
         <div className="px-4 flex items-center justify-between">
-          <h1 className="text-2xl font-bold dark:text-neutral-100 text-neutral-800">
+          <h1 className="text-xl font-bold dark:text-neutral-100 text-neutral-800">
             October 2020
           </h1>
           <div className="flex items-center text-neutral-800 dark:text-neutral-100">

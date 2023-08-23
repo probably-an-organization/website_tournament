@@ -7,15 +7,12 @@ import Calendar from "~src/components/Calendar";
 
 export default function TournamentDashboardHome() {
   return (
-    <div className="m-3 flex flex-col gap-3">
+    <div className="p-3 flex flex-col gap-3">
+      <Card className="overflow-hidden">
+        <Calendar />
+      </Card>
       <section>
-        <span>Calendar</span>
-        <Card className="overflow-hidden">
-          <Calendar />
-        </Card>
-      </section>
-      <section>
-        <span>Latest tournaments</span>
+        <p className="text-xl font-semibold pb-2">Latest tournaments</p>
         <ActionList
           items={[
             {
@@ -41,7 +38,7 @@ export default function TournamentDashboardHome() {
       </section>
 
       <section>
-        <span>Latest results</span>
+        <p className="text-xl font-semibold pb-2">Latest results</p>
         <ActionList
           items={[
             {

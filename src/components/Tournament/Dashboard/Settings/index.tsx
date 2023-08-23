@@ -43,9 +43,8 @@ export default function TournamentDashboardSettings({
   };
 
   return (
-    <>
+    <div className="p-3">
       <ActionList
-        className="m-3"
         items={[
           {
             title: "Username",
@@ -137,6 +136,6 @@ export default function TournamentDashboardSettings({
           </ModalFooter>
         </form>
       </Modal>
-    </>
+    </div>
   );
 }
