@@ -64,8 +64,8 @@ export default function Breadcrumb({
                 i === active
                   ? "dark:text-neutral-100"
                   : i > active
-                  ? "dark:text-neutral-300 scale-75 hover:scale-100"
-                  : "dark:text-neutral-200 scale-75 hover:scale-100 hover:text-neutral-100",
+                  ? "dark:text-neutral-300 scale-75 hover:scale-90"
+                  : "dark:text-neutral-200 scale-75 hover:scale-90 hover:text-neutral-100",
               )}
               disabled={b.disabled || active === i}
               onClick={() => b.onClick(i)}

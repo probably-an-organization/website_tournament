@@ -24,3 +24,18 @@ export function getRandom<T>(array: T[]): T {
   const randomIndex = Math.floor(Math.random() * array.length);
   return array[randomIndex]!;
 }
+
+export function chunk<T>(array: T[], size: number) {
+  if (size < 1) {
+    throw Error("chunk size must be greater than zero");
+  }
+
+  console.log("ARRAY", array);
+
+  const chunks = [];
+  for (let i = 0; i < array.length; i += size) {
+    chunks.push(array.slice(i, i + size));
+  }
+  console.log("AIJWDJIAJWID", chunks);
+  return chunks;
+}
