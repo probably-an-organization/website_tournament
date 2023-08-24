@@ -71,7 +71,7 @@ const HeaderRow = ({ style }: HeaderRowProps) => {
 
   return (
     <div
-      className="sticky z-10 flex items-center gap-2 border-b bg-neutral-100 px-2 text-xs dark:bg-neutral-900"
+      className="sticky z-10 flex items-center gap-2 border-b bg-neutral-100 px-2 text-xs dark:bg-neutral-900 dark:border-neutral-700"
       style={style}
     >
       {newTournament.participants.min &&
@@ -173,7 +173,6 @@ export default function NewTournamentParticipants() {
 
   return (
     <div className="mx-auto h-full max-h-screen w-full max-w-lg">
-      TODO SELECT OPTION "SET PARTICIPANTS NOW" "SET PARTICIPANTS LATER"
       <form className="flex h-full w-full items-center justify-center">
         <Card className="flex h-full w-full flex-col overflow-hidden">
           <div className="h-full">
