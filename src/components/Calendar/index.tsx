@@ -1,5 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { FiChevronLeft, FiChevronRight, FiClock } from "react-icons/fi";
+import {
+  FiCalendar,
+  FiChevronLeft,
+  FiChevronRight,
+  FiClock,
+} from "react-icons/fi";
 import format from "date-fns/format";
 import startOfMonth from "date-fns/startOfMonth";
 import endOfMonth from "date-fns/endOfMonth";
@@ -18,6 +23,7 @@ import addMonths from "date-fns/addMonths";
 import addHours from "date-fns/addHours";
 import { isBefore } from "date-fns";
 import subHours from "date-fns/subHours";
+import useWindowSize from "~src/hooks/useDimensions";
 
 type CalendarProps = {
   className?: string;
@@ -39,60 +45,9 @@ type CalendarDay = {
   hasEvents: boolean;
 };
 
-const DUMMY_EVENT: Event[] = [
-  {
-    title: "Tournament 1",
-    description: "Match Bob vs. Alice",
-    date: new Date(),
-  },
-  {
-    title: "Tournament 1",
-    description: "Match Alinza vs. Olaf",
-    date: addHours(new Date(), 1),
-  },
-];
+const WEEKDAYS: string[] = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
 
 const DUMMY_EVENT2: Event[] = [
-  {
-    title: "Tournament 1",
-    description: "Match Bob vs. Alice",
-    date: new Date(),
-  },
-  {
-    title: "Tournament 1",
-    description: "Match Bob vs. Alice",
-    date: new Date(),
-  },
-  {
-    title: "Tournament 1",
-    description: "Match Bob vs. Alice",
-    date: new Date(),
-  },
-  {
-    title: "Tournament 1",
-    description: "Match Bob vs. Alice",
-    date: new Date(),
-  },
-  {
-    title: "Tournament 1",
-    description: "Match Bob vs. Alice",
-    date: new Date(),
-  },
-  {
-    title: "Tournament 1",
-    description: "Match Bob vs. Alice",
-    date: new Date(),
-  },
-  {
-    title: "Tournament 1",
-    description: "Match Bob vs. Alice",
-    date: new Date(),
-  },
-  {
-    title: "Tournament 1",
-    description: "Match Bob vs. Alice",
-    date: new Date(),
-  },
   {
     title: "Tournament 1",
     description: "Match Bob vs. Alice",
@@ -156,12 +111,14 @@ export default function Calendar({ className, limits }: CalendarProps) {
   const [calendarHeight, setCalendarHeight] = useState<number>(0);
   const calendarRef = useRef<HTMLDivElement>(null);
 
+  const size = useWindowSize();
+
   useEffect(() => {
     if (!calendarRef.current?.clientHeight) {
       return;
     }
-    setCalendarHeight(calendarRef.current.clientHeight);
-  }, [calendarRef.current]);
+    setCalendarHeight(calendarRef.current.offsetHeight);
+  }, [size]);
 
   useEffect(() => {
     let start = startOfMonth(date);
@@ -193,10 +150,11 @@ export default function Calendar({ className, limits }: CalendarProps) {
 
   return (
     <>
-      <div className="w-full h-full flex lg:flex-row flex-col">
-        <div className="md:p-16 md:pb-12 p-3 lg:w-1/2 w-full" ref={calendarRef}>
-          <div className="px-4 flex items-center justify-between">
-            <h1 className="text-xl font-bold dark:text-neutral-100 text-neutral-800">
+      <div className="w-full h-full flex md:flex-row flex-col">
+        <div className="p-6 md:min-w-fit overflow-auto" ref={calendarRef}>
+          <div className="flex items-center justify-between">
+            <h1 className="text-lg flex items-center gap-2 font-bold dark:text-neutral-100 text-neutral-800">
+              <FiCalendar />
               {format(date, "LLLL uuuu")}
             </h1>
             <div className="flex items-center gap-3 text-neutral-800 dark:text-neutral-100">
@@ -214,94 +172,58 @@ export default function Calendar({ className, limits }: CalendarProps) {
               </button>
             </div>
           </div>
-          <div className="flex items-center justify-between pt-12 overflow-x-auto">
+          <div className="flex items-center justify-between pt-4">
             <table className="w-full">
               <thead>
                 <tr>
-                  <th>
-                    <div className="w-full flex justify-center">
-                      <p className="text-2xl font-medium text-center text-neutral-800 dark:text-neutral-100">
-                        Mo
-                      </p>
-                    </div>
-                  </th>
-                  <th>
-                    <div className="w-full flex justify-center">
-                      <p className="text-2xl font-medium text-center text-neutral-800 dark:text-neutral-100">
-                        Tu
-                      </p>
-                    </div>
-                  </th>
-                  <th>
-                    <div className="w-full flex justify-center">
-                      <p className="text-2xl font-medium text-center text-neutral-800 dark:text-neutral-100">
-                        We
-                      </p>
-                    </div>
-                  </th>
-                  <th>
-                    <div className="w-full flex justify-center">
-                      <p className="text-2xl font-medium text-center text-neutral-800 dark:text-neutral-100">
-                        Th
-                      </p>
-                    </div>
-                  </th>
-                  <th>
-                    <div className="w-full flex justify-center">
-                      <p className="text-2xl font-medium text-center text-neutral-800 dark:text-neutral-100">
-                        Fr
-                      </p>
-                    </div>
-                  </th>
-                  <th>
-                    <div className="w-full flex justify-center">
-                      <p className="text-2xl font-medium text-center text-neutral-800 dark:text-neutral-100">
-                        Sa
-                      </p>
-                    </div>
-                  </th>
-                  <th>
-                    <div className="w-full flex justify-center">
-                      <p className="text-2xl font-medium text-center text-neutral-800 dark:text-neutral-100">
-                        Su
-                      </p>
-                    </div>
-                  </th>
+                  {WEEKDAYS.map((wd, i) => (
+                    <th className="pb-4" key={`weekday-${i}`}>
+                      <div className="w-full flex justify-center">
+                        <p className="text-lg font-medium text-center text-neutral-800 dark:text-neutral-100">
+                          {wd}
+                        </p>
+                      </div>
+                    </th>
+                  ))}
                 </tr>
               </thead>
               <tbody>
                 {chunk(calendarDays, 7).map((calendarWeek, i) => (
                   <tr key={`week-${i}`}>
                     {calendarWeek.map((calendarDay, ii) => (
-                      <td key={`week-${i}-day-${ii}`} className="pt-6">
-                        <button
-                          className="relative p-4 hover:bg-neutral-800 rounded-full flex justify-center"
-                          onClick={() => setDate(calendarDay.date)}
-                        >
-                          <p
-                            className={twMerge(
-                              "text-2xl transition-colors w-8 h-8 dark:text-neutral-100",
-                              isSameMonth(calendarDay.date, date)
-                                ? "font-medium"
-                                : "font-thin dark:text-neutral-500",
-                              isSameDay(calendarDay.date, date)
-                                ? "dark:text-orange-500"
-                                : "",
-                            )}
+                      <td key={`week-${i}-day-${ii}`} className="pt-1">
+                        <div className="w-full h-full flex justify-center items-center">
+                          <button
+                            className="relative w-12 h-12 dark:hover:bg-neutral-800 transition-colors rounded-full"
+                            onClick={() => setDate(calendarDay.date)}
                           >
-                            {calendarDay.date.getDate()}
-                          </p>
-                          {calendarDay.hasEvents && (
-                            <div
+                            <p
                               className={twMerge(
-                                "absolute bottom-3 w-1 h-1 rounded-full bg-neutral-100",
+                                "text-lg transition-colors dark:text-neutral-100",
+                                isSameMonth(calendarDay.date, date)
+                                  ? "font-normal"
+                                  : "font-thin dark:text-neutral-500",
                                 isSameDay(calendarDay.date, date)
-                                  ? "dark:bg-orange-500"
+                                  ? "dark:text-orange-500"
                                   : "",
                               )}
-                            />
-                          )}
-                        </button>
+                            >
+                              {calendarDay.date.getDate()}
+                            </p>
+                            {calendarDay.hasEvents && (
+                              <div className="absolute bottom-3 left-3.5 right-3.5 flex justify-center">
+                                <span
+                                  className={twMerge(
+                                    "w-full h-px rounded dark:bg-neutral-100",
+                                    isSameDay(calendarDay.date, date)
+                                      ? "dark:bg-orange-500"
+                                      : "",
+                                  )}
+                                />
+                              </div>
+                            )}
+                          </button>
+                        </div>
                       </td>
                     ))}
                   </tr>
@@ -311,25 +233,33 @@ export default function Calendar({ className, limits }: CalendarProps) {
           </div>
         </div>
         <div
-          className="md:py-8 md:px-16 p-3 max-w-full overflow-auto dark:bg-neutral-800 bg-neutral-50 lg:w-1/2"
+          className="md:p-6 p-3 max-w-full overflow-auto dark:bg-neutral-800 bg-neutral-50 md:w-full"
           style={{ height: calendarHeight }}
         >
           {dateEvents.length > 0 ? (
             dateEvents.map((de, i) => (
-              <div
-                className="border-b pt-4 first:pt-0 last:border-b-0 pb-4 border-neutral-400"
+              <button
+                className="hover:dark:bg-neutral-700 transition-colors w-full first:border-t border-b p-3 dark:border-neutral-600"
                 key={`event-${i}`}
+                onClick={() => alert("TODO")}
               >
-                <p className="text-xs flex gap-1 items-center font-light leading-3 text-neutral-500 dark:text-neutral-300">
-                  <FiClock /> {format(de.date, "HH:mm")}
-                </p>
-                <p className="text-lg font-medium leading-5 text-neutral-800 dark:text-neutral-100 pt-2">
-                  {de.title}
-                </p>
-                <p className="text-sm pt-2 leading-none text-neutral-600 dark:text-neutral-300">
-                  {de.description}
-                </p>
-              </div>
+                <div className="flex flex-col items-start w-full">
+                  <div className="w-full flex gap-3 justify-between items-center text-neutral-500 dark:text-neutral-300">
+                    <p className="font-medium text-neutral-800 dark:text-neutral-100">
+                      {de.title}
+                    </p>
+                    <div className="flex gap-1 items-center">
+                      <FiClock size={12} />
+                      <p className="text-sm pb-px font-light">
+                        {format(de.date, "HH:mm")}
+                      </p>
+                    </div>
+                  </div>
+                  <p className="text-sm text-neutral-600 dark:text-neutral-300">
+                    {de.description}
+                  </p>
+                </div>
+              </button>
             ))
           ) : (
             <p className="italic dark:text-neutral-300 text-center">
