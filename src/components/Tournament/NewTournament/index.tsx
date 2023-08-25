@@ -70,9 +70,7 @@ function NewTournamentComponent() {
     {
       disabled: slide !== 2 && slide < 3,
       icon: <FiSettings />,
-      label:
-        (TournamentTypes.find((t) => t.value === newTournament.type)?.label ??
-          "Tournament") + " settings",
+      label: "Settings",
       onClick: () => setSlide(2),
     },
     {

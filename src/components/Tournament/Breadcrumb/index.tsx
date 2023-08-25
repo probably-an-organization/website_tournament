@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { FiChevronRight } from "react-icons/fi";
 
 import { twMerge } from "tailwind-merge";
@@ -23,7 +23,7 @@ export default function Breadcrumb({
   items,
   active,
 }: BreadcrumbProps) {
-  const [backgroundRight, setBackgroundRight] = useState<number>();
+  const [backgroundRight, setBackgroundRight] = useState<number>(0);
 
   const breadcrumbRefs = useRef<HTMLDivElement[]>([]);
 
@@ -44,14 +44,38 @@ export default function Breadcrumb({
 
   return (
     <div className={twMerge("flex items-center justify-center", className)}>
-      <div className="relative flex items-center justify-center">
+      <div className="h-12 relative flex items-center justify-center">
         <motion.div
-          className="absolute left-0 top-0 z-0 bottom-0 bg-orange-500 rounded"
+          className={twMerge(
+            "absolute rounded-l left-0 top-0 z-10 bottom-0 bg-orange-500",
+            active >= items.length - 1 ? "rounded-r" : "",
+          )}
           animate={{ right: backgroundRight }}
-        />
+        >
+          <AnimatePresence>
+            {active < items.length - 1 && (
+              <>
+                {/* high-res gap filler */}
+                <motion.div
+                  className="absolute top-0 -right-[1px] h-full w-px bottom-0 border-t-[4px] border-b-[4px] border-t-transparent border-b-transparent border-l-[2px] border-l-orange-500"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                />
+                {/* arrow */}
+                <motion.div
+                  className="absolute top-0 -right-[8px] bottom-0 rounded-r border-t-[24px] border-b-[24px] border-t-transparent border-b-transparent border-l-8 border-l-orange-500"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                />
+              </>
+            )}
+          </AnimatePresence>
+        </motion.div>
         {items.map((b, i) => (
           <div
-            className="z-10 flex items-center"
+            className="z-20 flex items-center"
             key={`breadcrumb-${i}`}
             ref={(element: HTMLDivElement) => {
               breadcrumbRefs.current[i] = element;

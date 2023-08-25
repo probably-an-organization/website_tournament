@@ -10,14 +10,19 @@ import {
 import { Button } from "@futshi/js_toolbox";
 import Select from "../Select";
 import Input from "../Input";
+import { twMerge } from "tailwind-merge";
 
 export type TableNavigationProps = {
+  className?: string;
   reactTable: Table<any>;
 };
 
-export default function TableNavigation({ reactTable }: TableNavigationProps) {
+export default function TableNavigation({
+  className,
+  reactTable,
+}: TableNavigationProps) {
   return (
-    <div className="pt-3">
+    <div className={twMerge("pt-3", className)}>
       <div className="grid grid-cols-1 md:grid-cols-2">
         <div className="flex items-center justify-center gap-2 pb-3 md:justify-start md:pb-0">
           <Button

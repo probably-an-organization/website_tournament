@@ -145,13 +145,8 @@ export default function Table<T extends { id?: any }>({
   });
 
   return (
-    <div
-      className={twMerge(
-        "w-full before:overflow-hidden after:overflow-hidden rounded bg-neutral-50 p-3 shadow dark:bg-neutral-800",
-        className,
-      )}
-    >
-      <div className="flex gap-3">
+    <div className={twMerge("w-full", className)}>
+      <div className="sticky flex gap-3 left-0 w-full max-w-full">
         <DebouncedInput
           value={globalFilter ?? ""}
           onChange={(value) => setGlobalFilter(String(value))}
@@ -163,7 +158,7 @@ export default function Table<T extends { id?: any }>({
           Filter
         </Button>
       </div>
-      <div className="w-fit max-w-full overflow-auto">
+      <div className="min-w-fit w-full max-w-full overflow-auto">
         <table className="table-auto border-separate border-spacing-y-1">
           <TableHeader
             reactTable={reactTable}
@@ -188,9 +183,7 @@ export default function Table<T extends { id?: any }>({
         </table>
       </div>
 
-      <TableNavigation reactTable={reactTable} />
-
-      {false && <code>{JSON.stringify(reactTable.getState())}</code>}
+      <TableNavigation className="sticky left-0" reactTable={reactTable} />
     </div>
   );
 }

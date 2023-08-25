@@ -1,3 +1,4 @@
+import { Card } from "@futshi/js_toolbox";
 import type { ColumnDef } from "@tanstack/react-table";
 import { useMemo } from "react";
 
@@ -49,7 +50,7 @@ export default function TournamentsTableView({
       id: "name",
       cell: (cell) => (
         <span
-          className="underline dark:hover:text-neutral-800 transition-colors cursor-pointer"
+          className="py-1 px-2 rounded bg-orange-500 dark:hover:bg-orange-400 dark:hover:text-neutral-800 transition-colors cursor-pointer"
           onClick={(e) => {
             e.stopPropagation();
             redirect(getHref(cell.row.original), { withLoading: true });
@@ -107,13 +108,15 @@ export default function TournamentsTableView({
 
   return (
     <div className={className}>
-      <Table
-        checkbox
-        columns={columns}
-        data={modifiedTournaments}
-        rowCanExpand={(row: TableColumn) => row.description?.length > 0}
-        rowExpandComponent={renderExpandComponent}
-      />
+      <Card className="p-3 overflow-auto relative">
+        <Table
+          checkbox
+          columns={columns}
+          data={modifiedTournaments}
+          rowCanExpand={(row: TableColumn) => row.description?.length > 0}
+          rowExpandComponent={renderExpandComponent}
+        />
+      </Card>
     </div>
   );
 }

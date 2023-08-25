@@ -55,7 +55,11 @@ function DashboardComponent() {
       {tournament.signedIn && (
         <>
           <DashboardMenu />
-          {DASHBOARD_NAVIGATION[tab]!.component}
+          <div className="flex justify-center">
+            <div className="max-w-5xl w-full">
+              {DASHBOARD_NAVIGATION[tab]!.component}
+            </div>
+          </div>
         </>
       )}
     </>

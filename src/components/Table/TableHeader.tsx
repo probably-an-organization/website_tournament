@@ -1,12 +1,14 @@
 "use client";
 
-import { FiArrowUpCircle, FiArrowDownCircle } from "react-icons/fi";
+import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import type {
   ColumnDefTemplate,
   HeaderContext,
+  SortDirection,
   Table,
 } from "@tanstack/react-table";
 import { Checkbox } from "@futshi/js_toolbox";
+import { twMerge } from "tailwind-merge";
 
 export type TableHeaderProps<T> = {
   checkbox: boolean;
@@ -27,7 +29,7 @@ export default function TableHeader<T>({
   rowExpandComponent,
 }: TableHeaderProps<T>) {
   return (
-    <thead className="dark:bg-neutral-900 rounded">
+    <thead className="dark:bg-neutral-800 rounded">
       {reactTable.getHeaderGroups().map((headerGroup, headerGroupIndex) => {
         const isDataHeaderGroup: boolean =
           headerGroupIndex >= reactTable.getHeaderGroups().length - 1;
@@ -44,49 +46,70 @@ export default function TableHeader<T>({
                 )}
               </th>
             )}
-            {headerGroup.headers.map((header) => {
-              return (
-                <th
-                  key={header.id}
-                  colSpan={header.colSpan}
-                  className="px-1 py-2 first:rounded-l last:rounded-r"
-                >
-                  {header.isPlaceholder ? null : (
+            {headerGroup.headers.map((header) => (
+              <th
+                key={header.id}
+                colSpan={header.colSpan}
+                className="px-1 py-2 first:rounded-l last:rounded-r"
+              >
+                {header.isPlaceholder ? null : (
+                  <div
+                    className={twMerge(
+                      "dark:text-neutral-50",
+                      isDataHeaderGroup
+                        ? ""
+                        : "rounded bg-neutral-400 py-0.5 text-xs text-neutral-50 dark:bg-neutral-500",
+                    )}
+                  >
                     <div
-                      className={`dark:text-neutral-50${
+                      className={twMerge(
+                        header.column.getCanSort()
+                          ? "flex gap-2 cursor-pointer select-none items-center font-semibold dark:text-neutral-50"
+                          : "cursor-default text-center",
                         isDataHeaderGroup
-                          ? ""
-                          : " rounded bg-neutral-400 py-0.5 text-xs text-neutral-50 dark:bg-neutral-500"
-                      }`}
+                          ? " justify-start"
+                          : " justify-center",
+                      )}
+                      onClick={header.column.getToggleSortingHandler()}
                     >
-                      <div
-                        className={`${
-                          header.column.getCanSort()
-                            ? "flex cursor-pointer select-none items-center gap-1 font-semibold dark:text-neutral-50"
-                            : "cursor-default text-center font-thin"
-                        }${
-                          isDataHeaderGroup
-                            ? " justify-start"
-                            : " justify-center"
-                        }${header.column.getIsSorted() ? " underline" : ""}`}
-                        onClick={header.column.getToggleSortingHandler()}
+                      <div className="flex flex-col">
+                        <FiChevronUp
+                          className={twMerge(
+                            "transition-colorsOpacity opacity-30",
+                            header.column.getIsSorted() === "asc"
+                              ? "opacity-100 stroke-orange-500"
+                              : "",
+                          )}
+                          size={15}
+                          strokeWidth={3}
+                        />
+                        <FiChevronDown
+                          className={twMerge(
+                            "transition-colorsOpacity opacity-30",
+                            header.column.getIsSorted() === "desc"
+                              ? "opacity-100 stroke-orange-500"
+                              : "",
+                          )}
+                          size={15}
+                          strokeWidth={3}
+                        />
+                      </div>
+                      <p
+                        className={twMerge(
+                          "transition-colors",
+                          header.column.getIsSorted() ? "text-orange-500" : "",
+                        )}
                       >
                         {flexRender(
                           header.column.columnDef.header,
                           header.getContext(),
                         )}
-                        {{
-                          asc: <FiArrowUpCircle />,
-                          desc: <FiArrowDownCircle />,
-                        }[header.column.getIsSorted() as string] ?? (
-                          <div className="w-[16px]" />
-                        )}
-                      </div>
+                      </p>
                     </div>
-                  )}
-                </th>
-              );
-            })}
+                  </div>
+                )}
+              </th>
+            ))}
             {rowCanExpand && <th className="rounded-r" />}
           </tr>
         );

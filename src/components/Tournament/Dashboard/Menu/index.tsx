@@ -25,8 +25,8 @@ export default function DashboardMenu() {
   };
 
   return (
-    <div className="z-10 min-w-fit bg-neutral-800 shadow">
-      <div className="flex h-full flex-col justify-between gap-2 p-2">
+    <div className="z-10 min-w-fit bg-neutral-800 shadow flex justify-center">
+      <div className="flex h-full flex-col max-w-5xl w-full justify-between gap-2 p-2">
         <div className="flex items-center gap-2 text-lg font-medium">
           <FiUser />
           {tournament.user?.username}

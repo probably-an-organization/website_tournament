@@ -20,7 +20,6 @@ import isSameDay from "date-fns/isSameDay";
 import { chunk } from "~src/utils/arrayUtils";
 import subMonths from "date-fns/subMonths";
 import addMonths from "date-fns/addMonths";
-import addHours from "date-fns/addHours";
 import { isBefore } from "date-fns";
 import subHours from "date-fns/subHours";
 import useWindowSize from "~src/hooks/useDimensions";
@@ -103,7 +102,7 @@ const DUMMY_EVENT2: Event[] = [
 export default function Calendar({ className, limits }: CalendarProps) {
   const [date, setDate] = useState<Date>(new Date());
 
-  const [calendarDays, setCalendarDays] = useState<CalendarDay[]>([]);
+  const [calendarWeeks, setCalendarWeeks] = useState<CalendarDay[][]>([]);
 
   const [events, setEvents] = useState<Event[]>(DUMMY_EVENT2);
   const [dateEvents, setDateEvents] = useState<Event[]>([]);
@@ -118,7 +117,7 @@ export default function Calendar({ className, limits }: CalendarProps) {
       return;
     }
     setCalendarHeight(calendarRef.current.offsetHeight);
-  }, [size]);
+  }, [size, calendarWeeks.length]);
 
   useEffect(() => {
     let start = startOfMonth(date);
@@ -129,14 +128,17 @@ export default function Calendar({ className, limits }: CalendarProps) {
     if (!isSunday(end)) {
       end = nextSunday(end);
     }
-    setCalendarDays(
-      eachDayOfInterval({
-        start,
-        end,
-      }).map((d) => ({
-        date: d,
-        hasEvents: events.some((e) => isSameDay(e.date, d)),
-      })),
+    setCalendarWeeks(
+      chunk(
+        eachDayOfInterval({
+          start,
+          end,
+        }).map((d) => ({
+          date: d,
+          hasEvents: events.some((e) => isSameDay(e.date, d)),
+        })),
+        7,
+      ),
     );
   }, [date.getMonth()]);
 
@@ -151,7 +153,7 @@ export default function Calendar({ className, limits }: CalendarProps) {
   return (
     <>
       <div className="w-full h-full flex md:flex-row flex-col">
-        <div className="p-6 md:min-w-fit overflow-auto" ref={calendarRef}>
+        <div className="p-6 h-fit md:min-w-fit" ref={calendarRef}>
           <div className="flex items-center justify-between">
             <h1 className="text-lg flex items-center gap-2 font-bold dark:text-neutral-100 text-neutral-800">
               <FiCalendar />
@@ -188,7 +190,7 @@ export default function Calendar({ className, limits }: CalendarProps) {
                 </tr>
               </thead>
               <tbody>
-                {chunk(calendarDays, 7).map((calendarWeek, i) => (
+                {calendarWeeks.map((calendarWeek, i) => (
                   <tr key={`week-${i}`}>
                     {calendarWeek.map((calendarDay, ii) => (
                       <td key={`week-${i}-day-${ii}`} className="pt-1">
@@ -233,7 +235,7 @@ export default function Calendar({ className, limits }: CalendarProps) {
           </div>
         </div>
         <div
-          className="md:p-6 p-3 max-w-full overflow-auto dark:bg-neutral-800 bg-neutral-50 md:w-full"
+          className="md:p-6 p-3 flex flex-col max-w-full overflow-auto dark:bg-neutral-800 bg-neutral-50 md:w-full"
           style={{ height: calendarHeight }}
         >
           {dateEvents.length > 0 ? (
@@ -262,7 +264,7 @@ export default function Calendar({ className, limits }: CalendarProps) {
               </button>
             ))
           ) : (
-            <p className="italic dark:text-neutral-300 text-center">
+            <p className="text-sm font-thin h-full flex items-center justify-center dark:text-neutral-400">
               No events found
             </p>
           )}
