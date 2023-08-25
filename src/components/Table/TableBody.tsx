@@ -69,10 +69,10 @@ export default function TableBody<T>({
           <Fragment key={index}>
             <tr
               className={twMerge(
-                "h-14 rounded dark:text-neutral-100 dark:shadow-neutral-900 bg-neutral-100 dark:bg-neutral-600",
+                "h-14 rounded dark:text-neutral-100 bg-neutral-100 dark:bg-neutral-700",
                 rowData ? "shadow" : "",
                 rowData?.getCanExpand()
-                  ? "cursor-pointer hover:bg-neutral-50 dark:hover:bg-neutral-500 transition-colors"
+                  ? "cursor-pointer hover:bg-neutral-50 dark:hover:bg-neutral-600 transition-colors"
                   : "",
               )}
               onClick={() =>

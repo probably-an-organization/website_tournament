@@ -70,7 +70,11 @@ export default function TableHeader<T>({
                           ? " justify-start"
                           : " justify-center",
                       )}
-                      onClick={header.column.getToggleSortingHandler()}
+                      onClick={() =>
+                        header.column.toggleSorting(
+                          header.column.getIsSorted() === "asc",
+                        )
+                      }
                     >
                       <div className="flex flex-col">
                         <FiChevronUp
