@@ -78,7 +78,7 @@ export default function TournamentsGridView({
             layout
           >
             <TournamentsGridViewButton
-              className="flex flex-col items-center justify-center gap-1 border border-neutral-100 font-semibold text-neutral-100 hover:bg-neutral-900"
+              className="flex flex-col items-center justify-center gap-1 border border-neutral-100 font-thin text-neutral-100"
               href="/new"
             >
               <TbTournament />

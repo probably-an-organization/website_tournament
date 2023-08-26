@@ -1,6 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { twMerge } from "tailwind-merge";
+import { Button } from "@futshi/js_toolbox";
+import { FiFilter } from "react-icons/fi";
+
 import type {
   ColumnFiltersState,
   FilterFn,
@@ -26,15 +30,12 @@ import {
 import type { RankingInfo } from "@tanstack/match-sorter-utils";
 import { rankItem, compareItems } from "@tanstack/match-sorter-utils";
 
-import TableHeader from "./TableHeader";
-import TableFooter from "./TableFooter";
-import TableBody from "./TableBody";
+import DebouncedInput from "~src/components/DebouncedInput";
 
-import DebouncedInput from "../DebouncedInput";
-import TableNavigation from "./TableNavigation";
-import { twMerge } from "tailwind-merge";
-import { Button } from "@futshi/js_toolbox";
-import { FiFilter } from "react-icons/fi";
+import TableHeader from "./Header";
+import TableFooter from "./Footer";
+import TableBody from "./Body";
+import TableNavigation from "./Navigation";
 
 declare module "@tanstack/table-core" {
   interface FilterFns {

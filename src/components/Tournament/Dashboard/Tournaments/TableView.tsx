@@ -1,5 +1,8 @@
 import { Card } from "@futshi/js_toolbox";
 import type { ColumnDef } from "@tanstack/react-table";
+import format from "date-fns/format";
+import intlFormat from "date-fns/intlFormat";
+import parseISO from "date-fns/parseISO";
 import { useMemo } from "react";
 
 import Table from "~src/components/Table";
@@ -50,7 +53,7 @@ export default function TournamentsTableView({
       id: "name",
       cell: (cell) => (
         <span
-          className="py-1 px-2 rounded bg-orange-500 dark:hover:bg-orange-400 dark:hover:text-neutral-800 transition-colors cursor-pointer"
+          className="py-1 px-2 rounded bg-neutral-300 dark:hover:bg-orange-400 dark:hover:text-neutral-800 text-neutral-900 transition-colors cursor-pointer"
           onClick={(e) => {
             e.stopPropagation();
             redirect(getHref(cell.row.original), { withLoading: true });
@@ -79,14 +82,40 @@ export default function TournamentsTableView({
     {
       accessorFn: (row) => row.created,
       id: "created",
-      cell: (cell) => cell.getValue(),
+      cell: (cell) =>
+        intlFormat(
+          parseISO(cell.getValue() as string),
+          {
+            // weekday: "long",
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+            hour: "numeric",
+            minute: "numeric",
+            second: "numeric",
+          },
+          { locale: "en-UK" },
+        ),
       header: "Created",
       footer: (props) => props.column.id,
     },
     {
       accessorFn: (row) => row.updated,
       id: "updated",
-      cell: (cell) => cell.getValue(),
+      cell: (cell) =>
+        intlFormat(
+          parseISO(cell.getValue() as string),
+          {
+            // weekday: "long",
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+            hour: "numeric",
+            minute: "numeric",
+            second: "numeric",
+          },
+          { locale: "en-UK" },
+        ),
       header: "Updated",
       footer: (props) => props.column.id,
     },

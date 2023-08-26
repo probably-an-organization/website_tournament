@@ -49,52 +49,52 @@ const WEEKDAYS: string[] = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
 const DUMMY_EVENT2: Event[] = [
   {
     title: "Tournament 1",
-    description: "Match Bob vs. Alice",
+    description: "Match: Bob vs. Alice",
     date: new Date(),
   },
   {
     title: "Tournament 1",
-    description: "Match Bob vs. Alice",
+    description: "Match: Bob vs. Alice",
     date: new Date(),
   },
   {
     title: "Tournament 1",
-    description: "Match Bob vs. Alice",
+    description: "Match: Bob vs. Alice",
     date: new Date(),
   },
   {
     title: "Tournament 1",
-    description: "Match Bob vs. Alice",
+    description: "Match: Bob vs. Alice",
     date: new Date(),
   },
   {
     title: "Tournament 1",
-    description: "Match Bob vs. Alice",
+    description: "Match: Bob vs. Alice",
     date: new Date(),
   },
   {
     title: "Tournament 1",
-    description: "Match Bob vs. Alice",
+    description: "Match: Bob vs. Alice",
     date: new Date(),
   },
   {
     title: "Tournament 1",
-    description: "Match Bob vs. Alice",
+    description: "Match: Bob vs. Alice",
     date: new Date(),
   },
   {
     title: "Tournament 1",
-    description: "Match Bob vs. Alice",
+    description: "Match: Bob vs. Alice",
     date: new Date(),
   },
   {
     title: "Tournament 1",
-    description: "Match Bob vs. Alice",
+    description: "Match: Bob vs. Alice",
     date: new Date(),
   },
   {
     title: "Tournament 1",
-    description: "Match Alinza vs. Olaf",
+    description: "Match: Alinza vs. Olaf",
     date: subHours(new Date(), 1),
   },
 ];
@@ -241,7 +241,7 @@ export default function Calendar({ className, limits }: CalendarProps) {
           {dateEvents.length > 0 ? (
             dateEvents.map((de, i) => (
               <button
-                className="hover:dark:bg-neutral-700 transition-colors w-full first:border-t border-b p-3 dark:border-neutral-600"
+                className="hover:dark:bg-neutral-700 transition-colors w-full first:border-t border-b p-3 dark:border-neutral-700"
                 key={`event-${i}`}
                 onClick={() => alert("TODO")}
               >
