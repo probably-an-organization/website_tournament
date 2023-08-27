@@ -154,7 +154,7 @@ export default function Calendar({ className, limits }: CalendarProps) {
     <>
       <div className="w-full h-full flex md:flex-row flex-col">
         <div className="p-3 h-fit md:min-w-fit" ref={calendarRef}>
-          <div className="flex items-center justify-between">
+          <div className="flex-col-reverse sm:flex-row flex items-center justify-between">
             <h1 className="text-lg flex items-center gap-2 font-bold dark:text-neutral-100 text-neutral-800">
               <FiCalendar className="ml-2" />
               {format(date, "LLLL uuuu")}
