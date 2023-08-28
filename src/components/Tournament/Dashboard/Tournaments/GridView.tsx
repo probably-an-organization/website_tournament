@@ -61,12 +61,12 @@ export default function TournamentsGridView({
   };
   return (
     <div className={className}>
-      <Card className="w-full p-3 flex flex-col gap-5">
+      <Card className="w-full p-3 flex flex-col gap-5 overflow-auto">
         <div className="flex gap-3">
           <DebouncedInput className="flex-1" onChange={() => {}} value="TODO" />
           <Popover open={filterMenu} onOpenChange={setFilterMenu}>
             <PopoverTrigger
-              className="self-start"
+              className="flex-shrink-0"
               onClick={() => setFilterMenu((prev) => !prev)}
             >
               <Button>

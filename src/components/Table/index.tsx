@@ -152,10 +152,10 @@ export default function Table<T extends { id?: any }>({
           value={globalFilter ?? ""}
           onChange={(value) => setGlobalFilter(String(value))}
           placeholder="Search all columns..."
-          className="mb-3 w-full"
+          className="mb-3 flex-1"
         />
-        <Button>
-          <FiFilter size={25} />
+        <Button className="flex-shrink-0">
+          <FiFilter />
           Filter
         </Button>
       </div>
