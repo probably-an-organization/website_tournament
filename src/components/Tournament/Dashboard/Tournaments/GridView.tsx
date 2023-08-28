@@ -79,7 +79,7 @@ export default function TournamentsGridView({
           >
             <TournamentsGridViewButton
               className="flex flex-col items-center justify-center gap-1 border border-neutral-100 font-thin text-neutral-100"
-              href="/new"
+              href="/tournament/new"
             >
               <TbTournament />
               New tournament
@@ -94,7 +94,7 @@ export default function TournamentsGridView({
             >
               <TournamentsGridViewButton
                 className="relative flex flex-col items-center bg-neutral-900 hover:bg-neutral-800"
-                href={`/knockout/${t._id}`}
+                href={`/tournament/knockout/${t._id}`}
               >
                 <span className="font-semibold">{t.name}</span>
                 <span

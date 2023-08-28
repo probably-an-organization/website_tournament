@@ -30,7 +30,7 @@ const MATCH_RECT_CLASS = {
 };
 
 const PLAYER_RECT_CLASS = {
-  default: "dark:fill-neutral-500 hover:dark:fill-neutral-400",
+  default: "dark:fill-neutral-500 dark:hover:fill-neutral-400",
   empty: "dark:fill-neutral-800 hover:dark-fill-neutral-700",
   winner: "dark:fill-orange-500",
   loser: "dark:fill-neutral-900",

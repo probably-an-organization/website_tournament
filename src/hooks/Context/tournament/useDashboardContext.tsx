@@ -1,6 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState } from "react";
+import { DashboardSection } from "~src/constants/tournament/DASHBOARD";
 
 import { TournamentTypes } from "~src/constants/tournament/TYPES";
 
@@ -26,10 +27,10 @@ export const DEFAULT_GRID_FILTER = Object.values(TournamentTypes).reduce(
 type DashboardContextProps = {
   gridFilter: GridFilter;
   setGridFilter: React.Dispatch<React.SetStateAction<GridFilter>>;
-  setTab: React.Dispatch<React.SetStateAction<number>>;
-  setView: React.Dispatch<React.SetStateAction<"grid" | "table">>;
-  tab: number;
-  view: "grid" | "table";
+  section: DashboardSection;
+  setSection: React.Dispatch<React.SetStateAction<DashboardSection>>;
+  setTournamentsView: React.Dispatch<React.SetStateAction<"grid" | "table">>;
+  tournamentsView: "grid" | "table";
 };
 
 const DashboardContext = createContext<DashboardContextProps>(
@@ -47,13 +48,24 @@ export type DashboardContextProviderProps = {
 export const DashboardContextProvider = ({
   children,
 }: DashboardContextProviderProps) => {
-  const [tab, setTab] = useState<number>(0);
-  const [view, setView] = useState<"grid" | "table">("grid");
+  const [section, setSection] = useState<DashboardSection>(
+    DashboardSection.Home,
+  );
+  const [tournamentsView, setTournamentsView] = useState<"grid" | "table">(
+    "grid",
+  );
   const [gridFilter, setGridFilter] = useState<GridFilter>(DEFAULT_GRID_FILTER);
 
   return (
     <DashboardContext.Provider
-      value={{ gridFilter, setGridFilter, setTab, setView, tab, view }}
+      value={{
+        gridFilter,
+        setGridFilter,
+        section,
+        setSection,
+        setTournamentsView,
+        tournamentsView,
+      }}
     >
       {children}
     </DashboardContext.Provider>

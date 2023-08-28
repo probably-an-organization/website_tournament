@@ -2,7 +2,11 @@ import { useState } from "react";
 import { FiChevronDown, FiLogOut, FiUser } from "react-icons/fi";
 
 import DashboardMenuButton from "./MenuButton";
-import { DASHBOARD_NAVIGATION } from "~src/constants/tournament/DASHBOARD";
+import {
+  DASHBOARD_MENU,
+  DASHBOARD_USER_MENU,
+  DashboardSection,
+} from "~src/constants/tournament/DASHBOARD";
 import useAxios from "~src/hooks/useAxios";
 import { useGlobalContext } from "~src/hooks/context/useGlobalContext";
 import { useDashboardContext } from "~src/hooks/context/tournament/useDashboardContext";
@@ -19,7 +23,7 @@ export default function DashboardMenu() {
 
   const { redirect, setTournament, tournament } = useGlobalContext();
 
-  const { tab, setTab } = useDashboardContext();
+  const { section, setSection } = useDashboardContext();
   const { get } = useAxios();
 
   const handleLogout = async () => {
@@ -38,27 +42,27 @@ export default function DashboardMenu() {
     <div className="z-10 min-w-fit bg-neutral-800 shadow flex justify-center">
       <div className="flex w-full h-full max-w-5xl justify-between gap-2 p-2">
         <ul className="hidden md:flex gap-2">
-          {DASHBOARD_NAVIGATION.map((dn, i) => (
+          {Object.entries(DASHBOARD_MENU).map(([key, value], i) => (
             <li key={`dashboard-nav-${i}`}>
               <DashboardMenuButton
-                disabled={tab === i}
-                onClick={() => setTab(i)}
+                disabled={section === key}
+                onClick={() => setSection(key as DashboardSection)}
               >
-                {dn.icon}
-                {dn.label}
+                {value.icon}
+                {value.label}
               </DashboardMenuButton>
             </li>
           ))}
         </ul>
         <div className="block md:hidden">
-          <Popover open={menuDropdown}>
+          <Popover open={menuDropdown} onOpenChange={setMenuDropdown}>
             <PopoverTrigger
-              className="p-2 transition-colors hover:bg-neutral-700 rounded flex items-center gap-2"
+              className="p-2 transition-colors dark:bg-neutral-900 dark:hover:bg-neutral-700 rounded flex items-center gap-2"
               onClick={() => setMenuDropdown((prev) => !prev)}
             >
               <div className="flex items-center gap-2">
-                {DASHBOARD_NAVIGATION[tab]!.icon}
-                {DASHBOARD_NAVIGATION[tab]!.label}
+                {{ ...DASHBOARD_MENU, ...DASHBOARD_USER_MENU }[section]!.icon}
+                {{ ...DASHBOARD_MENU, ...DASHBOARD_USER_MENU }[section]!.label}
                 <FiChevronDown
                   className={twMerge(
                     "transition-transform",
@@ -67,20 +71,20 @@ export default function DashboardMenu() {
                 />
               </div>
             </PopoverTrigger>
-            <PopoverContent className="block md:hidden w-40 shadow bg-neutral-900 rounded">
+            <PopoverContent className="z-30 block md:hidden w-40 shadow bg-neutral-900 rounded">
               <ul>
-                {DASHBOARD_NAVIGATION.map((dn, i) => (
+                {Object.entries(DASHBOARD_MENU).map(([key, value], i) => (
                   <li key={`dashboard-mobile-nav-${i}`}>
                     <DashboardMenuButton
                       className="w-full disabled:opacity-25"
-                      disabled={tab === i}
+                      disabled={section === key}
                       onClick={() => {
                         setMenuDropdown(false);
-                        setTab(i);
+                        setSection(key as DashboardSection);
                       }}
                     >
-                      {dn.icon}
-                      {dn.label}
+                      {value.icon}
+                      {value.label}
                     </DashboardMenuButton>
                   </li>
                 ))}
@@ -103,11 +107,29 @@ export default function DashboardMenu() {
               )}
             />
           </PopoverTrigger>
-          <PopoverContent className="w-40 shadow bg-neutral-900 rounded">
-            <DashboardMenuButton className="w-full" onClick={handleLogout}>
-              <FiLogOut />
-              Logout
-            </DashboardMenuButton>
+          <PopoverContent className="z-30 w-40 shadow bg-neutral-900 rounded">
+            <ul>
+              {Object.entries(DASHBOARD_USER_MENU).map(([key, value], i) => (
+                <DashboardMenuButton
+                  key={`dashboard-user-menu-${i}`}
+                  className="w-full disabled:opacity-25"
+                  disabled={section === key}
+                  onClick={() => {
+                    setUserDropdown(false);
+                    setSection(key as DashboardSection);
+                  }}
+                >
+                  {value.icon}
+                  {value.label}
+                </DashboardMenuButton>
+              ))}
+              <li>
+                <DashboardMenuButton className="w-full" onClick={handleLogout}>
+                  <FiLogOut />
+                  Logout
+                </DashboardMenuButton>
+              </li>
+            </ul>
           </PopoverContent>
         </Popover>
       </div>

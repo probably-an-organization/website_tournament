@@ -19,10 +19,10 @@ type TableColumn = {
 };
 
 const getHref = (row: TableColumn) => {
-  let href = "";
+  let href = "/tournament/";
   switch (row.type) {
     case "knockout":
-      href = "/knockout";
+      href += "knockout";
       break;
     default:
       throw Error("???");

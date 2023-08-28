@@ -4,22 +4,39 @@ import TournamentDashboardHome from "~src/components/Tournament/Dashboard/Home";
 import TournamentDashboardSettings from "~src/components/Tournament/Dashboard/Settings";
 import TournamentDashboardTournaments from "~src/components/Tournament/Dashboard/Tournaments";
 
-type DashboardNavigation = {
+export enum DashboardSection {
+  Home = "DashboardSection.Home",
+  Settings = "DashboardSection.Settings",
+  Tournaments = "DashboardSection.Tournaments",
+}
+
+type DashboardNavigationDetails = {
   label: string;
   icon: React.ReactElement;
   component: React.ReactElement;
 };
 
-export const DASHBOARD_NAVIGATION: DashboardNavigation[] = [
-  { label: "Home", icon: <FiLayout />, component: <TournamentDashboardHome /> },
-  {
+type DashboardNavigation = {
+  [key in DashboardSection]?: DashboardNavigationDetails;
+};
+
+export const DASHBOARD_MENU: DashboardNavigation = {
+  [DashboardSection.Home]: {
+    label: "Home",
+    icon: <FiLayout />,
+    component: <TournamentDashboardHome />,
+  },
+  [DashboardSection.Tournaments]: {
     label: "Tournaments",
     icon: <FiTrello />,
     component: <TournamentDashboardTournaments />,
   },
-  {
+};
+
+export const DASHBOARD_USER_MENU: DashboardNavigation = {
+  [DashboardSection.Settings]: {
     label: "Settings",
     icon: <FiSettings />,
     component: <TournamentDashboardSettings />,
   },
-];
+};

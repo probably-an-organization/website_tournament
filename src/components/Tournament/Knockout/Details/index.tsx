@@ -218,7 +218,7 @@ export default function KnockoutDetails({ className }: KnockoutSVGTreeProps) {
                   {TREE_STYLES.map((t, i) => (
                     <button
                       className={twMerge(
-                        "flex items-center gap-2 px-3 py-1.5 hover:dark:bg-neutral-700",
+                        "flex items-center gap-2 px-3 py-1.5 dark:hover:bg-neutral-700",
                         treeStyle === t.value
                           ? "pointer-events-none dark:bg-neutral-800"
                           : "",
@@ -251,7 +251,7 @@ export default function KnockoutDetails({ className }: KnockoutSVGTreeProps) {
                 ).map((t, i) => (
                   <button
                     className={twMerge(
-                      "flex items-center gap-2 px-3 py-1.5 hover:dark:bg-neutral-700",
+                      "flex items-center gap-2 px-3 py-1.5 dark:hover:bg-neutral-700",
                       slide === t.value
                         ? "pointer-events-none dark:bg-neutral-800"
                         : "",

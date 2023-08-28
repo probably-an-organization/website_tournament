@@ -241,7 +241,7 @@ export default function Calendar({ className, limits }: CalendarProps) {
           {dateEvents.length > 0 ? (
             dateEvents.map((de, i) => (
               <button
-                className="hover:dark:bg-neutral-700 transition-colors w-full first:border-t border-b p-3 dark:border-neutral-700"
+                className="dark:hover:bg-neutral-700 transition-colors w-full first:border-t border-b p-3 dark:border-neutral-700"
                 key={`event-${i}`}
                 onClick={() => alert("TODO")}
               >

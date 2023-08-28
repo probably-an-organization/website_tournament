@@ -1,4 +1,5 @@
-import { twMerge } from "tailwind-merge"import { Stages } from "./STAGES";
+import { twMerge } from "tailwind-merge";
+import { Stages } from "./STAGES";
 import { FiLayers, FiPlay, FiUsers } from "react-icons/fi";
 
 type NavigationIconProps = {

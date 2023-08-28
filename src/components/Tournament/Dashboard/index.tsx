@@ -11,7 +11,10 @@ import {
   useDashboardContext,
 } from "~src/hooks/context/tournament/useDashboardContext";
 import { handleAxiosError } from "~src/utils/axiosUtils";
-import { DASHBOARD_NAVIGATION } from "~src/constants/tournament/DASHBOARD";
+import {
+  DASHBOARD_MENU,
+  DASHBOARD_USER_MENU,
+} from "~src/constants/tournament/DASHBOARD";
 
 export default function Dashboard() {
   return (
@@ -23,7 +26,7 @@ export default function Dashboard() {
 
 function DashboardComponent() {
   const { redirect, setTournament, tournament } = useGlobalContext();
-  const { tab } = useDashboardContext();
+  const { section } = useDashboardContext();
   const { get } = useAxios();
 
   useEffect(() => {
@@ -57,7 +60,10 @@ function DashboardComponent() {
           <DashboardMenu />
           <div className="flex justify-center">
             <div className="max-w-5xl w-full">
-              {DASHBOARD_NAVIGATION[tab]!.component}
+              {
+                { ...DASHBOARD_MENU, ...DASHBOARD_USER_MENU }[section]!
+                  .component
+              }
             </div>
           </div>
         </>
