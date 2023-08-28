@@ -24,7 +24,8 @@ export default {
         102.5: "1.025",
       },
       transitionProperty: {
-        colorsFilter: "background-color, border-color, color, fill, stroke, text-decoration-color, filter",
+        colorsFilter:
+          "background-color, border-color, color, fill, stroke, text-decoration-color, filter",
         colorsOpacity:
           "background-color, border-color, color, fill, opacity, stroke, text-decoration-color",
         colorsTransform:
