@@ -1,10 +1,11 @@
 "use client";
 
 import { useRouter } from "next/router";
+import Link from "next/link";
 import { motion } from "framer-motion";
 
 import type { SidebarLink } from "~src/constants/SIDEBAR";
-import { twMerge } from "tailwind-merge"import Link from "next/link";
+import { twMerge } from "tailwind-merge";
 
 const MENU_ITEM_ANIMATION_VARIANTS = {
   open: {

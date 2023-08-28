@@ -16,7 +16,6 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import type { NewKnockoutMatch } from "~src/types/tournament";
 
-import { BRANCH_WIDTH } from ".";
 import NationalityBadge from "../../../NationalityBadge";
 
 type KnockoutTournamentMatchProps = {
@@ -52,8 +51,7 @@ export default function KnockoutTournamentMatch({
     <>
       <button
         className={twMerge(
-          "group flex items-center gap-2 rounded bg-neutral-200 p-2 transition-colorsOpacity dark:bg-neutral-700",
-          BRANCH_WIDTH,
+          "group w-40 flex items-center gap-2 rounded bg-neutral-200 p-2 transition-colorsOpacity dark:bg-neutral-700",
           match.participants.every((p) => !Boolean(p)) ? "opacity-50" : "",
         )}
         onClick={() => setEditKnockoutBranch(match)}
