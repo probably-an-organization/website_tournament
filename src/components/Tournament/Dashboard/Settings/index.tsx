@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import {
   Button,
@@ -11,6 +11,7 @@ import {
 import FloatingInput from "~src/components/FloatingInput";
 import { useGlobalContext } from "~src/hooks/context/useGlobalContext";
 import ActionList from "~src/components/ActionList";
+import { FiCamera } from "react-icons/fi";
 
 type TournamentDashboardSettingsProps = {
   className?: string;
@@ -19,6 +20,7 @@ type TournamentDashboardSettingsProps = {
 export default function TournamentDashboardSettings({
   className,
 }: TournamentDashboardSettingsProps) {
+  const [profileImage, setProfileImage] = useState<File>();
   const [showPasswordModal, setShowPasswordModal] = useState<boolean>(false);
   const [passwordModalData, setPasswordModalData] = useState<{
     old: string;
@@ -29,6 +31,8 @@ export default function TournamentDashboardSettings({
     new: "",
     confirm: "",
   });
+
+  const profileImageRef = useRef<HTMLInputElement>(null);
 
   const { tournament } = useGlobalContext();
 
@@ -43,7 +47,29 @@ export default function TournamentDashboardSettings({
   };
 
   return (
-    <div className="p-3">
+    <div className="p-3 flex flex-col gap-3">
+      {/* TODO modal: https://codesandbox.io/s/q8q1mnr01w */}
+      <button
+        className="relative group overflow-hidden w-24 h-24 rounded-full self-center"
+        onClick={() => profileImageRef.current?.click()}
+      >
+        <div className="absolute flex items-center justify-center text-xs inset-0 group-hover:opacity-50 bg-black opacity-0 transition-opacity">
+          <FiCamera size={30} />
+        </div>
+        <img
+          className="w-full h-full"
+          src={
+            profileImage
+              ? URL.createObjectURL(profileImage)
+              : "/profile_dummy.jpg"
+          }
+        />
+        <input
+          onChange={(e) => setProfileImage(e.target.files?.[0])}
+          ref={profileImageRef}
+          type="file"
+        />
+      </button>
       <ActionList
         items={[
           {

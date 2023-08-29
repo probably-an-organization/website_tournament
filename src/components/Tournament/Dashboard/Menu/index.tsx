@@ -98,7 +98,9 @@ export default function DashboardMenu() {
             className="p-2 transition-colors hover:bg-neutral-700 rounded flex items-center gap-2"
             onClick={() => setUserDropdown((prev) => !prev)}
           >
-            <div className="rounded-full h-6 w-6 border"></div>
+            <div className="overflow-hidden rounded-full h-6 w-6 border">
+              <img src="/profile_dummy.jpg" />
+            </div>
             <span>{tournament.user?.username}</span>
             <FiChevronDown
               className={twMerge(

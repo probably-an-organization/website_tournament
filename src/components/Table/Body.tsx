@@ -10,12 +10,11 @@ import type {
   SortingState,
   Table,
 } from "@tanstack/react-table";
-
+import { twMerge } from "tailwind-merge";
 import { AnimatePresence, motion } from "framer-motion";
 import { FiChevronDown } from "react-icons/fi";
 
 import { Checkbox } from "@futshi/js_toolbox";
-import { twMerge } from "tailwind-merge";
 
 export type TableBodyProps<T> = {
   checkbox: boolean;
@@ -69,7 +68,7 @@ export default function TableBody<T>({
           <Fragment key={index}>
             <tr
               className={twMerge(
-                "h-14 rounded dark:text-neutral-100 bg-neutral-100 dark:bg-neutral-700",
+                "h-14 rounded whitespace-nowrap dark:text-neutral-100 bg-neutral-100 dark:bg-neutral-700",
                 rowData ? "shadow" : "",
                 rowData?.getCanExpand()
                   ? "cursor-pointer hover:bg-neutral-50 dark:hover:bg-neutral-600 transition-colors"

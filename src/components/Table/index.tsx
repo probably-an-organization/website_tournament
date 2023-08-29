@@ -147,12 +147,12 @@ export default function Table<T extends { id?: any }>({
 
   return (
     <div className={twMerge("w-full", className)}>
-      <div className="sticky flex gap-3 left-0 w-full max-w-full">
+      <div className="sticky flex gap-3 left-0 max-w-full pb-4">
         <DebouncedInput
           value={globalFilter ?? ""}
           onChange={(value) => setGlobalFilter(String(value))}
           placeholder="Search all columns..."
-          className="mb-3 flex-1"
+          className="flex-1"
         />
         <Button className="flex-shrink-0">
           <FiFilter />
