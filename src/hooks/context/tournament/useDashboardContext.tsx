@@ -6,13 +6,16 @@ import { DashboardSection } from "~src/constants/tournament/DASHBOARD";
 import { TournamentTypes } from "~src/constants/tournament/TYPES";
 
 type GridFilter = {
-  [key: string]: {
-    active: boolean;
-    label: string;
+  string: string;
+  types: {
+    [key: string]: {
+      active: boolean;
+      label: string;
+    };
   };
 };
 
-export const DEFAULT_GRID_FILTER = Object.values(TournamentTypes).reduce(
+export const GRID_TYPE_FILTER = Object.values(TournamentTypes).reduce(
   (acc, curr) => ({
     ...acc,
     [curr.databaseType]: {
@@ -54,7 +57,10 @@ export const DashboardContextProvider = ({
   const [tournamentsView, setTournamentsView] = useState<"grid" | "table">(
     "grid",
   );
-  const [gridFilter, setGridFilter] = useState<GridFilter>(DEFAULT_GRID_FILTER);
+  const [gridFilter, setGridFilter] = useState<GridFilter>({
+    string: "",
+    types: GRID_TYPE_FILTER,
+  });
 
   return (
     <DashboardContext.Provider

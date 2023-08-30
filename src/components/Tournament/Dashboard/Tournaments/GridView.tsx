@@ -6,7 +6,7 @@ import { TbTournament } from "react-icons/tb";
 import { FiFilter, FiInfo, FiUsers } from "react-icons/fi";
 
 import {
-  DEFAULT_GRID_FILTER,
+  GRID_TYPE_FILTER,
   useDashboardContext,
 } from "~src/hooks/context/tournament/useDashboardContext";
 import { useGlobalContext } from "~src/hooks/context/useGlobalContext";
@@ -34,7 +34,14 @@ export default function TournamentsGridView({
   const { tournament } = useGlobalContext();
 
   const gridFilterTournaments = useMemo(
-    () => tournament.tournaments.filter((t) => gridFilter[t.type]?.active),
+    () =>
+      tournament.tournaments.filter(
+        (t) =>
+          gridFilter.types[t.type]?.active &&
+          Object.values(t).some((v) =>
+            String(v).toLowerCase().includes(gridFilter.string.toLowerCase()),
+          ),
+      ),
     [gridFilter, tournament.tournaments],
   );
 
@@ -43,39 +50,45 @@ export default function TournamentsGridView({
     value: { active: boolean; label: string },
   ) => {
     setGridFilter((prev) => {
-      const newGridFilter = {
-        ...prev,
-        [key]: {
-          ...value,
-          active: !value.active,
-        },
-      };
+      const newGridFilter = { ...prev };
+      newGridFilter.types[key] = { ...value, active: !value.active };
 
-      const active = Object.entries(newGridFilter).reduce(
+      const active = Object.entries(newGridFilter.types).reduce(
         (acc, [_, value]) => acc + (value.active ? 1 : 0),
         0,
       );
 
-      return active < 1 ? DEFAULT_GRID_FILTER : newGridFilter;
+      return {
+        ...prev,
+        type: active < 1 ? GRID_TYPE_FILTER : newGridFilter,
+      };
     });
   };
+
   return (
     <div className={className}>
       <Card className="w-full p-3 flex flex-col gap-5 overflow-auto">
         <div className="flex gap-3">
-          <DebouncedInput className="flex-1" onChange={() => {}} value="TODO" />
+          <DebouncedInput
+            className="flex-1"
+            onChange={(value) =>
+              setGridFilter((prev) => ({ ...prev, string: String(value) }))
+            }
+            placeholder="Search all..."
+            value={gridFilter.string}
+          />
           <Popover open={filterMenu} onOpenChange={setFilterMenu}>
-            <PopoverTrigger
-              className="flex-shrink-0"
-              onClick={() => setFilterMenu((prev) => !prev)}
-            >
-              <Button>
+            <PopoverTrigger asChild>
+              <Button
+                className="flex-shrink-0"
+                onClick={() => setFilterMenu((prev) => !prev)}
+              >
                 <FiFilter />
                 Filter
               </Button>
             </PopoverTrigger>
             <PopoverContent className="p-3 rounded shadow dark:bg-neutral-900 flex flex-wrap gap-3">
-              {Object.entries(gridFilter).map(([key, value], i) => (
+              {Object.entries(gridFilter.types).map(([key, value], i) => (
                 <button
                   key={`tournament-type-${i}`}
                   onClick={() => handleGridFilter(key, value)}

@@ -30,12 +30,9 @@ export function chunk<T>(array: T[], size: number) {
     throw Error("chunk size must be greater than zero");
   }
 
-  console.log("ARRAY", array);
-
   const chunks = [];
   for (let i = 0; i < array.length; i += size) {
     chunks.push(array.slice(i, i + size));
   }
-  console.log("AIJWDJIAJWID", chunks);
   return chunks;
 }

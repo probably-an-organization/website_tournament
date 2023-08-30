@@ -1,21 +1,28 @@
 import { twMerge } from "tailwind-merge";
+
 type NavigationPageProps = {
+  className: string;
   children: React.ReactNode;
   expanded: boolean;
+  onClick?(): void;
   pin: boolean;
 };
 
 export default function NavigationPage({
+  className,
   children,
   expanded,
+  onClick,
   pin,
 }: NavigationPageProps) {
   return (
     <div
       className={twMerge(
         "transition-spacing",
-        expanded && pin ? "ml-36" : "ml-12",
+        className,
+        expanded && pin ? "ml-40" : "ml-16",
       )}
+      onClick={onClick}
     >
       {children}
     </div>

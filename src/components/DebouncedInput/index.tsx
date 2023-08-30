@@ -4,7 +4,7 @@ import Input from "../Input";
 type DebouncedInputType = {
   debounce?: number;
   onChange(value: string | number | readonly string[] | undefined): void;
-  value: string | number | readonly string[] | undefined;
+  value: string | number | readonly string[];
 };
 
 export default function DebouncedInput({
@@ -15,9 +15,9 @@ export default function DebouncedInput({
 }: DebouncedInputType &
   // https://www.typescriptlang.org/docs/handbook/utility-types.html
   Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange">) {
-  const [value, setValue] = useState<
-    string | number | readonly string[] | undefined
-  >(initialValue);
+  const [value, setValue] = useState<string | number | readonly string[]>(
+    initialValue,
+  );
 
   useEffect(() => {
     setValue(initialValue);

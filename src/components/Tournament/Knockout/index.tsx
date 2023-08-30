@@ -12,8 +12,9 @@ import { twMerge } from "tailwind-merge";
 import KnockoutDetails from "~src/components/Tournament/Knockout/Details";
 import { useGlobalContext } from "~src/hooks/context/useGlobalContext";
 import Navigation from "~src/components/Tournament/Navigation";
-import NavigationPage from "~src/components/Tournament/Navigation/Page";
+import NavigationBar from "../Navigation/Bar";
 import KnockoutSettings from "./Settings";
+import NavigationPage from "../Navigation/Page";
 
 const NAVIGATION_ITEMS: {
   icon: React.ReactElement;
@@ -41,36 +42,34 @@ export default function TournamentKnockout() {
   const { redirect, tournament } = useGlobalContext();
 
   return (
-    <NavigationPage expanded={navigationExpanded} pin={navigationPin}>
-      <Navigation
+    <Navigation>
+      <NavigationBar
+        // TODO instead of local state, context @ navigation
         expanded={navigationExpanded}
         pin={navigationPin}
         setExpanded={setNavigationExpanded}
         setPin={setNavigationPin}
       >
-        <ul className="-mx-2 flex flex-col gap-2 overflow-hidden">
+        <ul className="-mx-3 flex flex-col gap-2 overflow-hidden">
           {NAVIGATION_ITEMS.map((n, i) => (
             <li className="float-left flex" key={`navigation-item-${i}`}>
-              <button className="flex-1 px-2" onClick={() => setNavigation(i)}>
-                <div
-                  className={twMerge(
-                    "group flex items-center gap-2 rounded transition-colors",
-                    navigation === i ? "bg-neutral-50" : "hover:bg-neutral-600",
-                  )}
-                >
+              <button className="flex-1 px-3" onClick={() => setNavigation(i)}>
+                <div className="group flex items-center gap-2 px-2 py-1 rounded transition-colors">
                   {cloneElement(n.icon, {
                     className: twMerge(
-                      "w-8 pl-1",
+                      "w-12 -ml-3 transition-colors",
                       navigation === i
-                        ? "stroke-neutral-800"
-                        : "stroke-neutral-50",
+                        ? "stroke-neutral-50"
+                        : "stroke-neutral-500 group-hover:stroke-neutral-100",
                     ),
-                    size: 36,
+                    size: 34,
                   })}
                   <span
                     className={twMerge(
-                      "text-sm",
-                      navigation === i ? "text-neutral-800" : "",
+                      "text-sm transition-colors",
+                      navigation === i
+                        ? "text-neutral-50"
+                        : "text-neutral-500 group-hover:text-neutral-100",
                     )}
                   >
                     {n.label}
@@ -80,9 +79,19 @@ export default function TournamentKnockout() {
             </li>
           ))}
         </ul>
-      </Navigation>
+      </NavigationBar>
 
-      <div className="mx-auto flex w-fit min-w-full flex-col gap-3 p-3">
+      <NavigationPage
+        className="flex w-fit min-w-full flex-col gap-3 p-3"
+        // TODO instead of local state, context @ navigation
+        expanded={navigationExpanded}
+        pin={navigationPin}
+        onClick={() => {
+          if (navigationExpanded && !navigationPin) {
+            setNavigationExpanded(false);
+          }
+        }}
+      >
         <div className="relative flex w-full items-center justify-end">
           <div className="sticky right-3">
             <button
@@ -103,7 +112,7 @@ export default function TournamentKnockout() {
         {navigation === 0 && <KnockoutDetails />}
         {navigation === 1 && <KnockoutSettings />}
         {navigation === 2 && <div>Todo</div>}
-      </div>
-    </NavigationPage>
+      </NavigationPage>
+    </Navigation>
   );
 }
