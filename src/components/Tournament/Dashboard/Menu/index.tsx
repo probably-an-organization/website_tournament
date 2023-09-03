@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FiChevronDown, FiLogOut, FiUser } from "react-icons/fi";
+import { FiBell, FiChevronDown, FiLogOut, FiUser } from "react-icons/fi";
 
 import DashboardMenuButton from "./MenuButton";
 import {
@@ -19,6 +19,8 @@ import { twMerge } from "tailwind-merge";
 
 export default function DashboardMenu() {
   const [menuDropdown, setMenuDropdown] = useState<boolean>(false);
+  const [notificationDropdown, setNotificationDropdown] =
+    useState<boolean>(false);
   const [userDropdown, setUserDropdown] = useState<boolean>(false);
 
   const { redirect, setTournament, tournament } = useGlobalContext();
@@ -93,47 +95,89 @@ export default function DashboardMenu() {
           </Popover>
         </div>
 
-        <Popover open={userDropdown} onOpenChange={setUserDropdown}>
-          <PopoverTrigger
-            className="p-2 transition-colors hover:bg-neutral-700 rounded flex items-center gap-2"
-            onClick={() => setUserDropdown((prev) => !prev)}
+        <div className="flex gap-2 items-center">
+          <Popover
+            open={notificationDropdown}
+            onOpenChange={setNotificationDropdown}
           >
-            <div className="overflow-hidden rounded-full h-6 w-6 border">
-              <img src="/profile_dummy.jpg" />
-            </div>
-            <span>{tournament.user?.username}</span>
-            <FiChevronDown
-              className={twMerge(
-                "transition-transform",
-                userDropdown ? "-rotate-180" : "",
-              )}
-            />
-          </PopoverTrigger>
-          <PopoverContent className="z-30 w-40 shadow bg-neutral-900 rounded">
-            <ul>
-              {Object.entries(DASHBOARD_USER_MENU).map(([key, value], i) => (
-                <DashboardMenuButton
-                  key={`dashboard-user-menu-${i}`}
-                  className="w-full disabled:opacity-25"
-                  disabled={section === key}
-                  onClick={() => {
-                    setUserDropdown(false);
-                    setSection(key as DashboardSection);
-                  }}
-                >
-                  {value.icon}
-                  {value.label}
-                </DashboardMenuButton>
-              ))}
-              <li>
-                <DashboardMenuButton className="w-full" onClick={handleLogout}>
-                  <FiLogOut />
-                  Logout
-                </DashboardMenuButton>
-              </li>
-            </ul>
-          </PopoverContent>
-        </Popover>
+            <PopoverTrigger
+              className="p-2 h-full relative transition-colors hover:bg-neutral-700 rounded flex items-center gap-2"
+              onClick={() => setNotificationDropdown((prev) => !prev)}
+            >
+              <FiBell />
+              <div className="absolute pointer-events-none text-[8px] right-1 top-1 w-3 h-3 flex items-center justify-center rounded-full bg-orange-500">
+                2
+              </div>
+            </PopoverTrigger>
+            <PopoverContent className="z-30 w-40 shadow bg-neutral-900 rounded">
+              <ul>
+                <li>
+                  <DashboardMenuButton
+                    className="w-full"
+                    onClick={() => alert("TODO")}
+                  >
+                    Notification 1
+                  </DashboardMenuButton>
+                </li>
+                <li>
+                  <DashboardMenuButton
+                    className="w-full"
+                    onClick={() => alert("TODO")}
+                  >
+                    Notification 2
+                  </DashboardMenuButton>
+                </li>
+              </ul>
+            </PopoverContent>
+          </Popover>
+
+          <Popover open={userDropdown} onOpenChange={setUserDropdown}>
+            <PopoverTrigger
+              className="p-2 transition-colors hover:bg-neutral-700 rounded flex items-center gap-2"
+              onClick={() => setUserDropdown((prev) => !prev)}
+            >
+              <div className="overflow-hidden rounded-full h-6 w-6 border">
+                <img src="/profile_dummy.jpg" />
+              </div>
+              <span>{tournament.user?.username}</span>
+              <FiChevronDown
+                className={twMerge(
+                  "transition-transform",
+                  userDropdown ? "-rotate-180" : "",
+                )}
+              />
+            </PopoverTrigger>
+            <PopoverContent className="z-30 w-40 shadow bg-neutral-900 rounded">
+              <ul>
+                {Object.entries(DASHBOARD_USER_MENU).map(([key, value], i) => (
+                  <li key={`dashboard-user-menu-${i}`}>
+                    <DashboardMenuButton
+                      key={`dashboard-user-menu-${i}`}
+                      className="w-full disabled:opacity-25"
+                      disabled={section === key}
+                      onClick={() => {
+                        setUserDropdown(false);
+                        setSection(key as DashboardSection);
+                      }}
+                    >
+                      {value.icon}
+                      {value.label}
+                    </DashboardMenuButton>
+                  </li>
+                ))}
+                <li>
+                  <DashboardMenuButton
+                    className="w-full"
+                    onClick={handleLogout}
+                  >
+                    <FiLogOut />
+                    Logout
+                  </DashboardMenuButton>
+                </li>
+              </ul>
+            </PopoverContent>
+          </Popover>
+        </div>
       </div>
     </div>
   );
