@@ -1,5 +1,5 @@
-import NewTournament from "~src/components/Tournament/Create";
+import TournamentCreate from "~src/components/Tournament/Create";
 
 export default function TournamentNewPage() {
-  return <NewTournament />;
+  return <TournamentCreate />;
 }
