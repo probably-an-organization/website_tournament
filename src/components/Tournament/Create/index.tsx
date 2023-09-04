@@ -15,7 +15,7 @@ import {
   TournamentContextProvider,
   useTournamentContext,
 } from "~src/hooks/context/tournament/useTournamentContext";
-import Breadcrumb, { type BreadcrumbItem } from "../Breadcrumb";
+import Breadcrumb, { type BreadcrumbItem } from "./Breadcrumb";
 import NewTournamentParticipant from "./Participants";
 import { Hover, HoverContent, HoverTrigger } from "~src/components/Hover";
 import NewTournamentGeneral from "./General";

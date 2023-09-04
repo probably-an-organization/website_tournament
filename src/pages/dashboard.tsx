@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-import Dashboard from "~src/components/Tournament/Dashboard";
+import Dashboard from "~src/components/Dashboard";
 
 export default function TournamentDashboardPage() {
   return (

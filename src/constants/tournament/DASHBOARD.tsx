@@ -1,8 +1,8 @@
 import { FiLayout, FiSettings, FiTrello } from "react-icons/fi";
 
-import TournamentDashboardHome from "~src/components/Tournament/Dashboard/Home";
-import TournamentDashboardSettings from "~src/components/Tournament/Dashboard/Settings";
-import TournamentDashboardTournaments from "~src/components/Tournament/Dashboard/Tournaments";
+import TournamentDashboardHome from "~src/components/Dashboard/Home";
+import TournamentDashboardSettings from "~src/components/Dashboard/Settings";
+import TournamentDashboardTournaments from "~src/components/Dashboard/Tournaments";
 
 export enum DashboardSection {
   Home = "DashboardSection.Home",

@@ -8,7 +8,7 @@ import { getStageLabel } from "~src/utils/tournamentUtils";
 import useFullscreen from "~src/hooks/useFullscreen";
 import { Participant } from "~src/types/tournament";
 
-import NationalityBadge from "../../../NationalityBadge";
+import NationalityBadge from "../../NationalityBadge";
 
 export default function KnockoutMatchInfo() {
   const [matchInfo, setMatchInfo] = useState<{

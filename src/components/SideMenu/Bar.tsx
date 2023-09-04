@@ -1,21 +1,14 @@
 import { FiChevronLeft, FiLock, FiUnlock } from "react-icons/fi";
 import { twMerge } from "tailwind-merge";
+import { useSideMenuContext } from ".";
 
-export type NavigationBarProps = {
+export type SideMenuBarProps = {
   children: React.ReactNode;
-  expanded: boolean;
-  pin: boolean;
-  setExpanded: React.Dispatch<React.SetStateAction<boolean>>;
-  setPin: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export default function NavigationBar({
-  children,
-  expanded,
-  pin,
-  setExpanded,
-  setPin,
-}: NavigationBarProps) {
+export default function SideMenuBar({ children }: SideMenuBarProps) {
+  const { expanded, pin, setExpanded, setPin } = useSideMenuContext();
+
   return (
     <div
       className={twMerge(

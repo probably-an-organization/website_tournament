@@ -18,7 +18,7 @@ import {
   useNotificationContext,
 } from "~src/hooks/context/useNotificationContext";
 import Input from "~src/components/Input";
-import NationalityBadge from "../../../NationalityBadge";
+import NationalityBadge from "../../NationalityBadge";
 import { handleAxiosError } from "~src/utils/axiosUtils";
 
 export enum TreeStyles {

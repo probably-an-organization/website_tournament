@@ -1,9 +1,9 @@
-import GroupSettings from "~src/components/Tournament/NewTournament/Type/Group";
-import KnockoutSettings from "~src/components/Tournament/NewTournament/Type/Knockout";
-import PreselectionSettings from "~src/components/Tournament/NewTournament/Type/Preselection";
-import SwissSettings from "~src/components/Tournament/NewTournament/Type/Swiss";
-import KnockoutTournament from "~src/components/Tournament/NewTournament/Type/Knockout";
-import PreselectionTournament from "~src/components/Tournament/NewTournament/Type/Preselection";
+import GroupSettings from "~src/components/Tournament/Create/Type/Group";
+import KnockoutSettings from "~src/components/Tournament/Create/Type/Knockout";
+import PreselectionSettings from "~src/components/Tournament/Create/Type/Preselection";
+import SwissSettings from "~src/components/Tournament/Create/Type/Swiss";
+import KnockoutTournament from "~src/components/Tournament/Create/Type/Knockout";
+import PreselectionTournament from "~src/components/Tournament/Create/Type/Preselection";
 
 export enum TournamentType {
   Group = "TournamentType.Group",

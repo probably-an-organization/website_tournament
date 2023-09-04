@@ -131,7 +131,7 @@ export default function TournamentsGridView({
               >
                 <TournamentsGridViewButton
                   className="relative shadow flex flex-col items-center dark:bg-neutral-800 dark:hover:bg-neutral-700"
-                  href={`/tournament/knockout/${t._id}`}
+                  href={`/tournament/${t._id}`}
                 >
                   <span className="font-semibold">{t.name}</span>
                   <span

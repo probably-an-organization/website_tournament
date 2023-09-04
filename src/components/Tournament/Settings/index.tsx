@@ -4,7 +4,7 @@ import { Button, Modal, Switch } from "@futshi/js_toolbox";
 import useAxios from "~src/hooks/useAxios";
 import ActionList from "~src/components/ActionList";
 
-export default function TournamentKnockoutSettings() {
+export default function TournamentSettings() {
   const [pub, setPub] = useState<boolean>(false);
 
   const [modal, setModal] = useState<boolean>(false);

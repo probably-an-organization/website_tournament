@@ -3,13 +3,13 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 import TournamentDetails from "~src/components/Tournament/Details";
-import KnockoutDetails from "~src/components/Tournament/Knockout/Details";
 import { useGlobalContext } from "~src/hooks/context/useGlobalContext";
 import {
   KnockoutTournamentContextProvider,
   useKnockoutTournamentContext,
 } from "~src/hooks/context/tournament/useKnockoutTournamentContext";
 import { handleAxiosError } from "~src/utils/axiosUtils";
+import Tournament from "~src/components/Tournament";
 
 export default function KnockoutPage() {
   return (
@@ -41,9 +41,11 @@ function KnockoutComponent() {
       {knockoutTournament && (
         <>
           {knockoutEditPermission ? (
-            <TournamentDetails type="knockout" />
+            <Tournament />
           ) : (
-            <KnockoutDetails />
+            <div className="p-3">
+              <TournamentDetails />
+            </div>
           )}
         </>
       )}

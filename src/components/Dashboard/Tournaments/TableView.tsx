@@ -18,18 +18,6 @@ type TableColumn = {
   updated: string;
 };
 
-const getHref = (row: TableColumn) => {
-  let href = "/tournament/";
-  switch (row.type) {
-    case "knockout":
-      href += "knockout";
-      break;
-    default:
-      throw Error("???");
-  }
-  return (href += `/${row.id}`);
-};
-
 const renderExpandComponent = (row: TableColumn) => {
   return (
     <pre style={{ fontSize: "10px" }}>
@@ -56,7 +44,9 @@ export default function TournamentsTableView({
           className="py-1 px-2 rounded bg-neutral-300 dark:hover:bg-orange-400 dark:hover:text-neutral-800 text-neutral-900 transition-colors cursor-pointer"
           onClick={(e) => {
             e.stopPropagation();
-            redirect(getHref(cell.row.original), { withLoading: true });
+            redirect(`/tournament/${cell.row.original.id}`, {
+              withLoading: true,
+            });
           }}
         >
           {cell.getValue() as string}

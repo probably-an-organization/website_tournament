@@ -105,7 +105,7 @@ export default function DashboardMenu() {
               onClick={() => setNotificationDropdown((prev) => !prev)}
             >
               <FiBell />
-              <div className="border dark:border-neutral-800 absolute pointer-events-none text-[8px] aspect-square right-0.5 top-0.5 py-px px-1 flex items-center justify-center rounded-lg bg-orange-500">
+              <div className="font-semibold border dark:border-neutral-800 absolute pointer-events-none text-[8px] aspect-square right-0.5 top-0.5 px-1 flex items-center justify-center rounded-lg bg-orange-500">
                 12
               </div>
             </PopoverTrigger>
