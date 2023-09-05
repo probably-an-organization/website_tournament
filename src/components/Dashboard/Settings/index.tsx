@@ -13,42 +13,94 @@ import { useGlobalContext } from "~src/hooks/context/useGlobalContext";
 import ActionList from "~src/components/ActionList";
 import { FiCamera } from "react-icons/fi";
 
+type ModalData = {
+  username: string;
+  email: string;
+  password: {
+    old: string;
+    new: string;
+    confirm: string;
+  };
+};
+
 type TournamentDashboardSettingsProps = {
   className?: string;
+};
+
+enum EditModal {
+  Username = "EditModal.Username",
+  Email = "EditModal.Email",
+  Password = "EditModal.Password",
+  Verification = "EditModal.Verification",
+}
+
+const DEFAULT_EDIT_MODAL_DATA = {
+  username: "",
+  email: "",
+  password: {
+    old: "",
+    new: "",
+    confirm: "",
+  },
+};
+
+const DEFAULT_SHOW_EDIT_MODAL = {
+  [EditModal.Username]: false,
+  [EditModal.Email]: false,
+  [EditModal.Password]: false,
+  [EditModal.Verification]: false,
 };
 
 export default function TournamentDashboardSettings({
   className,
 }: TournamentDashboardSettingsProps) {
   const [profileImage, setProfileImage] = useState<File>();
-  const [showPasswordModal, setShowPasswordModal] = useState<boolean>(false);
-  const [passwordModalData, setPasswordModalData] = useState<{
-    old: string;
-    new: string;
-    confirm: string;
-  }>({
-    old: "",
-    new: "",
-    confirm: "",
-  });
+  const [showEditModal, setShowEditModal] = useState<{
+    [key in EditModal]?: boolean;
+  }>(DEFAULT_SHOW_EDIT_MODAL);
+  const [editModalData, setEditModalData] = useState<ModalData>(
+    DEFAULT_EDIT_MODAL_DATA,
+  );
 
   const profileImageRef = useRef<HTMLInputElement>(null);
 
   const { tournament } = useGlobalContext();
 
-  const [editTournamentUser, setEditTournamentUser] = useState<{
-    username: string;
-    email: string;
-    verified: boolean;
-  }>(tournament.user ?? { username: "", email: "", verified: false });
+  const showModal = (key: string) => {
+    setShowEditModal({ ...DEFAULT_SHOW_EDIT_MODAL, [key]: true });
+  };
 
-  const handleInputChange = (data: object) => {
-    setEditTournamentUser((prev) => ({ ...prev!, ...data! }));
+  const closeModal = () => {
+    setShowEditModal(DEFAULT_SHOW_EDIT_MODAL);
+  };
+
+  const getModalHeader = () => {
+    let header;
+    Object.entries(showEditModal).some(([key, value]) => {
+      if (value) {
+        switch (key) {
+          case EditModal.Username:
+            header = "Change username";
+            break;
+          case EditModal.Email:
+            header = "Change email";
+            break;
+          case EditModal.Password:
+            header = "Change password";
+            break;
+          case EditModal.Verification:
+            header = "Verification";
+            break;
+        }
+        return;
+      }
+    });
+    return header;
   };
 
   return (
     <div className="p-3 flex flex-col gap-3">
-      {/* TODO modal: https://codesandbox.io/s/q8q1mnr01w */}
+      {/* TODO image crop modal: https://codesandbox.io/s/q8q1mnr01w */}
       <button
         className="relative group overflow-hidden w-24 h-24 rounded-full self-center"
         onClick={() => profileImageRef.current?.click()}
@@ -74,22 +126,26 @@ export default function TournamentDashboardSettings({
         items={[
           {
             title: "Username",
-            description: editTournamentUser.username,
+            description: tournament?.user?.username,
             actionComponent: (
-              <Button onClick={() => alert("TODO")}>Change username</Button>
+              <Button onClick={() => showModal(EditModal.Username)}>
+                Change username
+              </Button>
             ),
           },
           {
             title: "Email",
-            description: editTournamentUser.email,
+            description: tournament?.user?.email,
             actionComponent: (
-              <Button onClick={() => alert("TODO")}>Change email</Button>
+              <Button onClick={() => showModal(EditModal.Email)}>
+                Change email
+              </Button>
             ),
           },
           {
             title: "Password",
             actionComponent: (
-              <Button onClick={() => setShowPasswordModal(true)}>
+              <Button onClick={() => showModal(EditModal.Password)}>
                 Change password
               </Button>
             ),
@@ -97,63 +153,101 @@ export default function TournamentDashboardSettings({
           {
             title: "Verification",
             description: `Your account is ${
-              !editTournamentUser.verified && "not "
+              !tournament?.user?.verified && "not "
             }verified`,
             actionComponent: (
-              <Button onClick={() => alert("TODO")}>Verify account</Button>
+              <Button onClick={() => showModal(EditModal.Verification)}>
+                Verify account
+              </Button>
             ),
           },
         ]}
       />
 
-      <Modal show={showPasswordModal}>
+      <Modal show={Object.values(showEditModal).some((entry) => entry)}>
         <form
           onSubmit={(e) => {
             e.preventDefault();
             alert("TODO");
           }}
         >
-          <ModalHeader className="p-3">Change password</ModalHeader>
+          <ModalHeader className="p-3">{getModalHeader()}</ModalHeader>
           <ModalBody className="flex flex-col gap-3 p-3">
-            <FloatingInput
-              label="Old password"
-              onChange={(e) =>
-                setPasswordModalData((prev) => ({
-                  ...prev,
-                  old: e.target.value,
-                }))
-              }
-              type="password"
-              value={passwordModalData.old}
-            />
-            <FloatingInput
-              label="New password"
-              onChange={(e) =>
-                setPasswordModalData((prev) => ({
-                  ...prev,
-                  new: e.target.value,
-                }))
-              }
-              type="password"
-              value={passwordModalData.new}
-            />
-            <FloatingInput
-              label="Confirm new password"
-              onChange={(e) =>
-                setPasswordModalData((prev) => ({
-                  ...prev,
-                  confirm: e.target.value,
-                }))
-              }
-              type="password"
-              value={passwordModalData.confirm}
-            />
+            {showEditModal[EditModal.Username] && (
+              <FloatingInput
+                label="New username"
+                labelAlwaysTop
+                onChange={(e) =>
+                  setEditModalData((prev) => ({
+                    ...prev,
+                    username: e.target.value,
+                  }))
+                }
+                value={editModalData.username}
+              />
+            )}
+            {showEditModal[EditModal.Email] && (
+              <FloatingInput
+                label="New email"
+                labelAlwaysTop
+                onChange={(e) =>
+                  setEditModalData((prev) => ({
+                    ...prev,
+                    email: e.target.value,
+                  }))
+                }
+                value={editModalData.email}
+              />
+            )}
+            {showEditModal[EditModal.Password] && (
+              <>
+                <FloatingInput
+                  label="Old password"
+                  labelAlwaysTop
+                  onChange={(e) =>
+                    setEditModalData((prev) => ({
+                      ...prev,
+                      password: { ...prev.password, old: e.target.value },
+                    }))
+                  }
+                  type="password"
+                  value={editModalData.password.old}
+                />
+                <FloatingInput
+                  label="New password"
+                  labelAlwaysTop
+                  onChange={(e) =>
+                    setEditModalData((prev) => ({
+                      ...prev,
+                      password: { ...prev.password, new: e.target.value },
+                    }))
+                  }
+                  type="password"
+                  value={editModalData.password.new}
+                />
+                <FloatingInput
+                  label="Confirm new password"
+                  labelAlwaysTop
+                  onChange={(e) =>
+                    setEditModalData((prev) => ({
+                      ...prev,
+                      password: { ...prev.password, confirm: e.target.value },
+                    }))
+                  }
+                  type="password"
+                  value={editModalData.password.confirm}
+                />
+              </>
+            )}
+            {showEditModal[EditModal.Verification] && (
+              <p>
+                Click submit to resend verification (TODO LIST OF BENEFITS OF
+                BEING VERIFIED :P)
+              </p>
+            )}
           </ModalBody>
           <ModalFooter className="flex gap-2">
-            <Button
-              className="flex-1"
-              onClick={() => setShowPasswordModal(false)}
-            >
+            <Button className="flex-1" onClick={() => closeModal()}>
               Cancel
             </Button>
             <Button className="flex-1" type="submit">

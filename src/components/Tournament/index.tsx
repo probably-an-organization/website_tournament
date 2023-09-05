@@ -4,6 +4,7 @@ import { cloneElement, useState } from "react";
 import {
   FiChevronLeft,
   FiClipboard,
+  FiCodesandbox,
   FiMonitor,
   FiSettings,
 } from "react-icons/fi";
@@ -16,27 +17,42 @@ import SideMenuPage from "~src/components/SideMenu/Page";
 
 import TournamentSettings from "./Settings";
 import TournamentDetails from "./Details";
+import TournamentTest from "./Test";
+import TournamentBroadcast from "./Broadcast";
+
+enum Navigation {
+  Overview = "Navigation.Overview",
+  Settings = "Navigation.Settings",
+  Broadcast = "Navigation.Broadcast",
+  Test = "Navigation.Test",
+}
 
 const NAVIGATION_ITEMS: {
-  icon: React.ReactElement;
-  label: string;
-}[] = [
-  {
+  [key in Navigation]?: {
+    icon: React.ReactElement;
+    label: string;
+  };
+} = {
+  [Navigation.Overview]: {
     icon: <FiClipboard />,
     label: "Overview",
   },
-  {
+  [Navigation.Settings]: {
     icon: <FiSettings />,
     label: "Settings",
   },
-  {
+  [Navigation.Broadcast]: {
     icon: <FiMonitor />,
     label: "Broadcast",
   },
-];
+  [Navigation.Test]: {
+    icon: <FiCodesandbox />,
+    label: "Test",
+  },
+};
 
 export default function Tournament() {
-  const [navigation, setNavigation] = useState<number>(0);
+  const [navigation, setNavigation] = useState<Navigation>(Navigation.Overview);
 
   const { redirect, tournament } = useGlobalContext();
 
@@ -44,14 +60,17 @@ export default function Tournament() {
     <SideMenu>
       <SideMenuBar>
         <ul className="-mx-3 flex flex-col gap-2 overflow-hidden">
-          {NAVIGATION_ITEMS.map((n, i) => (
+          {Object.entries(NAVIGATION_ITEMS).map(([key, value], i) => (
             <li className="float-left flex" key={`navigation-item-${i}`}>
-              <button className="flex-1 px-3" onClick={() => setNavigation(i)}>
+              <button
+                className="flex-1 px-3"
+                onClick={() => setNavigation(key as Navigation)}
+              >
                 <div className="group flex items-center gap-2 px-2 py-1 rounded transition-colors">
-                  {cloneElement(n.icon, {
+                  {cloneElement(value.icon, {
                     className: twMerge(
                       "w-12 -ml-3 transition-colors",
-                      navigation === i
+                      navigation === key
                         ? "stroke-neutral-50"
                         : "stroke-neutral-500 group-hover:stroke-neutral-100",
                     ),
@@ -60,12 +79,12 @@ export default function Tournament() {
                   <span
                     className={twMerge(
                       "text-sm transition-colors",
-                      navigation === i
+                      navigation === key
                         ? "text-neutral-50"
                         : "text-neutral-500 group-hover:text-neutral-100",
                     )}
                   >
-                    {n.label}
+                    {value.label}
                   </span>
                 </div>
               </button>
@@ -93,9 +112,10 @@ export default function Tournament() {
             </div>
           </div>
 
-          {navigation === 0 && <TournamentDetails />}
-          {navigation === 1 && <TournamentSettings />}
-          {navigation === 2 && <div>Todo</div>}
+          {navigation === Navigation.Overview && <TournamentDetails />}
+          {navigation === Navigation.Settings && <TournamentSettings />}
+          {navigation === Navigation.Broadcast && <TournamentBroadcast />}
+          {navigation === Navigation.Test && <TournamentTest />}
         </div>
       </SideMenuPage>
     </SideMenu>
