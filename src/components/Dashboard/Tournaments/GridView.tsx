@@ -87,7 +87,7 @@ export default function TournamentsGridView({
                 Filter
               </Button>
             </PopoverTrigger>
-            <PopoverContent className="p-3 rounded shadow dark:bg-neutral-900 flex flex-wrap gap-3">
+            <PopoverContent className="p-3 rounded shadow bg-black bg-opacity-75 backdrop-blur flex flex-wrap gap-3">
               {Object.entries(gridFilter.types).map(([key, value], i) => (
                 <button
                   key={`tournament-type-${i}`}

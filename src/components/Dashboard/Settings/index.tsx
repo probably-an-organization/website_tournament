@@ -1,5 +1,4 @@
 import { useRef, useState } from "react";
-
 import {
   Button,
   Modal,
@@ -7,11 +6,12 @@ import {
   ModalFooter,
   ModalHeader,
 } from "@futshi/js_toolbox";
+import { FiCamera } from "react-icons/fi";
 
 import FloatingInput from "~src/components/FloatingInput";
 import { useGlobalContext } from "~src/hooks/context/useGlobalContext";
 import ActionList from "~src/components/ActionList";
-import { FiCamera } from "react-icons/fi";
+import { EditModal } from "~src/constants/tournament/SETTINGS";
 
 type ModalData = {
   username: string;
@@ -22,17 +22,6 @@ type ModalData = {
     confirm: string;
   };
 };
-
-type TournamentDashboardSettingsProps = {
-  className?: string;
-};
-
-enum EditModal {
-  Username = "EditModal.Username",
-  Email = "EditModal.Email",
-  Password = "EditModal.Password",
-  Verification = "EditModal.Verification",
-}
 
 const DEFAULT_EDIT_MODAL_DATA = {
   username: "",
@@ -49,6 +38,10 @@ const DEFAULT_SHOW_EDIT_MODAL = {
   [EditModal.Email]: false,
   [EditModal.Password]: false,
   [EditModal.Verification]: false,
+};
+
+type TournamentDashboardSettingsProps = {
+  className?: string;
 };
 
 export default function TournamentDashboardSettings({
@@ -250,7 +243,7 @@ export default function TournamentDashboardSettings({
             <Button className="flex-1" onClick={() => closeModal()}>
               Cancel
             </Button>
-            <Button className="flex-1" type="submit">
+            <Button className="flex-1 dark:bg-orange-500" type="submit">
               Submit
             </Button>
           </ModalFooter>

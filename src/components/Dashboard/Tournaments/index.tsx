@@ -1,4 +1,5 @@
 import { useDashboardContext } from "~src/hooks/context/tournament/useDashboardContext";
+import { TournamentView } from "~src/constants/tournament/VIEW";
 
 import TournamentsTableView from "./TableView";
 import TournamentsGridView from "./GridView";
@@ -10,8 +11,12 @@ export default function TournamentDashboardTournaments() {
   return (
     <div className="relative flex-1">
       <TournamentsViewSelector />
-      {tournamentsView === "grid" && <TournamentsGridView className="p-3" />}
-      {tournamentsView === "table" && <TournamentsTableView className="p-3" />}
+      {tournamentsView === TournamentView.Grid && (
+        <TournamentsGridView className="p-3" />
+      )}
+      {tournamentsView === TournamentView.Table && (
+        <TournamentsTableView className="p-3" />
+      )}
     </div>
   );
 }

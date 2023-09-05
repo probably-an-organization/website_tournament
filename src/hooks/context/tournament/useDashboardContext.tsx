@@ -4,6 +4,7 @@ import React, { createContext, useContext, useState } from "react";
 import { DashboardSection } from "~src/constants/tournament/DASHBOARD";
 
 import { TournamentTypes } from "~src/constants/tournament/TYPES";
+import { TournamentView } from "~src/constants/tournament/VIEW";
 
 type GridFilter = {
   string: string;
@@ -32,8 +33,8 @@ type DashboardContextProps = {
   setGridFilter: React.Dispatch<React.SetStateAction<GridFilter>>;
   section: DashboardSection;
   setSection: React.Dispatch<React.SetStateAction<DashboardSection>>;
-  setTournamentsView: React.Dispatch<React.SetStateAction<"grid" | "table">>;
-  tournamentsView: "grid" | "table";
+  setTournamentsView: React.Dispatch<React.SetStateAction<TournamentView>>;
+  tournamentsView: TournamentView;
 };
 
 const DashboardContext = createContext<DashboardContextProps>(
@@ -54,8 +55,8 @@ export const DashboardContextProvider = ({
   const [section, setSection] = useState<DashboardSection>(
     DashboardSection.Home,
   );
-  const [tournamentsView, setTournamentsView] = useState<"grid" | "table">(
-    "grid",
+  const [tournamentsView, setTournamentsView] = useState<TournamentView>(
+    TournamentView.Grid,
   );
   const [gridFilter, setGridFilter] = useState<GridFilter>({
     string: "",
