@@ -148,7 +148,7 @@ export default function Calendar({ className, limits }: CalendarProps) {
         .filter((e) => isSameDay(e.date, date))
         .sort((a, b) => (isBefore(a.date, b.date) ? -1 : 1)),
     );
-  }, [date.getDate()]);
+  }, [date]);
 
   return (
     <>
