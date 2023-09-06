@@ -16,7 +16,7 @@ import useAxios from "~src/hooks/useAxios";
 import {
   NotificationType,
   useNotificationContext,
-} from "~src/hooks/context/useNotificationContext";
+} from "~src/hooks/context/_global/useNotificationContext";
 import Input from "~src/components/Input";
 import NationalityBadge from "../../NationalityBadge";
 import { handleAxiosError } from "~src/utils/axiosUtils";

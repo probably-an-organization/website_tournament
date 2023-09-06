@@ -1,7 +1,5 @@
 import { Card } from "@futshi/js_toolbox";
 
-const DUMMY_DATA = {};
-
 export default function TournamentTest() {
   return (
     <div>

@@ -23,7 +23,7 @@ export default function DashboardMenu() {
     useState<boolean>(false);
   const [userDropdown, setUserDropdown] = useState<boolean>(false);
 
-  const { redirect, setTournament, tournament } = useGlobalContext();
+  const { redirect, setUser, user } = useGlobalContext();
 
   const { section, setSection } = useDashboardContext();
   const { get } = useAxios();
@@ -34,7 +34,7 @@ export default function DashboardMenu() {
         withCredentials: true,
       });
       if (status === 200) {
-        setTournament((prev) => ({ ...prev, signedIn: false }));
+        setUser((prev) => ({ ...prev, signedIn: false }));
         redirect("/", { withLoading: true });
       }
     }
@@ -139,7 +139,7 @@ export default function DashboardMenu() {
               <div className="overflow-hidden rounded-full h-6 w-6 border">
                 <img src="/profile_dummy.jpg" />
               </div>
-              <span>{tournament.user?.username}</span>
+              <span>{user?.data?.username}</span>
               <FiChevronDown
                 className={twMerge(
                   "transition-transform",

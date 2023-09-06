@@ -3,11 +3,11 @@
 import { motion } from "framer-motion";
 import { Card } from "@futshi/js_toolbox";
 
-import { useTournamentContext } from "~src/hooks/context/tournament/useTournamentContext";
+import { useNewTournamentContext } from "~src/hooks/context/tournament/useNewTournamentContext";
 import { TournamentTypes } from "~src/constants/tournament/TYPES";
 
 export default function NewTournamentTournamentSettings() {
-  const { newTournament } = useTournamentContext();
+  const { newTournament } = useNewTournamentContext();
 
   return (
     <motion.div

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { useTournamentContext } from "~src/hooks/context/tournament/useTournamentContext";
+import { useNewTournamentContext } from "~src/hooks/context/tournament/useNewTournamentContext";
 import InputSlider from "~src/components/InputSlider";
 
 const PARTICIPANT_COUNT_STEPS = [8, 16, 32, 64];
@@ -9,7 +9,7 @@ export default function NewTournamentTypeKnockout() {
   const [participantsSlideIndex, setParticipantsSlideIndex] =
     useState<number>(-1);
 
-  const { setNewTournament, newTournament } = useTournamentContext();
+  const { setNewTournament, newTournament } = useNewTournamentContext();
 
   useEffect(() => {
     let newParticipantSlideIndex = 0;

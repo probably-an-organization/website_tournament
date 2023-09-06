@@ -3,12 +3,12 @@ import { FiCamera, FiX } from "react-icons/fi";
 import { motion } from "framer-motion";
 import { Card } from "@futshi/js_toolbox";
 
-import { useTournamentContext } from "~src/hooks/context/tournament/useTournamentContext";
+import { useNewTournamentContext } from "~src/hooks/context/tournament/useNewTournamentContext";
 import FloatingInput from "~src/components/FloatingInput";
 import {
   NotificationType,
   useNotificationContext,
-} from "~src/hooks/context/useNotificationContext";
+} from "~src/hooks/context/_global/useNotificationContext";
 import { twMerge } from "tailwind-merge";
 const MAX_CHARACTERS = 256;
 
@@ -26,7 +26,7 @@ const readURL = (file: File): Promise<string> => {
 export default function NewTournamentGeneral() {
   const [logoUrl, setLogoUrl] = useState<string | null>(null);
 
-  const { setNewTournament, newTournament } = useTournamentContext();
+  const { setNewTournament, newTournament } = useNewTournamentContext();
   const notification = useNotificationContext();
 
   const logoInputRef = useRef<HTMLInputElement>(null);

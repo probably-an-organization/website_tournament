@@ -31,18 +31,18 @@ export default function TournamentsGridView({
   const [filterMenu, setFilterMenu] = useState<boolean>(false);
 
   const { gridFilter, setGridFilter } = useDashboardContext();
-  const { tournament } = useGlobalContext();
+  const { user } = useGlobalContext();
 
   const gridFilterTournaments = useMemo(
     () =>
-      tournament.tournaments.filter(
+      user.tournaments.filter(
         (t) =>
           gridFilter.types[t.type]?.active &&
           Object.values(t).some((v) =>
             String(v).toLowerCase().includes(gridFilter.string.toLowerCase()),
           ),
       ),
-    [gridFilter, tournament.tournaments],
+    [gridFilter, user.tournaments],
   );
 
   const handleGridFilter = async (

@@ -54,7 +54,7 @@ const NAVIGATION_ITEMS: {
 export default function Tournament() {
   const [navigation, setNavigation] = useState<Navigation>(Navigation.Overview);
 
-  const { redirect, tournament } = useGlobalContext();
+  const { redirect, user } = useGlobalContext();
 
   return (
     <SideMenu>
@@ -100,12 +100,12 @@ export default function Tournament() {
               <button
                 className="flex items-center gap-1 rounded bg-neutral-500 py-1 pl-1 pr-2 transition-colorsTransform hover:scale-102.5 hover:bg-neutral-400"
                 onClick={() =>
-                  redirect(tournament.signedIn ? "/dashboard" : "/", {
+                  redirect(user.signedIn ? "/dashboard" : "/", {
                     withLoading: true,
                   })
                 }
               >
-                {tournament.signedIn
+                {user.signedIn
                   ? [<FiChevronLeft />, <span>Dashboard</span>]
                   : [<FiChevronLeft />, <span>Sign In</span>]}
               </button>

@@ -11,7 +11,7 @@ import { FiPlus } from "react-icons/fi";
 import { Card } from "@futshi/js_toolbox";
 
 import ParticipantsListItem from "./ParticipantsListItem";
-import { useTournamentContext } from "~src/hooks/context/tournament/useTournamentContext";
+import { useNewTournamentContext } from "~src/hooks/context/tournament/useNewTournamentContext";
 
 const GUTTER_SIZE = 10;
 const ITEM_SIZE = 35;
@@ -67,7 +67,7 @@ type HeaderRowProps = {
 };
 
 const HeaderRow = ({ style }: HeaderRowProps) => {
-  const { newTournament } = useTournamentContext();
+  const { newTournament } = useNewTournamentContext();
 
   return (
     <div
@@ -143,7 +143,7 @@ const StickyList = forwardRef(function StickyList(
 let previousParticipantsShow = -1;
 
 export default function NewTournamentParticipants() {
-  const { newTournament, setNewTournament } = useTournamentContext();
+  const { newTournament, setNewTournament } = useNewTournamentContext();
 
   const listRef = useRef<FixedSizeList>(null);
 

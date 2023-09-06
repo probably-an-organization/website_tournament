@@ -6,12 +6,12 @@ import {
   TournamentType,
   TournamentTypes,
 } from "~src/constants/tournament/TYPES";
-import { useTournamentContext } from "~src/hooks/context/tournament/useTournamentContext";
+import { useNewTournamentContext } from "~src/hooks/context/tournament/useNewTournamentContext";
 import { twMerge } from "tailwind-merge";
 import { FiInfo } from "react-icons/fi";
 export default function NewTournamentTournamentType() {
   const [helpModal, setHelpModal] = useState<TournamentType | null>(null);
-  const { newTournament, setNewTournament } = useTournamentContext();
+  const { newTournament, setNewTournament } = useNewTournamentContext();
 
   useEffect(() => {
     setNewTournament((prev) => ({

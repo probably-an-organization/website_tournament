@@ -14,7 +14,7 @@ import { useGlobalContext } from "~src/hooks/context/useGlobalContext";
 import {
   NotificationType,
   useNotificationContext,
-} from "~src/hooks/context/useNotificationContext";
+} from "~src/hooks/context/_global/useNotificationContext";
 import useAxios from "~src/hooks/useAxios";
 
 type AuthenticationMode = "login" | "register";
@@ -48,7 +48,7 @@ export default function TournamentLoginPage(
 ) {
   const [mode, setMode] = useState<AuthenticationMode>("login");
 
-  const { loading, redirect, setTournament, tournament } = useGlobalContext();
+  const { redirect, setUser, user } = useGlobalContext();
   const notification = useNotificationContext();
 
   const {
@@ -80,10 +80,10 @@ export default function TournamentLoginPage(
   }, [mode]);
 
   useEffect(() => {
-    if (tournament.signedIn) {
+    if (user.signedIn) {
       redirect("/dashboard", { withLoading: true });
     }
-  }, [tournament.signedIn]);
+  }, [user.signedIn]);
 
   const onSubmit = async (credentials: { email: string; password: string }) => {
     try {
@@ -95,7 +95,7 @@ export default function TournamentLoginPage(
         }>("/login", credentials, {
           withCredentials: true,
         });
-        setTournament((prev) => ({
+        setUser((prev) => ({
           ...prev,
           signedIn: true,
           user: data,
@@ -125,7 +125,7 @@ export default function TournamentLoginPage(
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="h-full w-full">
-        {tournament.signedIn === false && (
+        {user.signedIn === false && (
           <div className="flex h-full w-full items-center justify-center">
             <Card className="w-full max-w-sm p-3">
               <form

@@ -2,7 +2,7 @@ import { FiTrash2 } from "react-icons/fi";
 
 import NationalityBadgeSelector from "../../NationalityBadgeSelector";
 import Input from "~src/components/Input";
-import { useTournamentContext } from "~src/hooks/context/tournament/useTournamentContext";
+import { useNewTournamentContext } from "~src/hooks/context/tournament/useNewTournamentContext";
 import type { Participant } from "~src/types/tournament";
 
 export type CreateDancerListItemProps = {
@@ -10,7 +10,7 @@ export type CreateDancerListItemProps = {
 };
 
 function ParticipantsListItem({ index }: CreateDancerListItemProps) {
-  const { setNewTournament, newTournament } = useTournamentContext();
+  const { setNewTournament, newTournament } = useNewTournamentContext();
 
   const handleChange = (data: { [key: string]: string }) => {
     setNewTournament((prev) => {

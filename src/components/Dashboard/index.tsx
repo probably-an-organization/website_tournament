@@ -25,12 +25,12 @@ export default function Dashboard() {
 }
 
 function DashboardComponent() {
-  const { redirect, setTournament, tournament } = useGlobalContext();
+  const { redirect, setUser, user } = useGlobalContext();
   const { section } = useDashboardContext();
   const { get } = useAxios();
 
   useEffect(() => {
-    if (!tournament.signedIn) {
+    if (!user.signedIn) {
       redirect("/", { withLoading: true });
       return;
     }
@@ -39,7 +39,7 @@ function DashboardComponent() {
       const { data } = await get<Tournament[]>("/tournaments-user", {
         withCredentials: true,
       });
-      setTournament((prev) => ({
+      setUser((prev) => ({
         ...prev,
         tournaments: data as Tournament[],
       }));
@@ -47,15 +47,15 @@ function DashboardComponent() {
 
     fetchTournaments().catch((err) =>
       handleAxiosError(err, {
-        401: () => setTournament((prev) => ({ ...prev, signedIn: false })),
+        401: () => setUser((prev) => ({ ...prev, signedIn: false })),
         429: () => alert("TOO MANY REQUESTS TODO"),
       }),
     );
-  }, [tournament.signedIn]);
+  }, [user.signedIn]);
 
   return (
     <>
-      {tournament.signedIn && (
+      {user.signedIn && (
         <>
           <DashboardMenu />
           <div className="flex justify-center">

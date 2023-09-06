@@ -1,29 +1,30 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-
-import { NotificationContextProvider } from "./useNotificationContext";
-import { ThemeContextProvider } from "./useThemeContext";
-import useAxios from "../useAxios";
-import { type Tournament } from "~src/types/tournament";
 import { useRouter } from "next/router";
-import { handleAxiosError } from "~src/utils/axiosUtils";
+import { AnimatePresence, motion } from "framer-motion";
 import { Spinner } from "@futshi/js_toolbox";
+
+import { type Tournament } from "~src/types/tournament";
+import { handleAxiosError } from "~src/utils/axiosUtils";
+
+import useAxios from "../useAxios";
+import { NotificationContextProvider } from "./_global/useNotificationContext";
+import { ThemeContextProvider } from "./_global/useThemeContext";
 
 type RedirectOptions = {
   withLoading?: boolean;
 };
 
-type TournamentUser = {
+type UserData = {
   email: string;
   username: string;
   verified: boolean;
 };
 
-type TournamentContext = {
+type UserContext = {
   // authenticating: boolean // basically loading flag
   signedIn?: boolean;
   tournaments: Tournament[];
-  user?: TournamentUser;
+  data?: UserData;
 };
 
 /* CONTEXT */
@@ -31,16 +32,16 @@ type GlobalContextProps = {
   loading: boolean;
   redirect(path: string, options?: RedirectOptions): void;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
-  setTournament: React.Dispatch<React.SetStateAction<TournamentContext>>;
-  tournament: TournamentContext;
+  setUser: React.Dispatch<React.SetStateAction<UserContext>>;
+  user: UserContext;
 };
 
 const GlobalContext = createContext<GlobalContextProps>({
   loading: false,
   redirect: () => undefined,
   setLoading: () => undefined,
-  setTournament: () => undefined,
-  tournament: { signedIn: undefined, tournaments: [] },
+  setUser: () => undefined,
+  user: { signedIn: undefined, tournaments: [] },
 });
 
 /* HOOK */
@@ -55,7 +56,7 @@ export default function GlobalContextProvider({
   children,
 }: GlobalContextProviderProps) {
   const [loading, setLoading] = useState<boolean>(false);
-  const [tournament, setTournament] = useState<TournamentContext>({
+  const [user, setUser] = useState<UserContext>({
     // authenticating: true
     signedIn: undefined,
     tournaments: [],
@@ -66,13 +67,10 @@ export default function GlobalContextProvider({
 
   useEffect(() => {
     const checkUserAlreadyLoggedIn = async () => {
-      const { data, status } = await get<TournamentUser>(
-        "/login-verification",
-        {
-          withCredentials: true,
-        },
-      );
-      setTournament((prev) => ({
+      const { data, status } = await get<UserData>("/login-verification", {
+        withCredentials: true,
+      });
+      setUser((prev) => ({
         ...prev,
         signedIn: true,
         user: data,
@@ -81,7 +79,7 @@ export default function GlobalContextProvider({
 
     checkUserAlreadyLoggedIn().catch((err) =>
       handleAxiosError(err, {
-        401: () => setTournament((prev) => ({ ...prev, signedIn: false })),
+        401: () => setUser((prev) => ({ ...prev, signedIn: false })),
         default: () => console.error(err),
       }),
     );
@@ -99,27 +97,17 @@ export default function GlobalContextProvider({
 
   return (
     <GlobalContext.Provider
-      value={{ loading, redirect, setLoading, setTournament, tournament }}
+      value={{
+        loading,
+        redirect,
+        setLoading,
+        setUser,
+        user,
+      }}
     >
-      <GlobalContextComponent>
-        <ThemeContextProvider>
-          <NotificationContextProvider>{children}</NotificationContextProvider>
-        </ThemeContextProvider>
-      </GlobalContextComponent>
-    </GlobalContext.Provider>
-  );
-}
-
-type GlobalContextComponent = {
-  children: React.ReactNode;
-};
-
-function GlobalContextComponent({ children }: GlobalContextComponent) {
-  const { loading } = useGlobalContext();
-
-  return (
-    <>
-      {children}
+      <ThemeContextProvider>
+        <NotificationContextProvider>{children}</NotificationContextProvider>
+      </ThemeContextProvider>
 
       <AnimatePresence>
         {loading && (
@@ -133,6 +121,6 @@ function GlobalContextComponent({ children }: GlobalContextComponent) {
           </motion.div>
         )}
       </AnimatePresence>
-    </>
+    </GlobalContext.Provider>
   );
 }

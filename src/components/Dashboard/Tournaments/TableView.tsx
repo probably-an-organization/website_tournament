@@ -33,7 +33,7 @@ type TournamentsTableViewProps = {
 export default function TournamentsTableView({
   className,
 }: TournamentsTableViewProps) {
-  const { redirect, tournament } = useGlobalContext();
+  const { redirect, user } = useGlobalContext();
 
   const columns: ColumnDef<TableColumn>[] = [
     {
@@ -113,7 +113,7 @@ export default function TournamentsTableView({
 
   const modifiedTournaments: TableColumn[] = useMemo(
     () =>
-      tournament.tournaments.map((t) => ({
+      user.tournaments.map((t) => ({
         id: t._id,
         name: t.name,
         participants: t.participants,
@@ -122,7 +122,7 @@ export default function TournamentsTableView({
         created: t.created,
         updated: t.updated,
       })),
-    [tournament.tournaments],
+    [user.tournaments],
   );
 
   return (
