@@ -3,9 +3,9 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { motion } from "framer-motion";
-
-import type { SidebarLink } from "~src/constants/SIDEBAR";
 import { twMerge } from "tailwind-merge";
+
+import { MenuItemLink } from "./Menu";
 
 const MENU_ITEM_ANIMATION_VARIANTS = {
   open: {
@@ -26,7 +26,7 @@ const MENU_ITEM_ANIMATION_VARIANTS = {
 
 type MenuItemProps = {
   index: number;
-  link: SidebarLink;
+  link: MenuItemLink;
 };
 
 export default function MenuItem({ link }: MenuItemProps) {

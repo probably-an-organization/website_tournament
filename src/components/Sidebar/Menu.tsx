@@ -2,7 +2,18 @@ import * as React from "react";
 import { motion } from "framer-motion";
 import MenuItem from "./MenuItem";
 
-import { SIDEBAR_LINKS } from "~src/constants/SIDEBAR";
+export type MenuItemLink = {
+  className: string;
+  href: string;
+  icon: {
+    component: React.ReactNode;
+    fill: boolean;
+    stroke: boolean;
+  };
+  label: string;
+};
+
+const SIDEBAR_LINKS: MenuItemLink[] = [];
 
 const MENU_ANIMATION_VARIANTS = {
   open: {
@@ -13,13 +24,6 @@ const MENU_ANIMATION_VARIANTS = {
   },
 };
 
-const GET_SIDEBAR_LINKS = () => {
-  if (process.env.NODE_ENV === "production") {
-    return SIDEBAR_LINKS.filter((link) => link.production);
-  }
-  return SIDEBAR_LINKS;
-};
-
 type MenuProps = {
   className?: string;
 };
@@ -28,7 +32,7 @@ export default function Menu({ className }: MenuProps) {
   return (
     <nav>
       <motion.ul className={className} variants={MENU_ANIMATION_VARIANTS}>
-        {GET_SIDEBAR_LINKS().map((link, i) => (
+        {SIDEBAR_LINKS.map((link, i) => (
           <MenuItem key={`link-${i}`} index={i} link={link} />
         ))}
       </motion.ul>

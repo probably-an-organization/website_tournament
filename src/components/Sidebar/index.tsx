@@ -6,7 +6,8 @@ import { FiMoon, FiSun } from "react-icons/fi";
 import MenuIcon from "./MenuIcon";
 import Menu from "./Menu";
 import HoverButton from "../HoverButton";
-import { useThemeContext } from "~src/hooks/context/useThemeContext";
+
+import { useThemeContext } from "~src/hooks/context/_global/useThemeContext";
 
 const SIDEBAR_ANIMATION_VARIANTS = {
   open: (height = 1000) => ({

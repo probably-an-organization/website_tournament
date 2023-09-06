@@ -34,7 +34,7 @@ This examples shows how to use Docker with Next.js based on the [deployment docu
 ## Using Docker
 
 1. [Install Docker](https://docs.docker.com/get-docker/) on your machine.
-1. Build your container: `docker build -t website-tournament .`.
+1. Build your container: `docker build . -t website_tournament --build-arg GITHUB_TOKEN=enter-token-here`.
 1. Run your container: `docker run -p 3000:3000 website-tournament`.
 
 You can view your images created with `docker images`.
@@ -52,7 +52,3 @@ module.exports = {
 ```
 
 This will build the project as a standalone app inside the Docker image.
-
-## To-Do
-
-[Private npm package access token](https://stackoverflow.com/questions/68165465/install-private-package-in-docker-with-authentication)

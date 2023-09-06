@@ -57,7 +57,7 @@ export default function TournamentDashboardSettings({
 
   const profileImageRef = useRef<HTMLInputElement>(null);
 
-  const { tournament } = useGlobalContext();
+  const { user } = useGlobalContext();
 
   const showModal = (key: string) => {
     setShowEditModal({ ...DEFAULT_SHOW_EDIT_MODAL, [key]: true });
@@ -119,7 +119,7 @@ export default function TournamentDashboardSettings({
         items={[
           {
             title: "Username",
-            description: tournament?.user?.username,
+            description: user?.data?.username,
             actionComponent: (
               <Button onClick={() => showModal(EditModal.Username)}>
                 Change username
@@ -128,7 +128,7 @@ export default function TournamentDashboardSettings({
           },
           {
             title: "Email",
-            description: tournament?.user?.email,
+            description: user?.data?.email,
             actionComponent: (
               <Button onClick={() => showModal(EditModal.Email)}>
                 Change email
@@ -146,7 +146,7 @@ export default function TournamentDashboardSettings({
           {
             title: "Verification",
             description: `Your account is ${
-              !tournament?.user?.verified && "not "
+              !user?.data?.verified && "not "
             }verified`,
             actionComponent: (
               <Button onClick={() => showModal(EditModal.Verification)}>
