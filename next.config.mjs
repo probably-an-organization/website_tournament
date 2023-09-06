@@ -24,7 +24,7 @@ const nextConfig = {
   output: "standalone",
   // pageExtensions: ["active.tsx"],
   reactStrictMode: true,
-  swcMinify: true,
+  // swcMinify: true,
   typescript: {
     tsconfigPath,
   },

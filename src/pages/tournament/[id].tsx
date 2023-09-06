@@ -11,15 +11,7 @@ import {
 import { handleAxiosError } from "~src/utils/axiosUtils";
 import Tournament from "~src/components/Tournament";
 
-export default function KnockoutPage() {
-  return (
-    <KnockoutTournamentContextProvider>
-      <KnockoutComponent />
-    </KnockoutTournamentContextProvider>
-  );
-}
-
-function KnockoutComponent() {
+export default function TournamentPage() {
   const router = useRouter();
   const { redirect } = useGlobalContext();
   const { fetchKnockout, knockoutTournament, knockoutEditPermission } =
@@ -39,7 +31,7 @@ function KnockoutComponent() {
     <>
       <Head>{/* TODO */}</Head>
       {knockoutTournament && (
-        <>
+        <KnockoutTournamentContextProvider>
           {knockoutEditPermission ? (
             <Tournament />
           ) : (
@@ -47,7 +39,7 @@ function KnockoutComponent() {
               <TournamentDetails />
             </div>
           )}
-        </>
+        </KnockoutTournamentContextProvider>
       )}
     </>
   );

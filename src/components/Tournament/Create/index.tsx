@@ -28,7 +28,7 @@ import {
 import { TournamentTypes } from "~src/constants/tournament/TYPES";
 import { useGlobalContext } from "~src/hooks/context/useGlobalContext";
 
-export default function NewTournament() {
+export default function TournamentCreate() {
   const [slide, setSlide] = useState<number>(0);
 
   const { redirect } = useGlobalContext();
@@ -167,14 +167,14 @@ export default function NewTournament() {
           </HoverTrigger>
           <HoverContent className="rounded bg-black bg-opacity-75 p-2 backdrop-blur">
             <div>
-              <span>{newTournament.type}</span>
+              <span>{newTournament?.type || "???"}</span>
             </div>
             <div>
               <div>Participants</div>
-              <div>{newTournament.participants.list.length}</div>
-              <div>min {newTournament.participants.min}</div>
-              <div>max {newTournament.participants.max}</div>
-              <div>show {newTournament.participants.show}</div>
+              <div>{newTournament?.participants.list.length}</div>
+              <div>min {newTournament?.participants.min}</div>
+              <div>max {newTournament?.participants.max}</div>
+              <div>show {newTournament?.participants.show}</div>
             </div>
           </HoverContent>
         </Hover>
