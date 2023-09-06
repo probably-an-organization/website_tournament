@@ -20,9 +20,11 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  output: "export", // static export (NOT WORKING WITH SOCKET.IO)
+  /* output ... export = static (not working with socket.io), standalone = ??? (docker) */
+  output: "standalone",
   // pageExtensions: ["active.tsx"],
   reactStrictMode: true,
+  swcMinify: true,
   typescript: {
     tsconfigPath,
   },

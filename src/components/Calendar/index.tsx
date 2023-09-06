@@ -208,6 +208,9 @@ export default function Calendar({ className, limits }: CalendarProps) {
                                 isSameDay(calendarDay.date, date)
                                   ? "dark:text-orange-500"
                                   : "",
+                                isSameDay(calendarDay.date, Date.now())
+                                  ? "font-bold"
+                                  : "",
                               )}
                             >
                               {calendarDay.date.getDate()}
