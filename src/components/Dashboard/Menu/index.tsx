@@ -40,6 +40,8 @@ export default function DashboardMenu() {
     }
   };
 
+  console.log(user);
+
   return (
     <div className="z-10 min-w-fit bg-neutral-800 shadow flex justify-center">
       <div className="flex w-full h-full max-w-5xl justify-between gap-2 p-2">

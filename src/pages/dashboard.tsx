@@ -10,7 +10,7 @@ export default function TournamentDashboardPage() {
         <meta name="description" content="Playground" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Dashboard />
+      <Dashboard />;
     </>
   );
 }

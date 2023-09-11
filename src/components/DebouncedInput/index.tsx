@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Input from "../Input";
+import { Input } from "@futshi/js_toolbox";
 
 type DebouncedInputType = {
   debounce?: number;

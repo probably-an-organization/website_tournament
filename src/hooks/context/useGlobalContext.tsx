@@ -73,7 +73,7 @@ export default function GlobalContextProvider({
       setUser((prev) => ({
         ...prev,
         signedIn: true,
-        user: data,
+        data: data,
       }));
     };
 

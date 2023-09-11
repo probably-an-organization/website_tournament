@@ -5,21 +5,22 @@ import {
 import { FiAward } from "react-icons/fi";
 import { twMerge } from "tailwind-merge";
 
+import { Button, Input, Modal } from "@futshi/js_toolbox";
+
 import { useKnockoutTournamentContext } from "~src/hooks/context/tournament/useKnockoutTournamentContext";
-import KnockoutSVGTreeCentered from "./Centered";
-import KnockoutSVGTreeTop from "./Top";
 import useFullscreen from "~src/hooks/useFullscreen";
 import { KnockoutMatch, KnockoutTournament } from "~src/types/tournament";
 import { getStageLabel } from "~src/utils/tournamentUtils";
-import { Button, Modal } from "@futshi/js_toolbox";
 import useAxios from "~src/hooks/useAxios";
 import {
   NotificationType,
   useNotificationContext,
 } from "~src/hooks/context/_global/useNotificationContext";
-import Input from "~src/components/Input";
-import NationalityBadge from "../../NationalityBadge";
 import { handleAxiosError } from "~src/utils/axiosUtils";
+
+import NationalityBadge from "../../NationalityBadge";
+import KnockoutSVGTreeTop from "./Top";
+import KnockoutSVGTreeCentered from "./Centered";
 
 export enum TreeStyles {
   Top = "TreeStyles.Top",
@@ -289,7 +290,7 @@ export default function KnockoutSVGTree({
               <label>Information</label>
               <Input
                 className="w-full"
-                onChange={(e) =>
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setEditKnockoutMatch(
                     (prev) =>
                       ({

@@ -1,16 +1,15 @@
 import type { Table } from "@tanstack/react-table";
-
 import {
   FiSkipBack,
   FiChevronLeft,
   FiChevronRight,
   FiSkipForward,
 } from "react-icons/fi";
-
-import { Button } from "@futshi/js_toolbox";
-import Select from "../Select";
-import Input from "../Input";
 import { twMerge } from "tailwind-merge";
+
+import { Button, Input } from "@futshi/js_toolbox";
+
+import Select from "../Select";
 
 export type TableNavigationProps = {
   className?: string;

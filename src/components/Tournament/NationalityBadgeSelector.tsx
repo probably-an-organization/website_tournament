@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Input } from "@futshi/js_toolbox";
 
 import {
   Popover,
@@ -6,7 +7,6 @@ import {
   PopoverTrigger,
 } from "~src/components/Popover";
 import NationalityBadge from "./NationalityBadge";
-import Input from "~src/components/Input";
 import type { Country } from "~src/constants/tournament/COUNTRIES";
 import { COUNTRIES_ISO } from "~src/constants/tournament/COUNTRIES";
 
@@ -52,7 +52,9 @@ export default function NationalityBadgeSelector({
             <Input
               className="h-full"
               type="text"
-              onChange={(e) => setFilter(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setFilter(e.target.value)
+              }
               value={filter}
             />
           </div>

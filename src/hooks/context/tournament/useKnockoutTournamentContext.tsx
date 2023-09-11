@@ -11,7 +11,7 @@ import useAxios from "~src/hooks/useAxios";
 /* CONTEXT */
 type KnockoutTournamentContextProps = {
   editKnockoutMatch: KnockoutMatch | null;
-  fetchKnockout(id?: number): Promise<void>;
+  fetchKnockout(id?: string): Promise<void>;
   knockoutEditPermission: boolean;
   knockoutMatch: KnockoutMatch | null;
   knockoutTournament: KnockoutTournament | null;
@@ -85,7 +85,7 @@ export const KnockoutTournamentContextProvider = ({
     }
   }, [knockoutTournament]);
 
-  const fetchKnockout = async (id?: number) => {
+  const fetchKnockout = async (id?: string) => {
     const knockoutId = id ?? knockoutTournament?._id;
     if (knockoutId === undefined) {
       throw Error("No knockout id found");

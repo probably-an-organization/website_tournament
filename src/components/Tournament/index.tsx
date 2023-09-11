@@ -1,6 +1,6 @@
 "use client";
 
-import { cloneElement, useState } from "react";
+import { cloneElement, useEffect, useState } from "react";
 import {
   FiChevronLeft,
   FiClipboard,
@@ -14,6 +14,11 @@ import { useGlobalContext } from "~src/hooks/context/useGlobalContext";
 import SideMenu from "~src/components/SideMenu";
 import SideMenuBar from "~src/components/SideMenu/Bar";
 import SideMenuPage from "~src/components/SideMenu/Page";
+import {
+  KnockoutTournamentContextProvider,
+  useKnockoutTournamentContext,
+} from "~src/hooks/context/tournament/useKnockoutTournamentContext";
+import { handleAxiosError } from "~src/utils/axiosUtils";
 
 import TournamentSettings from "./Settings";
 import TournamentDetails from "./Details";
@@ -51,10 +56,45 @@ const NAVIGATION_ITEMS: {
   },
 };
 
-export default function Tournament() {
-  const [navigation, setNavigation] = useState<Navigation>(Navigation.Overview);
+type TournamentProps = {
+  id: string;
+};
 
+export default function Tournament({ id }: TournamentProps) {
+  return (
+    <KnockoutTournamentContextProvider>
+      <TournamentComponent id={id} />
+    </KnockoutTournamentContextProvider>
+  );
+}
+
+function TournamentComponent({ id }: TournamentProps) {
+  const [navigation, setNavigation] = useState<Navigation>(Navigation.Overview);
   const { redirect, user } = useGlobalContext();
+  const { fetchKnockout, knockoutTournament, knockoutEditPermission } =
+    useKnockoutTournamentContext();
+
+  useEffect(() => {
+    if (id) {
+      fetchKnockout(id).catch((err) =>
+        handleAxiosError(err, {
+          default: () => redirect("/tournament", { withLoading: true }),
+        }),
+      );
+    }
+  }, [id]);
+
+  if (!knockoutTournament) {
+    return <></>;
+  }
+
+  if (!knockoutEditPermission) {
+    return (
+      <div className="p-3">
+        <TournamentDetails />
+      </div>
+    );
+  }
 
   return (
     <SideMenu>
@@ -105,9 +145,16 @@ export default function Tournament() {
                   })
                 }
               >
-                {user.signedIn
-                  ? [<FiChevronLeft />, <span>Dashboard</span>]
-                  : [<FiChevronLeft />, <span>Sign In</span>]}
+                {user.signedIn ? (
+                  <>
+                    <FiChevronLeft />
+                    <span>Dashboard</span>
+                  </>
+                ) : (
+                  <>
+                    <FiChevronLeft /> <span>Sign In</span>
+                  </>
+                )}
               </button>
             </div>
           </div>

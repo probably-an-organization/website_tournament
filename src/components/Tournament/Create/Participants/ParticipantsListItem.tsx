@@ -1,7 +1,7 @@
 import { FiTrash2 } from "react-icons/fi";
 
 import NationalityBadgeSelector from "../../NationalityBadgeSelector";
-import Input from "~src/components/Input";
+import { Input } from "@futshi/js_toolbox";
 import { useNewTournamentContext } from "~src/hooks/context/tournament/useNewTournamentContext";
 import type { Participant } from "~src/types/tournament";
 
@@ -56,14 +56,18 @@ function ParticipantsListItem({ index }: CreateDancerListItemProps) {
       <Input
         className="h-full min-w-0 flex-1"
         error={data.name?.trim().length < 1}
-        onChange={(e) => handleChange({ name: e.target.value })}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          handleChange({ name: e.target.value })
+        }
         type="text"
         value={data.name}
       />
       <Input
         className="h-full min-w-0 flex-1"
         error={data.team?.trim().length < 1}
-        onChange={(e) => handleChange({ team: e.target.value })}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          handleChange({ team: e.target.value })
+        }
         type="text"
         value={data.team}
       />

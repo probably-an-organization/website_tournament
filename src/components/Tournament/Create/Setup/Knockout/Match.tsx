@@ -8,11 +8,10 @@ import {
   useInteractions,
 } from "@floating-ui/react";
 import { FiAward, FiInfo } from "react-icons/fi";
-
-import { Button, Modal } from "@futshi/js_toolbox";
-import Input from "~src/components/Input";
-import { twMerge } from "tailwind-merge";
 import { AnimatePresence, motion } from "framer-motion";
+import { twMerge } from "tailwind-merge";
+
+import { Button, Input, Modal } from "@futshi/js_toolbox";
 
 import type { NewKnockoutMatch } from "~src/types/tournament";
 
@@ -152,7 +151,7 @@ export default function KnockoutTournamentMatch({
             <label>Information</label>
             <Input
               className="w-full"
-              onChange={(e) =>
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setEditKnockoutBranch(
                   (prev) =>
                     ({
