@@ -6,7 +6,7 @@ import parseISO from "date-fns/parseISO";
 import { useMemo } from "react";
 
 import Table from "~src/components/Table";
-import { useGlobalContext } from "~src/hooks/context/useGlobalContext";
+import { useGlobalContext } from "~src/hooks/context/providers/useGlobalContext";
 
 type TableColumn = {
   id: number;

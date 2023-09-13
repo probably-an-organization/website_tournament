@@ -20,7 +20,7 @@ import useSocket from "~src/hooks/useSocket";
 import {
   NotificationType,
   useNotificationContext,
-} from "~src/hooks/context/_global/useNotificationContext";
+} from "~src/hooks/context/providers/useNotificationContext";
 import { KnockoutMatch, KnockoutTournament } from "~src/types/tournament";
 
 import KnockoutMatchInfo from "./MatchInfo";

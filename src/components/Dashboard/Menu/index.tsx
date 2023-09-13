@@ -8,7 +8,7 @@ import {
   DashboardSection,
 } from "~src/constants/tournament/DASHBOARD";
 import useAxios from "~src/hooks/useAxios";
-import { useGlobalContext } from "~src/hooks/context/useGlobalContext";
+import { useGlobalContext } from "~src/hooks/context/providers/useGlobalContext";
 import { useDashboardContext } from "~src/hooks/context/tournament/useDashboardContext";
 import {
   Popover,
@@ -39,8 +39,6 @@ export default function DashboardMenu() {
       }
     }
   };
-
-  console.log(user);
 
   return (
     <div className="z-10 min-w-fit bg-neutral-800 shadow flex justify-center">

@@ -9,7 +9,7 @@ import {
   GRID_TYPE_FILTER,
   useDashboardContext,
 } from "~src/hooks/context/tournament/useDashboardContext";
-import { useGlobalContext } from "~src/hooks/context/useGlobalContext";
+import { useGlobalContext } from "~src/hooks/context/providers/useGlobalContext";
 import { twMerge } from "tailwind-merge";
 import { Hover, HoverContent, HoverTrigger } from "~src/components/Hover";
 import TournamentsGridViewButton from "./GridViewButton";

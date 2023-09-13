@@ -10,7 +10,7 @@ import {
 } from "react-icons/fi";
 import { twMerge } from "tailwind-merge";
 
-import { useGlobalContext } from "~src/hooks/context/useGlobalContext";
+import { useGlobalContext } from "~src/hooks/context/providers/useGlobalContext";
 import SideMenu from "~src/components/SideMenu";
 import SideMenuBar from "~src/components/SideMenu/Bar";
 import SideMenuPage from "~src/components/SideMenu/Page";

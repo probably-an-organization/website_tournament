@@ -24,9 +24,9 @@ import useAxios from "~src/hooks/useAxios";
 import {
   NotificationType,
   useNotificationContext,
-} from "~src/hooks/context/_global/useNotificationContext";
+} from "~src/hooks/context/providers/useNotificationContext";
 import { TournamentTypes } from "~src/constants/tournament/TYPES";
-import { useGlobalContext } from "~src/hooks/context/useGlobalContext";
+import { useGlobalContext } from "~src/hooks/context/providers/useGlobalContext";
 
 export default function TournamentCreate() {
   const [slide, setSlide] = useState<number>(0);

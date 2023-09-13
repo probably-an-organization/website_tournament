@@ -1,60 +1,26 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import { useRouter } from "next/router";
+"use client";
+
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { Spinner } from "@futshi/js_toolbox";
 
-import { type Tournament } from "~src/types/tournament";
+import useAxios from "~src/hooks/useAxios";
+import { NotificationContextProvider } from "~src/hooks/context/providers/useNotificationContext";
+import { ThemeContextProvider } from "~src/hooks/context/providers/useThemeContext";
 import { handleAxiosError } from "~src/utils/axiosUtils";
+import {
+  GlobalContext,
+  RedirectOptions,
+  UserContext,
+  UserData,
+} from "~src/hooks/context/providers/useGlobalContext";
 
-import useAxios from "../useAxios";
-import { NotificationContextProvider } from "./_global/useNotificationContext";
-import { ThemeContextProvider } from "./_global/useThemeContext";
-
-type RedirectOptions = {
-  withLoading?: boolean;
-};
-
-type UserData = {
-  email: string;
-  username: string;
-  verified: boolean;
-};
-
-type UserContext = {
-  // authenticating: boolean // basically loading flag
-  signedIn?: boolean;
-  tournaments: Tournament[];
-  data?: UserData;
-};
-
-/* CONTEXT */
-type GlobalContextProps = {
-  loading: boolean;
-  redirect(path: string, options?: RedirectOptions): void;
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
-  setUser: React.Dispatch<React.SetStateAction<UserContext>>;
-  user: UserContext;
-};
-
-const GlobalContext = createContext<GlobalContextProps>({
-  loading: false,
-  redirect: () => undefined,
-  setLoading: () => undefined,
-  setUser: () => undefined,
-  user: { signedIn: undefined, tournaments: [] },
-});
-
-/* HOOK */
-export const useGlobalContext = () => useContext(GlobalContext);
-
-/* CONTEXT PROVIDER */
-type GlobalContextProviderProps = {
+export type ProvidersProps = {
   children: React.ReactNode;
 };
 
-export default function GlobalContextProvider({
-  children,
-}: GlobalContextProviderProps) {
+export default function Providers({ children }: ProvidersProps) {
   const [loading, setLoading] = useState<boolean>(false);
   const [user, setUser] = useState<UserContext>({
     // authenticating: true
@@ -91,7 +57,9 @@ export default function GlobalContextProvider({
     }
     await router.push(path);
     if (options.withLoading) {
-      setLoading(false);
+      setTimeout(() => {
+        setLoading(false);
+      }, 5000);
     }
   };
 

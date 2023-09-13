@@ -1,4 +1,4 @@
-import { useGlobalContext } from "~src/hooks/context/useGlobalContext";
+import { useGlobalContext } from "~src/hooks/context/providers/useGlobalContext";
 import { twMerge } from "tailwind-merge";
 type DashboardTournamentButtonProps = {
   children: React.ReactNode;

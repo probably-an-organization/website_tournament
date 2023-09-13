@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-import { useGlobalContext } from "~src/hooks/context/useGlobalContext";
+import { useGlobalContext } from "~src/hooks/context/providers/useGlobalContext";
 import useAxios from "~src/hooks/useAxios";
 import { Tournament } from "~src/types/tournament";
 import DashboardMenu from "./Menu";

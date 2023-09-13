@@ -28,16 +28,22 @@
     },
     "typeRoots": [
       "src/types",
-      "node_modules/@types",
+      "node_modules/@types"
     ],
     "types": [
       "react"
+    ],
+    "plugins": [
+      {
+        "name": "next"
+      }
     ]
   },
   "include": [
     "**/*.ts",
     "**/*.d.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    ".next/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

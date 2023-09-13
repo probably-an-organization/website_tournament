@@ -9,7 +9,7 @@ import {
 import { FiCamera } from "react-icons/fi";
 
 import FloatingInput from "~src/components/FloatingInput";
-import { useGlobalContext } from "~src/hooks/context/useGlobalContext";
+import { useGlobalContext } from "~src/hooks/context/providers/useGlobalContext";
 import ActionList from "~src/components/ActionList";
 import { EditModal } from "~src/constants/tournament/SETTINGS";
 

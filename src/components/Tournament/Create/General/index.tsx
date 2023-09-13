@@ -8,7 +8,7 @@ import FloatingInput from "~src/components/FloatingInput";
 import {
   NotificationType,
   useNotificationContext,
-} from "~src/hooks/context/_global/useNotificationContext";
+} from "~src/hooks/context/providers/useNotificationContext";
 import { twMerge } from "tailwind-merge";
 const MAX_CHARACTERS = 256;
 
