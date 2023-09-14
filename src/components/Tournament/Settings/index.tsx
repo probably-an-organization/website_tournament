@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-
 import { Button, Modal, Switch } from "@futshi/js_toolbox";
+
 import useAxios from "~src/hooks/useAxios";
 import ActionList from "~src/components/ActionList";
+import { FiCheck } from "react-icons/fi";
 
 export default function TournamentSettings() {
   const [pub, setPub] = useState<boolean>(false);
@@ -68,17 +69,36 @@ export default function TournamentSettings() {
         <div className="flex p-3 gap-3">
           {premiumModels?.map((pm: any, i: number) => (
             <button
-              className="break-all flex-1 transition-colors border border-neutral-800 hover:border-transparent disabled:bg-orange-500 hover:bg-neutral-500 rounded p-3"
+              className="break-all flex-1 transition-colors border border-neutral-800 hover:border-transparent disabled:bg-orange-500 hover:bg-neutral-500 rounded"
               disabled={premiumSelection === i}
               key={`premium-model-${i}`}
               onClick={() => setPremiumSelection(i)}
             >
-              <div className="text-center font-medium text-lg">{pm.name}</div>
-              <div className="text-center text-sm">{pm.description}</div>
-              <div>{Number(pm.price).toFixed(2)} €</div>
+              <div className="flex flex-col gap-4 items-start p-5">
+                <p className="font-medium text-lg">{pm.name}</p>
+                <p className="text-sm">{pm.description}</p>
+                <p className="text-2xl">{Number(pm.price).toFixed(2)} €</p>
+                <ul>
+                  <li className="flex gap-2 items-center">
+                    <FiCheck /> 8 Teams
+                  </li>
+                  <li className="flex gap-2 items-center">
+                    <FiCheck /> Public access
+                  </li>
+                  <li className="flex gap-2 items-center">
+                    <FiCheck /> ...
+                  </li>
+                </ul>
+              </div>
             </button>
           ))}
         </div>
+        <Button
+          className="bg-neutral-500 dark:bg-neutral-500"
+          onClick={() => alert("TODO")}
+        >
+          Continue
+        </Button>
         <Button onClick={() => setModal(false)}>Close</Button>
       </Modal>
     </>

@@ -3,7 +3,7 @@ import { Metadata } from "next";
 
 import Providers from "./providers";
 
-import "~src/styles/globals.css";
+import "./layout.css";
 
 export const metadata: Metadata = {
   title: "Tournament Generator",
